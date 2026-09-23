@@ -85,12 +85,19 @@ h1,h2,h3,h4,h5,.font-display{font-family:'Archivo',sans-serif}
 	.navBar-transparent .navBar_phone,
 	.navBar-transparent .socialIcons a,
 	.navBar-transparent .dropButton_button{color:#fff}
+	/* .socialIcons_icon's own background (--mist, a near-white lavender) stays put
+	   by default, so a white icon glyph on it washes out to near-invisible -- give
+	   the circle a translucent-white backdrop so the glyph has contrast. */
+	.navBar-transparent .socialIcons_icon{background:rgba(255,255,255,.18)}
+	.navBar-transparent .socialIcons_icon:hover{background:var(--action)}
 	.navBar-transparent.navBar-scrolled{position:fixed;background:#fff;color:inherit;box-shadow:0 6px 24px -8px rgba(36,39,42,.18)}
 	.navBar-transparent.navBar-scrolled .navBar_logo,
 	.navBar-transparent.navBar-scrolled .navList > .menu-item > a,
 	.navBar-transparent.navBar-scrolled .navBar_phone,
 	.navBar-transparent.navBar-scrolled .socialIcons a,
 	.navBar-transparent.navBar-scrolled .dropButton_button{color:inherit}
+	.navBar-transparent.navBar-scrolled .socialIcons_icon{background:var(--mist)}
+	.navBar-transparent.navBar-scrolled .socialIcons_icon:hover{background:var(--action);color:#fff}
 }
 
 .navBar_menuToggle{display:flex;align-items:center;gap:1rem}
