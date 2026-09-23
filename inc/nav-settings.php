@@ -61,6 +61,19 @@ function bootg_nav_is_transparent_here() {
 }
 
 /**
+ * Lets page content (the homepage hero especially) tell whether it's sitting
+ * under an absolutely-positioned transparent nav instead of a normal in-flow
+ * one, so it can add its own clearance -- the nav no longer pushes content
+ * down the way a solid, sticky-from-the-top nav does.
+ */
+add_filter( 'body_class', function ( $classes ) {
+	if ( bootg_nav_is_transparent_here() ) {
+		$classes[] = 'bootg-transparent-nav';
+	}
+	return $classes;
+} );
+
+/**
  * Logo height as a CSS custom property, consumed by .navBar_logo /
  * .custom-logo in site.css via clamp() so it scales smoothly on narrower
  * screens instead of jumping at a fixed breakpoint.

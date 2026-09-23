@@ -386,6 +386,13 @@ body::after{content:"";position:fixed;inset:0;z-index:75;pointer-events:none;opa
 	.hero-scrub{height:200vh}
 	.hero-pin{position:sticky;top:0;min-height:100vh;display:flex;align-items:center;z-index:1}
 	.hero-pin > .relative{width:100%}
+	/* Transparent nav (desktop-only, see .navBar-transparent above) is positioned
+	   absolutely over the hero instead of sitting in normal flow above it, so
+	   nothing pushes the hero's own top padding down to clear it -- this adds
+	   that clearance back, scaling with the configured logo height (Site Options
+	   > Navigation) rather than a fixed guess, so an oversized logo never
+	   re-creates the overlap. */
+	body.bootg-transparent-nav .hero-pin{padding-top:calc(var(--bootg-logo-height, 52px) + 3rem)}
 }
 @media (prefers-reduced-motion: reduce){.hero-bg-media--photo img{animation:none;opacity:1}}
 
