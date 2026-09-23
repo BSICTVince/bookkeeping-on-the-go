@@ -1,0 +1,19 @@
+[
+	{
+		"title": "Natalie Adams",
+		"summary": "Decades of bookkeeping experience and a passion for helping small businesses and nonprofits thrive.",
+		"image": "https://bookkeepingonthego.net.au/app/uploads/Natalie-img.jpg",
+		"meta": {
+			"role": "Owner & Registered BAS Agent",
+			"linkedin_url": "https://www.linkedin.com/in/natalie-adams-0159b582"
+		}
+	},
+	{
+		"title": "Ellie",
+		"summary": "Reconciliations, catch-up bookkeeping and month-end reporting with an eagle eye for detail.",
+		"image": "https://bookkeepingonthego.net.au/app/uploads/Ellie.jpg",
+		"meta": {
+			"role": "Senior Bookkeeper"
+		}
+	}
+]

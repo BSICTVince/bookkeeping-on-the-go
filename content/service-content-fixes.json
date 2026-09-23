@@ -1,0 +1,26 @@
+{
+	"Bookkeeping & Reconciliations": {
+		"content": "We’re beside you every step of the way — coding transactions, reconciling every account, and turning your numbers into plain-English summaries you can act on. Behind or overdue? Rescue bookkeeping is our specialty.",
+		"meta": {
+			"eyebrow": "Day-to-Day Finances",
+			"hero_headline": "Books You Can Actually <span class=\"text-action\">Rely On.</span>",
+			"features": "Transaction coding and bank reconciliation\nAccounts payable and receivable management\nMonthly profit & loss and cash-flow summaries\nCatch-up and rescue bookkeeping for overdue books"
+		}
+	},
+	"BAS & IAS Lodgments": {
+		"content": "As a registered BAS agent with the Tax Practitioners Board, we prepare and lodge your Business Activity Statements and Instalment Activity Statements electronically — and as your agent, we can often access lodgment extensions you can’t get on your own.",
+		"meta": {
+			"eyebrow": "Registered BAS Agent",
+			"hero_headline": "BAS &amp; IAS, Lodged On Time. <span class=\"text-action\">Every Time.</span>",
+			"features": "BAS & IAS preparation and electronic lodgment\nGST, PAYG withholding and instalment accuracy checks\nATO liaison handled on your behalf\nDeadline management with agent lodgment extensions"
+		}
+	},
+	"Payroll & Cloud Setup": {
+		"content": "Getting your books done has never been easier. We assess your workflow, recommend the right platform, migrate your data cleanly, automate the paperwork, and train your team properly — then stay on call as you grow.",
+		"meta": {
+			"eyebrow": "Get Set Up Right",
+			"hero_headline": "Cloud Bookkeeping, <span class=\"text-action\">Without The Headache.</span>",
+			"features": "Software selection across Xero, MYOB and QuickBooks\nSeamless data migration and chart of accounts setup\nReceipt automation with Dext and Hubdoc\nTeam training and ongoing support"
+		}
+	}
+}

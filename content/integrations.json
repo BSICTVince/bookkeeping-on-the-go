@@ -1,0 +1,62 @@
+[
+	{
+		"title": "Xero",
+		"meta": {
+			"subtitle": "Beautiful Business, Beautifully Kept Books",
+			"intro": "As Xero Gold Partners and Certified Advisors, we set up, migrate and manage Xero so it works the way your business does.",
+			"partner_badge_label": "Xero Gold Partner",
+			"login_url": "https://login.xero.com"
+		}
+	},
+	{
+		"title": "MYOB",
+		"meta": {
+			"subtitle": "Local Expertise for Australia's Own Platform",
+			"intro": "As an MYOB Diamond Partner and Certified Consultant, we configure MYOB properly from day one — and keep it running smoothly.",
+			"partner_badge_label": "MYOB Certified Consultant",
+			"login_url": "https://www.myob.com/au"
+		}
+	},
+	{
+		"title": "QuickBooks Online",
+		"meta": {
+			"subtitle": "QuickBooks Online, Configured Properly",
+			"intro": "As QuickBooks Certified ProAdvisors, we set up QBO the right way — clean data, smart automation, no regrets.",
+			"partner_badge_label": "QuickBooks Certified ProAdvisor",
+			"login_url": "https://app.qbo.intuit.com/app/login"
+		}
+	},
+	{
+		"title": "Dext",
+		"meta": {
+			"subtitle": "Paperless Receipts, Zero Data Entry",
+			"intro": "As a Dext Partner, we connect Dext to your ledger so bills and receipts code themselves — you just snap and go.",
+			"partner_badge_label": "Dext Partner",
+			"login_url": "https://app.dext.com/login/"
+		}
+	},
+	{
+		"title": "Hubdoc",
+		"meta": {
+			"subtitle": "Your Documents, Collected Automatically",
+			"intro": "As a Hubdoc Partner, we turn Hubdoc into your automatic filing cabinet — every bill and statement fetched, coded and stored.",
+			"partner_badge_label": "Hubdoc Partner",
+			"login_url": "https://app.hubdoc.com/login"
+		}
+	},
+	{
+		"title": "MechanicDesk",
+		"meta": {
+			"subtitle": "Bookkeeping That Speaks Workshop",
+			"intro": "We pair MechanicDesk workshop data with clean, compliant books for automotive repair businesses.",
+			"login_url": "https://www.mechanicdesk.com.au/auto_workshop/login"
+		}
+	},
+	{
+		"title": "Cloud Accounting",
+		"meta": {
+			"subtitle": "Your Business, In Your Pocket",
+			"intro": "Manage all aspects of your business when and where you need it — we'll get you set up on the right cloud stack."
+		}
+	}
+]

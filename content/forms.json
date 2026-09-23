@@ -1,0 +1,55 @@
+[
+	{
+		"slug": "contact-form",
+		"title": "Contact Form",
+		"fields": [
+			{ "field_id": "name", "type": "text", "label": "Name", "placeholder": "Your name", "required": true, "width": "half" },
+			{ "field_id": "email", "type": "email", "label": "Email", "placeholder": "you@business.com.au", "required": true, "width": "half" },
+			{ "field_id": "phone", "type": "tel", "label": "Phone", "placeholder": "Optional", "required": false, "width": "half" },
+			{
+				"field_id": "topic",
+				"type": "select",
+				"label": "What do you need help with?",
+				"required": false,
+				"width": "half",
+				"options": [
+					"Bookkeeping & Reconciliations",
+					"BAS / IAS Lodgments",
+					"Payroll & STP",
+					"Cloud Bookkeeping Setup",
+					"Nonprofit / Public Trustee Reporting",
+					"Something else"
+				]
+			},
+			{ "field_id": "message", "type": "textarea", "label": "Message", "placeholder": "How can we help?", "required": true, "width": "full" }
+		],
+		"settings": {
+			"submit_label": "Send Message",
+			"success_message": "Thanks — your message is on its way. We will reply within one business day."
+		}
+	},
+	{
+		"slug": "7-steps-signup",
+		"title": "7 Steps Course Signup",
+		"fields": [
+			{ "field_id": "first_name", "type": "text", "label": "First Name", "placeholder": "First name", "required": true, "width": "half" },
+			{ "field_id": "last_name", "type": "text", "label": "Last Name", "placeholder": "Last name", "required": true, "width": "half" },
+			{ "field_id": "email", "type": "email", "label": "Email", "placeholder": "you@business.com.au", "required": true, "width": "full" }
+		],
+		"settings": {
+			"submit_label": "Sign Up",
+			"success_message": "Thanks — check your inbox, we will send the course and your free template shortly."
+		}
+	},
+	{
+		"slug": "newsletter-signup",
+		"title": "Newsletter Signup",
+		"fields": [
+			{ "field_id": "email", "type": "email", "label": "Email", "placeholder": "Your email address", "required": true }
+		],
+		"settings": {
+			"submit_label": "Subscribe",
+			"success_message": "Thanks for subscribing — you are on the list."
+		}
+	}
+]

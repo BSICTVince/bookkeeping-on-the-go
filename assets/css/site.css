@@ -1,0 +1,423 @@
+/* ============ Theme additions — not in original source ============ */
+/* Block themes wrap header/main/footer in .wp-site-blocks and apply the same
+   blockGap margin between them as between blocks inside content (enabled by
+   theme.json's appearanceTools:true). That inserted a visible seam — e.g.
+   between the navy final-CTA section and the navy footer — since neither
+   manages its own top/bottom spacing expecting a sibling margin. Root-level
+   template parts should butt up against each other; sections manage their
+   own internal padding already. */
+.wp-site-blocks > * + *{margin-block-start:0}
+
+/* WP wraps parts/header.html in two nested <header> boxes (the template-part
+   block, then our own wp:group) whose height exactly matches .navBar's own
+   height. position:sticky is constrained to stay within its containing
+   block, so as soon as you scroll past that (very short) height, the nav
+   un-sticks and scrolls away with the page — it never stays pinned like the
+   original static markup did, where the nav div sat directly under body
+   with nothing tightly wrapping it. display:contents removes both header
+   wrappers from the box model so .navBar's containing block becomes the
+   full-height page instead, restoring the original always-visible nav. */
+header.wp-block-template-part,
+header.wp-block-group{display:contents}
+
+/* ============ 1. Design tokens (lines 37-179) ============ */
+:root{
+  --navy:#3B2350; --navy-deep:#2A1638; --action:#643486; --action-dark:#4A2364;
+  --charcoal:#453E4C; --mist:#F7F3FA;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Source Sans 3',sans-serif;color:var(--charcoal);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,h5,.font-display{font-family:'Archivo',sans-serif}
+::selection{background:var(--action);color:#fff}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ============ Scroll reveal ============ */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+
+/* ============ Scaling SVG helper ============ */
+.u-scalingSvg{position:relative;display:block;width:100%}
+.u-scalingSvg_shape{position:absolute;top:0;left:0;width:100%;height:100%;fill:currentColor}
+
+/* ============ NavBar (client markup) ============ */
+.navBar{position:sticky;top:0;z-index:60;background:#fff;transition:box-shadow .3s ease}
+.navBar.navBar-scrolled{box-shadow:0 6px 24px -8px rgba(36,39,42,.18)}
+/* max-width tied to theme.json's settings.layout.wideSize (var(--wp--style--global--wide-size))
+   instead of a hardcoded 80rem — same value today (1280px), but now follows Site Editor
+   Styles > Layout changes, same as how core outputs .is-layout-constrained > .alignwide. */
+.navBar .container{max-width:var(--wp--style--global--wide-size, 80rem);margin:0 auto;padding:0 1rem}
+@media(min-width:640px){.navBar .container{padding:0 1.5rem}}
+@media(min-width:1024px){.navBar .container{padding:0 2rem;display:flex;align-items:stretch}}
+
+/* flex-shrink:0 added — not in source. Without it, a full-length Primary Menu
+   (7 top-level items incl. "Compliance Resources") pushes #mainNavBar's flex:1
+   min-content wide enough to collapse this sibling to 0px width at some desktop
+   widths, so the logo box vanishes from layout while still painting (overlap bug). */
+.navBar_header{display:flex;align-items:center;justify-content:space-between;padding:.85rem 0;flex-shrink:0}
+.navBar_brand{display:block;flex-shrink:0}
+.navBar_logo{height:44px;width:auto;display:block}
+@media(min-width:1024px){.navBar_logo{height:52px}}
+
+.navBar_menuToggle{display:flex;align-items:center;gap:1rem}
+@media(min-width:1024px){.navBar_menuToggle{display:none}}
+
+/* Burger */
+.burger{display:block;padding:.5rem;cursor:pointer}
+.burger_bar{display:block;width:26px;height:2px;background:var(--navy);margin:5px 0;border-radius:2px;transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .25s ease}
+.burger.active .burger_bar:nth-of-type(2){transform:translateY(7px) rotate(45deg)}
+.burger.active .burger_bar:nth-of-type(3){opacity:0}
+.burger.active .burger_bar:nth-of-type(4){transform:translateY(-7px) rotate(-45deg)}
+
+/* Phone link */
+.navBar_phone{display:flex;align-items:center;gap:.5rem;font-weight:700;color:var(--navy);text-decoration:none;font-size:.95rem;transition:color .25s ease}
+.navBar_phone:hover{color:var(--action)}
+.navBar_phoneIcon{width:16px;color:var(--action)}
+
+/* Collapsible menu panel */
+#mainNavBar{display:none;border-top:1px solid #E2E8F0}
+#mainNavBar.collapse{visibility:visible} /* override Tailwind's .collapse utility */
+#mainNavBar.open{display:block}
+@media(min-width:1024px){
+  #mainNavBar{display:flex !important;border-top:0;flex:1;flex-direction:column;justify-content:center;padding-left:2rem}
+}
+
+/* Social container (utility row) */
+.navBar_socialContainer{display:flex;flex-direction:column;gap:.9rem;padding:1rem 0;border-bottom:1px solid #EDF2F7}
+@media(min-width:1024px){
+  .navBar_socialContainer{flex-direction:row;align-items:center;justify-content:flex-end;gap:1.25rem;padding:.35rem 0;border-bottom:0}
+}
+.navBar_socialContainer .navBar_phone{display:none}
+@media(min-width:1024px){.navBar_socialContainer .navBar_phone{display:flex}}
+
+/* Client Area dropdown */
+.dropButton .dropdown{position:relative}
+.dropButton_button{display:inline-flex;align-items:center;gap:.45rem;background:var(--navy);color:#fff;font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;padding:.55rem 1rem;border-radius:.375rem;border:0;cursor:pointer;transition:background-color .25s ease,transform .25s ease}
+.dropButton_button:hover{background:var(--action);transform:translateY(-1px)}
+.dropButton_chevron{width:10px;color:#fff;transition:transform .3s ease}
+.dropdown.open .dropButton_chevron{transform:rotate(180deg)}
+.dropButton_chevron .u-scalingSvg{padding-bottom:100%}
+.dropdown-menu{display:none;list-style:none;margin:0;padding:.4rem 0;background:#fff;border:1px solid #E2E8F0;border-radius:.5rem;box-shadow:0 18px 40px -12px rgba(36,39,42,.25);min-width:280px}
+.dropdown.open .dropdown-menu{display:block;animation:dropIn .22s cubic-bezier(.22,1,.36,1)}
+@keyframes dropIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:1024px){
+  .dropdown-menu-right{position:absolute;right:0;top:calc(100% + 8px);z-index:70}
+}
+@media(max-width:1023.98px){
+  .dropdown-menu{position:static;box-shadow:none;border:0;border-left:2px solid #E2E8F0;border-radius:0;margin:.5rem 0 0 .5rem;min-width:0}
+}
+.dropdown-menu .menu-item a{display:block;padding:.55rem 1.1rem;font-size:.92rem;font-weight:600;color:var(--charcoal);text-decoration:none;transition:background-color .2s ease,color .2s ease,padding-left .2s ease}
+.dropdown-menu .menu-item a:hover{background:var(--mist);color:var(--action);padding-left:1.35rem}
+
+/* Social icons */
+.socialIcons_layout{display:flex;align-items:center;gap:.6rem}
+.socialIcons_icon{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9999px;background:var(--mist);color:var(--navy);transition:background-color .25s ease,color .25s ease,transform .25s ease}
+.socialIcons_icon:hover{background:var(--action);color:#fff;transform:translateY(-2px)}
+.socialIcons_icon .u-scalingSvg{width:15px;padding-bottom:100%}
+
+/* Main menu */
+.navList{list-style:none;margin:0;padding:.5rem 0;display:flex;flex-direction:column}
+@media(min-width:1024px){.navList{flex-direction:row;align-items:center;justify-content:flex-end;gap:.25rem;padding:0}}
+.navList > .menu-item{position:relative}
+.navList > .menu-item > a{display:flex;align-items:center;justify-content:space-between;gap:.4rem;padding:.7rem .9rem;font-weight:700;font-size:.95rem;color:var(--charcoal);text-decoration:none;border-radius:.375rem;transition:color .25s ease,background-color .25s ease}
+.navList > .menu-item > a:hover{color:var(--action);background:var(--mist)}
+@media(min-width:1024px){.navList > .menu-item > a:hover{background:transparent}}
+.navList > .menu-item.active > a{color:var(--action)}
+.navList > .menu-item.dropdown > a::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .3s ease;flex-shrink:0}
+.navList > .menu-item.dropdown.open > a::after{transform:rotate(225deg) translateY(-1px)}
+
+/* Sub menus */
+.sub-menu{display:none;list-style:none;margin:0;padding:.35rem 0;background:#fff}
+.menu-item.open > .sub-menu{display:block;animation:dropIn .22s cubic-bezier(.22,1,.36,1)}
+@media(max-width:1023.98px){
+  .sub-menu{border-left:2px solid #E2E8F0;margin-left:1rem}
+}
+@media(min-width:1024px){
+  .sub-menu{position:absolute;top:calc(100% + 6px);left:0;min-width:250px;border:1px solid #E2E8F0;border-radius:.5rem;box-shadow:0 18px 40px -12px rgba(36,39,42,.22);z-index:70;padding:.4rem 0}
+  .navList > .menu-item:hover > .sub-menu{display:block;animation:dropIn .22s cubic-bezier(.22,1,.36,1)}
+  .navList > .menu-item.dropdown:hover::after,.navList > .menu-item.dropdown.open::after{content:"";position:absolute;left:-10px;right:-10px;top:100%;height:16px}
+  .dropdown.open::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+}
+.sub-menu a{display:block;padding:.55rem 1.1rem;font-size:.9rem;font-weight:600;color:var(--charcoal);text-decoration:none;transition:background-color .2s ease,color .2s ease,padding-left .2s ease;white-space:nowrap}
+.sub-menu a:hover{background:var(--mist);color:var(--action);padding-left:1.3rem}
+
+/* ============ Buttons ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-weight:700;border-radius:.5rem;transition:transform .25s ease,box-shadow .25s ease,background-color .25s ease,color .25s ease,border-color .25s ease;text-decoration:none;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--action);color:#fff;box-shadow:0 10px 24px -8px rgba(100,52,134,.55)}
+.btn-primary:hover{background:var(--action-dark);transform:translateY(-2px);box-shadow:0 16px 30px -8px rgba(100,52,134,.55)}
+.btn-outline{border:2px solid #CBD5E0;color:var(--charcoal);background:transparent}
+.btn-outline:hover{border-color:var(--navy);color:var(--navy);transform:translateY(-2px)}
+.btn-dark{background:var(--navy);color:#fff}
+.btn-dark:hover{background:var(--navy-deep);transform:translateY(-2px)}
+
+/* ============ Cards ============ */
+.service-card{position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease}
+.service-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--action);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px -16px rgba(36,39,42,.22)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--action);transition:gap .25s ease,color .25s ease}
+.service-link:hover{gap:.7rem;color:var(--action-dark)}
+
+/* Partner badges */
+.partner-badge{font-family:'Archivo',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.14em;color:#718096;padding:.55rem 1.1rem;border:1px solid #E2E8F0;border-radius:9999px;background:#fff;transition:color .3s ease,border-color .3s ease,transform .3s ease}
+.partner-badge:hover{color:var(--navy);border-color:var(--action);transform:translateY(-2px)}
+
+/* Sticky mobile CTA */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:55;display:flex;gap:.6rem;padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-top:1px solid #E2E8F0;transform:translateY(110%);transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.sticky-cta.is-visible{transform:translateY(0)}
+@media(min-width:1024px){.sticky-cta{display:none}}
+
+/* Hero decoration */
+.hero-grid-bg{background-image:radial-gradient(circle at 1px 1px, rgba(100,52,134,.14) 1px, transparent 0);background-size:26px 26px}
+.hero-blob{position:absolute;border-radius:9999px;filter:blur(70px);pointer-events:none}
+
+/* ============ 2. Story section CSS (lines 343-363) ============ */
+.px-wrap{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.float-chip{position:absolute;display:flex;align-items:center;gap:.6rem;background:#fff;border:1px solid #E2E8F0;border-radius:.75rem;padding:.6rem .9rem;box-shadow:0 16px 34px -14px rgba(36,39,42,.35);font-size:.8rem;font-weight:700;color:var(--navy);animation:chipFloat 6s ease-in-out infinite;z-index:2}
+.float-chip .dot{width:8px;height:8px;border-radius:9999px;flex-shrink:0}
+@keyframes chipFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1deg)}}
+.chip-d1{animation-delay:.8s}.chip-d2{animation-delay:1.6s}
+
+.pain-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:1rem;padding:1.75rem;backdrop-filter:blur(8px);transition:transform .4s cubic-bezier(.22,1,.36,1),background-color .4s ease,border-color .4s ease}
+.pain-card:hover{transform:translateX(8px);background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.22)}
+.pain-icon{width:44px;height:44px;border-radius:.75rem;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.1);color:#C9A8E2;flex-shrink:0}
+
+.stat-num{font-family:'Archivo',sans-serif;font-weight:800;font-size:3rem;line-height:1;background:linear-gradient(120deg,var(--navy),var(--action));-webkit-background-clip:text;background-clip:text;color:transparent}
+@media(min-width:1024px){.stat-num{font-size:3.6rem}}
+
+.timeline{position:relative}
+.timeline_track{position:absolute;left:15px;top:10px;bottom:10px;width:2px;background:#E2E8F0;border-radius:2px;overflow:hidden}
+.timeline_fill{position:absolute;inset:0;background:linear-gradient(180deg,var(--navy),var(--action));transform-origin:top;transform:scaleY(0)}
+.timeline_dot{position:absolute;left:6px;top:6px;width:20px;height:20px;border-radius:9999px;background:#fff;border:2px solid var(--action);z-index:2;transition:transform .4s cubic-bezier(.34,1.56,.64,1),background-color .3s ease}
+.timeline_step{position:relative;padding:0 0 3rem 3.5rem}
+.timeline_step:hover .timeline_dot{transform:scale(1.25);background:var(--action)}
+
+.big-quote-mark{position:absolute;font-family:'Archivo',sans-serif;font-weight:800;font-size:22rem;line-height:1;color:var(--navy);opacity:.05;pointer-events:none;user-select:none}
+
+/* ============ 3. Partner logo + exit popup base (lines 947-952) ============ */
+.partner-logo{height:56px;width:auto;object-fit:contain;filter:grayscale(0);opacity:1;transition:transform .35s ease}
+.partner-logo:hover{filter:none;opacity:1;transform:translateY(-3px)}
+.exit-popup{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:1.25rem;background:rgba(36,39,42,.55);backdrop-filter:blur(6px)}
+.exit-popup.open{display:flex}
+.exit-popup_card{background:#fff;border-radius:1rem;max-width:26rem;width:100%;padding:2.25rem;position:relative;box-shadow:0 30px 60px -15px rgba(36,39,42,.4);animation:popIn .35s cubic-bezier(.22,1,.36,1)}
+@keyframes popIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+
+/* ============ 4. Motion pack (lines 1026-1082) ============ */
+@keyframes floatSlow{0%,100%{transform:translate(0,0)}50%{transform:translate(26px,-30px)}}
+@keyframes floatSlow2{0%,100%{transform:translate(0,0)}50%{transform:translate(-22px,24px)}}
+.hero-blob{animation:floatSlow 14s ease-in-out infinite}
+.hero-blob:nth-of-type(2){animation:floatSlow2 17s ease-in-out infinite}
+
+@keyframes heroIn{from{opacity:0;transform:translateY(34px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+[data-testid="hero-section"] .reveal,[data-testid="page-hero"] .reveal{animation:heroIn .9s cubic-bezier(.22,1,.36,1) both}
+[data-testid="hero-section"] .reveal-d1,[data-testid="page-hero"] .reveal-d1{animation-delay:.15s}
+[data-testid="hero-section"] .reveal-d2,[data-testid="page-hero"] .reveal-d2{animation-delay:.3s}
+[data-testid="hero-section"] .reveal-d3,[data-testid="page-hero"] .reveal-d3{animation-delay:.45s}
+
+.reveal{transform:translateY(28px) scale(.985)}
+
+@keyframes gradientShift{to{background-position:200% 0}}
+[data-testid="hero-section"] h1 span,[data-testid="page-hero"] h1 span{
+  background:linear-gradient(90deg,var(--action),#D6B4F2,var(--navy),var(--action));
+  background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:gradientShift 7s linear infinite}
+
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);transition:left .6s ease;pointer-events:none}
+.btn:hover::after{left:135%}
+.btn-primary{box-shadow:0 10px 24px -8px rgba(100,52,134,.55)}
+.btn-primary:hover{box-shadow:0 16px 32px -8px rgba(100,52,134,.6)}
+
+@media(min-width:1024px){
+  .navList > .menu-item > a{position:relative}
+  .navList > .menu-item > a::before{content:"";position:absolute;left:.9rem;right:.9rem;bottom:.3rem;height:2px;background:var(--action);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+  .navList > .menu-item > a:hover::before,.navList > .menu-item.active > a::before{transform:scaleX(1)}
+}
+.navBar_logo{transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.navBar_brand:hover .navBar_logo{transform:scale(1.05)}
+
+.service-card,.service-block{will-change:transform}
+.service-card > div:first-child{transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.service-card:hover > div:first-child{transform:scale(1.14) rotate(-6deg)}
+[data-testid^="team-card-"] .rounded-full{transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+[data-testid^="team-card-"]:hover .rounded-full{transform:scale(1.1) rotate(4deg)}
+
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee_track{display:flex;align-items:center;gap:3rem;width:max-content;animation:marquee 26s linear infinite}
+.marquee:hover .marquee_track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+[data-testid$="cta-band"],[data-testid="team-join-band"]{
+  background:linear-gradient(120deg,var(--navy-deep),var(--navy),#643486,var(--navy-deep));
+  background-size:300% 300%;animation:ctaShift 12s ease infinite}
+@keyframes ctaShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+@keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(100,52,134,.45)}50%{box-shadow:0 0 0 12px rgba(100,52,134,0)}}
+[data-testid="hero-badge"]{animation:badgePulse 3s ease-in-out infinite}
+
+#scrollProgress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:100;background:linear-gradient(90deg,var(--navy),var(--action));transform-origin:left;transform:scaleX(0);pointer-events:none}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+}
+
+/* ============ 5. Warmth pack (lines 1124-1162) ============ */
+body{background:#FFFEFE}
+.bg-white{background-color:#FFFEFE !important}
+.bg-mist{
+  background-color:#F3F3F2;
+  background-image:radial-gradient(60rem 26rem at 108% -8%, rgba(100,52,134,.13), transparent 60%),
+                   radial-gradient(48rem 22rem at -8% 108%, rgba(100,52,134,.11), transparent 60%);
+}
+.bg-navydeep{
+  background-color:#2A1638;
+  background-image:radial-gradient(52rem 22rem at 88% -10%, rgba(100,52,134,.22), transparent 60%),
+                   radial-gradient(40rem 20rem at 0% 110%, rgba(100,52,134,.14), transparent 60%);
+}
+.btn-primary{
+  background:linear-gradient(135deg,#B87FE0,#643486 45%,#4A2364);
+  box-shadow:0 10px 26px -8px rgba(100,52,134,.65);
+}
+.btn-primary:hover{
+  background:linear-gradient(135deg,#643486,#4A2364);
+  box-shadow:0 16px 34px -8px rgba(100,52,134,.7);
+}
+.btn-dark{background:#3B2350}
+.btn-dark:hover{background:#2A1638}
+[data-testid$="cta-band"],[data-testid="team-join-band"]{
+  background:linear-gradient(120deg,#2A1638,#3B2350,#4A2364,#2A1638);
+  background-size:300% 300%;animation:ctaShift 12s ease infinite;
+}
+.stat-num{background:linear-gradient(120deg,#3B2350,#643486);-webkit-background-clip:text;background-clip:text;color:transparent}
+.timeline_fill{background:linear-gradient(180deg,#3B2350,#643486)}
+#scrollProgress{background:linear-gradient(90deg,#3B2350,#643486)}
+[data-testid$="cta-band"] .text-action,[data-testid="team-join-band"] .text-action,[data-testid="story-section"] .text-action{color:#DCBFF0 !important;background:none !important;-webkit-text-fill-color:#DCBFF0}
+[data-testid="hero-section"] h1 span,[data-testid="page-hero"] h1 span{
+  background:linear-gradient(90deg,#643486,#D6B4F2,#3B2350,#643486);
+  background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:gradientShift 7s linear infinite;
+}
+.service-card > div:first-child{box-shadow:0 8px 18px -8px rgba(100,52,134,.5)}
+.partner-logo{opacity:.75}
+.dropButton_button{background:linear-gradient(135deg,#B87FE0,#643486 55%,#4A2364);box-shadow:0 8px 20px -8px rgba(100,52,134,.6)}
+.dropButton_button:hover{background:linear-gradient(135deg,#643486,#4A2364)}
+
+/* ============ 6. Luxe pack (lines 1167-1175) ============ */
+.bg-mist{background-image:radial-gradient(60rem 26rem at 108% -8%, rgba(100,52,134,.16), transparent 60%),radial-gradient(48rem 22rem at -8% 108%, rgba(100,52,134,.13), transparent 60%),linear-gradient(180deg,#FCFAFD,#F3EDF8)}
+.bg-navydeep:not([data-testid$="cta-band"]){background-image:radial-gradient(52rem 22rem at 88% -10%, rgba(100,52,134,.32), transparent 60%),radial-gradient(40rem 20rem at 0% 110%, rgba(100,52,134,.2), transparent 60%)}
+.border-slate-200{border-color:#EAE1F1 !important}
+.text-slate-600{color:#564D60 !important}
+.text-slate-500{color:#6E6478 !important}
+.text-slate-400{color:#8F8699 !important}
+.btn-outline:hover{border-color:#643486;color:#643486}
+.service-link{color:#643486}
+.pain-icon{color:#C9A8E2}
+
+/* ============ 7. Signature pack (lines 1180-1236) ============ */
+/* --- Lenis smooth scroll --- */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+.lenis.lenis-stopped{overflow:hidden}
+
+/* --- Film grain --- */
+body::after{content:"";position:fixed;inset:0;z-index:75;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* --- Intro curtain --- */
+#bootgCurtain{position:fixed;inset:0;z-index:200;background:#2A1638;display:flex;align-items:center;justify-content:center;animation:curtainLift .85s cubic-bezier(.76,0,.24,1) .65s forwards}
+@keyframes curtainLift{to{transform:translateY(-101%);visibility:hidden}}
+.curtain-word{margin:0;color:#DCBFF0;font-family:'Archivo',sans-serif;font-weight:800;font-size:.78rem;letter-spacing:.34em;text-transform:uppercase;opacity:0;transform:translateY(12px);animation:curtainWord .5s ease .1s forwards}
+@keyframes curtainWord{to{opacity:1;transform:none}}
+
+/* --- Masked line-by-line hero reveal --- */
+.line-mask{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.hero-title .line{display:block;transform:translateY(118%);background:none;color:#3B2350;-webkit-text-fill-color:currentColor;animation:lineUp 1.05s cubic-bezier(.22,1,.36,1) .95s both}
+.hero-title .line-accent{background:linear-gradient(90deg,#643486,#D6B4F2 55%,#643486);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:lineUp 1.05s cubic-bezier(.22,1,.36,1) 1.08s both,gradientShift 7s linear 2.2s infinite}
+@keyframes lineUp{to{transform:translateY(0)}}
+.hero-title em{font-family:'Fraunces',serif;font-style:italic;font-weight:500;letter-spacing:-.01em;padding-right:.06em}
+.hero-fade{opacity:0;animation:heroFade .9s cubic-bezier(.22,1,.36,1) 1s forwards}
+@keyframes heroFade{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* --- Hero background video/photo + veil --- */
+.hero-bg-media{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-bg-media video{width:100%;height:100%;object-fit:cover;object-position:center right}
+.hero-bg-media::after{content:"";position:absolute;inset:0;background:linear-gradient(102deg,rgba(253,252,254,.96) 20%,rgba(247,243,250,.60) 50%,rgba(247,243,250,.18) 78%)}
+.hero-bg-media--photo img{width:100%;height:100%;object-fit:cover;object-position:center 25%;opacity:0;animation:heroPhotoFadeIn .8s ease-out .1s both}
+@keyframes heroPhotoFadeIn{from{opacity:0}to{opacity:1}}
+
+/* --- Hero scroll-scrub: image pins full-viewport and sharpens/settles as
+   the user scrolls past it, like a scrollytelling hero. Desktop only —
+   mobile just shows the sharp photo (no scroll-jank risk, no vh quirks). --- */
+@media (min-width:1024px){
+	.hero-scrub{height:200vh}
+	.hero-pin{position:sticky;top:0;min-height:100vh;display:flex;align-items:center;z-index:1}
+	.hero-pin > .relative{width:100%}
+}
+@media (prefers-reduced-motion: reduce){.hero-bg-media--photo img{animation:none;opacity:1}}
+
+/* --- Scroll-scrubbed Lottie intro: plain flow block, height derived purely
+   from aspect-ratio (matching the Lottie canvas' own w/h) so the animation
+   is never cropped or letterboxed at any viewport size. No pinning. --- */
+.lottie-scrub-section{background:var(--wp--preset--color--mist,#F7F3FA)}
+.lottie-scrub-wrap{width:100%;max-width:56rem;margin:0 auto;padding:2.5rem 1.5rem}
+.lottie-scrub-frame{width:100%;aspect-ratio:800/450}
+.lottie-scrub-frame svg{display:block}
+
+/* --- Spotlight photo frame --- */
+.hero-stage{position:relative;perspective:1000px}
+.hero-spot{position:absolute;inset:-14% -16%;z-index:0;background:radial-gradient(closest-side,rgba(100,52,134,.30),rgba(100,52,134,.08) 55%,transparent 72%);filter:blur(6px);animation:spotPulse 7s ease-in-out infinite;pointer-events:none}
+@keyframes spotPulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.07);opacity:1}}
+.hero-frame{position:relative;z-index:1;border-radius:1.35rem;overflow:hidden;transform:rotate(1.6deg);box-shadow:0 45px 90px -32px rgba(42,22,56,.55);border:1px solid rgba(255,255,255,.65)}
+.hero-frame img{display:block;width:100%;aspect-ratio:4/4.4;object-fit:cover;transform:scale(1.05)}
+.hero-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(205deg,rgba(100,52,134,.16),transparent 42%,rgba(42,22,56,.32))}
+
+/* --- Manifesto chapter tags --- */
+.chapter-tag{display:inline-flex;align-items:baseline;gap:.9rem;margin:0 0 1.1rem}
+.chapter-num{font-family:'Archivo',sans-serif;font-weight:800;font-size:2.4rem;line-height:1;color:transparent;-webkit-text-stroke:1.4px var(--action);opacity:.85}
+.chapter-label{font-weight:700;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--action)}
+.chapter-light .chapter-num{-webkit-text-stroke-color:#DCBFF0}
+.chapter-light .chapter-label{color:#DCBFF0}
+
+/* --- Service cards: circular photo tops (Miss Jacqui layout) --- */
+.svc-photo-card{overflow:visible}
+.svc-circle{width:7.5rem;height:7.5rem;border-radius:9999px;object-fit:cover;display:block;margin:-3.75rem auto 1.5rem;border:5px solid #fff;box-shadow:0 18px 36px -14px rgba(59,35,80,.35)}
+.svc-title{color:var(--action);text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px;text-decoration-color:rgba(100,52,134,.35)}
+
+/* --- GSAP-driven reveals: disable CSS transition to avoid double-easing --- */
+body.gsap-motion .reveal{transition:none}
+
+/* --- Reduced motion safety --- */
+@media (prefers-reduced-motion: reduce){
+  #bootgCurtain{display:none}
+  .hero-title .line{transform:none !important;animation:none !important}
+  .hero-fade{opacity:1 !important;animation:none !important}
+}
+
+/* ============ Theme additions (NOT in original source — gaps/bugs fixed) ============ */
+/* .btn-outline-light is referenced on the original site's dark-background CTA buttons
+   but was never actually defined in any of its <style> blocks (a bug there — those
+   buttons render unstyled/invisible on the live site). Styled here for visibility. */
+.btn-outline-light{border:2px solid rgba(255,255,255,.35);color:#fff;background:transparent}
+.btn-outline-light:hover{border-color:#fff;transform:translateY(-2px)}
+
+/* .check-item — from the original per-service/per-integration page templates
+   (not part of the homepage's style blocks, so it wasn't in the earlier
+   concatenation), used on single-service.html / single-integration.html. */
+.check-item{display:flex;gap:.6rem;align-items:flex-start;font-size:.95rem;color:#4A5568}
+
+/* .prose — minimal spacing for post_content (the WP editor body) rendered
+   inside single-service/single-integration; not part of the original site. */
+.prose p{margin-bottom:1rem;line-height:1.7}
+.prose p:last-child{margin-bottom:0}
+.prose ul,.prose ol{margin:0 0 1rem 1.25rem}
+
+/* .step-num (process timeline step numbers) has no source rule either — left with a
+   light style consistent with .chapter-num rather than default paragraph text. */
+.step-num{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.1rem;color:var(--action);letter-spacing:.05em}
+
+/* The original site hardcoded <img class="navBar_logo">; ours uses WP's
+   add_theme_support('custom-logo'), which prints .custom-logo instead — apply the
+   same sizing so the uploaded logo isn't rendered at native (huge) resolution. */
+.navBar_brand .custom-logo-link{display:block}
+.navBar_brand .custom-logo{height:44px;width:auto;display:block}
+@media(min-width:1024px){.navBar_brand .custom-logo{height:52px}}

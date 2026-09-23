@@ -1,0 +1,13 @@
+{
+  "name": "bookkeeping-on-the-go-theme",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Build tooling for the Bookkeeping On The Go WordPress theme.",
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/tailwind-src.css -o ./assets/css/tailwind-built.css --minify",
+    "watch:css": "tailwindcss -i ./assets/css/tailwind-src.css -o ./assets/css/tailwind-built.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.13"
+  }
+}

@@ -1,0 +1,44 @@
+{
+	"Xero": {
+		"content": "Xero is our most-recommended platform for good reason: live bank feeds, powerful automation and an app ecosystem that grows with you. As Gold Partners we know it inside-out — from first setup to advanced reporting.",
+		"meta": {
+			"features": "New Xero setup and chart of accounts\nMigration from MYOB, QuickBooks or spreadsheets\nBank feeds, rules and reconciliation automation\nXero Payroll certified — STP done right"
+		}
+	},
+	"MYOB": {
+		"content": "MYOB remains the backbone of thousands of Australian businesses. Whether you are on MYOB Business, AccountRight or moving from an old desktop file, we make the platform earn its keep.",
+		"meta": {
+			"features": "MYOB Business & AccountRight setup\nData migration and file health checks\nPayroll, super and STP compliance\nOngoing training and priority support"
+		}
+	},
+	"QuickBooks Online": {
+		"content": "QuickBooks Online punches well above its price point for growing businesses. We handle setup, migration and training so your team actually uses it — and your accountant loves your file at tax time.",
+		"meta": {
+			"features": "QBO setup and customisation\nMigration from desktop or other platforms\nBank feeds and receipt capture automation\nProAdvisor support when you need it"
+		}
+	},
+	"Dext": {
+		"content": "Dext kills the shoebox of receipts forever. Snap a photo, forward an email, or let Dext fetch supplier invoices automatically — then watch coded, matched transactions flow straight into your accounting software.",
+		"meta": {
+			"features": "Dext setup connected to your ledger\nSnap, email or auto-fetch bills and receipts\nSupplier rules and automatic coding\nPublishes straight to Xero, MYOB or QBO"
+		}
+	},
+	"Hubdoc": {
+		"content": "Hubdoc automatically fetches bills and statements from hundreds of suppliers and banks, then syncs them to Xero or QuickBooks Online with the source document attached. Audit season becomes a non-event.",
+		"meta": {
+			"features": "Hubdoc setup and bank feed connections\nAutomatic bill and statement fetching\nAudit-proof document storage and search\nSyncs with Xero and QuickBooks Online"
+		}
+	},
+	"MechanicDesk": {
+		"content": "Auto workshops run on tight margins and busy floors. We connect MechanicDesk with your accounting platform so job revenue, parts and labour flow into your books automatically — no double entry, no missed invoices.",
+		"meta": {
+			"features": "MechanicDesk and accounting platform integration\nJob costing, parts margins and invoicing flow\nPayroll and STP for workshop teams\nBAS and GST handling for trade businesses"
+		}
+	},
+	"Cloud Accounting": {
+		"content": "Cloud accounting means live numbers, anywhere. Bank feeds reconcile themselves, receipts code themselves, and you can see exactly how the business is travelling from your phone. We design the stack, connect the apps, and keep it humming.",
+		"meta": {
+			"features": "Platform selection across Xero, MYOB and QuickBooks\nLive bank feeds and reconciliation automation\nReceipt and bill capture with Dext or Hubdoc\nApp stack design, training and ongoing support"
+		}
+	}
+}

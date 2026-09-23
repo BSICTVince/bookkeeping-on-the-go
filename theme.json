@@ -1,0 +1,69 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "color": {
+      "palette": [
+        { "slug": "navy", "name": "Navy", "color": "#3B2350" },
+        { "slug": "navy-deep", "name": "Navy Deep", "color": "#2A1638" },
+        { "slug": "action", "name": "Action Purple", "color": "#643486" },
+        { "slug": "action-dark", "name": "Action Purple Dark", "color": "#4A2364" },
+        { "slug": "charcoal", "name": "Charcoal", "color": "#453E4C" },
+        { "slug": "mist", "name": "Mist", "color": "#F7F3FA" },
+        { "slug": "white", "name": "White", "color": "#FFFFFF" }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "display",
+          "name": "Archivo",
+          "fontFamily": "'Archivo', sans-serif"
+        },
+        {
+          "slug": "body",
+          "name": "Source Sans 3",
+          "fontFamily": "'Source Sans 3', sans-serif"
+        },
+        {
+          "slug": "fraunces",
+          "name": "Fraunces",
+          "fontFamily": "'Fraunces', serif"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "760px",
+      "wideSize": "1280px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#FFFFFF",
+      "text": "#453E4C"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--body)"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "var(--wp--preset--color--action)"
+        }
+      }
+    }
+  },
+  "templateParts": [
+    { "name": "header", "title": "Header", "area": "header" },
+    { "name": "footer", "title": "Footer", "area": "footer" }
+  ],
+  "customTemplates": [
+    { "name": "page-full-width", "title": "Full-Width Content Page", "postTypes": [ "page" ] }
+  ]
+}
