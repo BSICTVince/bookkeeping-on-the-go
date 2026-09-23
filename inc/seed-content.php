@@ -76,66 +76,61 @@ add_action( 'admin_post_bootg_seed_content', function () {
  * placeholder. As those pages got built later in separate site-options
  * actions (About Us, Contact, 7 Steps, Calculators, Key Dates, Templates &
  * Checklists, ATO Compliance, Dates to Remember), the menu items were never
- * revisited. This repoints exactly those still-"#" items by their known
- * menu-item ID, leaving the true category headers (About Us dropdown
- * trigger, Services, Partners, Resources, Compliance Resources — which
- * never had one single destination, matching the original static site)
- * untouched. Safe to run again — skips any item whose title and URL
- * already match the target.
+ * revisited. This repoints exactly those still-"#" items, matched by title
+ * — never by hardcoded post ID, since nav-menu-item IDs are just ordinary
+ * auto-increment post IDs and are not stable across two WordPress installs
+ * (a hardcoded ID from one site's database is essentially a random number
+ * on another). Only leaf items (no children of their own) are touched, so
+ * the true dropdown headers (About Us, Services, Partners, Resources,
+ * Compliance Resources — which never had one single destination, matching
+ * the original static site) are left alone. Existing parent/position are
+ * preserved untouched — only the URL is corrected. Safe to run again —
+ * skips any item whose URL already matches the target.
  */
 function bootg_fix_stale_menu_links() {
-	// [ menu-item ID => [ title, url, parent-item-id, position ] ] — parent
-	// and position are hardcoded to the structure bootg_seed_menus()
-	// originally built, NOT read from the live item: wp_update_nav_menu_item()
-	// resets any field left out of $args to its default (0 / end-of-list),
-	// so an earlier buggy run of this same function that omitted them already
-	// flattened these items to top-level, end-of-menu. Reading "current"
-	// parent/position back from that corrupted state would just re-apply the
-	// corruption, so the correct values are spelled out here instead.
-	$fixes = array(
-		28 => array( 'About Us', home_url( '/about/' ), 27, 3 ),
-		44 => array( '7 steps to increasing profit', home_url( '/7-steps/' ), 43, 19 ),
-		47 => array( 'Calculators', home_url( '/calculators/' ), 43, 22 ),
-		48 => array( 'Key Dates', home_url( '/key-dates/' ), 43, 23 ),
-		49 => array( 'Templates & Checklists', home_url( '/resources/' ), 43, 24 ),
-		51 => array( 'ATO Compliance', home_url( '/ato-compliance/' ), 50, 26 ),
-		52 => array( 'Dates to Remember', home_url( '/dates-to-remember/' ), 50, 27 ),
-		55 => array( 'Contact', home_url( '/contact/' ), 0, 30 ),
-		64 => array( 'About Us', home_url( '/about/' ), 0, 2 ),
-		66 => array( 'Contact', home_url( '/contact/' ), 0, 4 ),
-		56 => array( 'How to nominate us as your authorised agent', 'https://bookkeepingonthego.net.au/resources/how-to-nominate-us-as-your-authorised-agent/', 0, 1 ),
+	// title => target URL (home_url()'d at call time since these must
+	// reflect the live site's own domain, not wherever this was written).
+	$targets = array(
+		'About Us'                     => home_url( '/about/' ),
+		'7 steps to increasing profit' => home_url( '/7-steps/' ),
+		'Calculators'                  => home_url( '/calculators/' ),
+		'Key Dates'                    => home_url( '/key-dates/' ),
+		'Templates & Checklists'       => home_url( '/resources/' ),
+		'ATO Compliance'               => home_url( '/ato-compliance/' ),
+		'Dates to Remember'            => home_url( '/dates-to-remember/' ),
+		'Contact'                      => home_url( '/contact/' ),
+		'How to nominate us as your authorised agent' => 'https://bookkeepingonthego.net.au/resources/how-to-nominate-us-as-your-authorised-agent/',
 	);
 
 	$fixed = 0;
-	foreach ( $fixes as $item_id => $fix ) {
-		list( $expected_title, $url, $parent_id, $position ) = $fix;
-
-		$item = get_post( $item_id );
-		if ( ! $item || 'nav_menu_item' !== $item->post_type ) {
+	foreach ( wp_get_nav_menus() as $menu ) {
+		$items = wp_get_nav_menu_items( $menu->term_id );
+		if ( ! $items ) {
 			continue;
 		}
-		// Already done: title, URL, parent and position all already match the target.
-		$already = $expected_title === $item->post_title
-			&& $url === get_post_meta( $item_id, '_menu_item_url', true )
-			&& $parent_id === (int) get_post_meta( $item_id, '_menu_item_menu_item_parent', true )
-			&& (int) $position === (int) $item->menu_order;
-		if ( $already ) {
-			continue;
+		$parent_ids = array();
+		foreach ( $items as $item ) {
+			if ( $item->menu_item_parent ) {
+				$parent_ids[ (int) $item->menu_item_parent ] = true;
+			}
 		}
-		$menu_id = wp_get_post_terms( $item_id, 'nav_menu', array( 'fields' => 'ids' ) );
-		$menu_id = $menu_id ? $menu_id[0] : 0;
-		if ( ! $menu_id ) {
-			continue;
+		foreach ( $items as $item ) {
+			if ( isset( $parent_ids[ $item->ID ] ) ) {
+				continue; // Has its own children — it's a dropdown header, not a link to fix.
+			}
+			if ( ! isset( $targets[ $item->title ] ) || $targets[ $item->title ] === $item->url ) {
+				continue;
+			}
+			wp_update_nav_menu_item( $menu->term_id, $item->ID, array(
+				'menu-item-title'     => $item->title,
+				'menu-item-url'       => $targets[ $item->title ],
+				'menu-item-status'    => 'publish',
+				'menu-item-type'      => 'custom',
+				'menu-item-parent-id' => $item->menu_item_parent,
+				'menu-item-position'  => $item->menu_order,
+			) );
+			++$fixed;
 		}
-		wp_update_nav_menu_item( $menu_id, $item_id, array(
-			'menu-item-title'     => $expected_title,
-			'menu-item-url'       => $url,
-			'menu-item-status'    => 'publish',
-			'menu-item-type'      => 'custom',
-			'menu-item-parent-id' => $parent_id,
-			'menu-item-position'  => $position,
-		) );
-		$fixed++;
 	}
 
 	return $fixed;

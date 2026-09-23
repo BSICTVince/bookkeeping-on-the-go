@@ -39,10 +39,10 @@ function bootg_fix_page_templates() {
 		if ( ! $page ) {
 			continue;
 		}
-		if ( 'page-full-width.html' === get_page_template_slug( $page->ID ) ) {
+		if ( 'page-full-width' === get_page_template_slug( $page->ID ) ) {
 			continue;
 		}
-		update_post_meta( $page->ID, '_wp_page_template', 'page-full-width.html' );
+		update_post_meta( $page->ID, '_wp_page_template', 'page-full-width' );
 		++$fixed;
 	}
 

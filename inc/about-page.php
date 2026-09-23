@@ -158,7 +158,7 @@ add_action( 'admin_post_bootg_create_about_page', function () {
 		'post_name'     => 'about',
 		'post_status'   => 'publish',
 		'post_content'  => '[bootg_about_page]',
-		'page_template' => 'page-full-width.html',
+		'page_template' => 'page-full-width',
 	), true );
 
 	wp_safe_redirect( add_query_arg(

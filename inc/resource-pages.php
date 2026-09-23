@@ -277,7 +277,7 @@ function bootg_create_resource_page( $slug, $title, $shortcode ) {
 		'post_name'     => $slug,
 		'post_status'   => 'publish',
 		'post_content'  => $shortcode,
-		'page_template' => 'page-full-width.html',
+		'page_template' => 'page-full-width',
 	), true );
 	return is_wp_error( $page_id ) ? 'error' : 'created';
 }

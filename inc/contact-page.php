@@ -125,7 +125,7 @@ add_action( 'admin_post_bootg_create_contact_page', function () {
 		'post_name'     => 'contact',
 		'post_status'   => 'publish',
 		'post_content'  => '[bootg_contact_page]',
-		'page_template' => 'page-full-width.html',
+		'page_template' => 'page-full-width',
 	), true );
 
 	wp_safe_redirect( add_query_arg(
