@@ -21,7 +21,10 @@ add_action( 'init', function () {
 		BOOTG_DIR . '/style.css',
 		'bookkeeping-on-the-go'
 	);
-	$update_checker->getVcsApi()->enableReleaseAssets();
+	// Tag-based checking: PUC finds the highest version-numbered git tag and
+	// builds its download URL automatically -- a plain `git tag vX.Y.Z` + push
+	// is enough. (No GitHub Release object or manually-uploaded zip needed --
+	// that's a separate, stricter mode this theme doesn't use.)
 	$update_checker->setBranch( 'main' );
 } );
 
