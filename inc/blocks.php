@@ -123,7 +123,7 @@ function bootg_render_site_header() {
 	?>
 	<?php echo bootg_icon_sprite(); // phpcs:ignore ?>
 
-	<div class="navBar navBar-light" data-testid="main-nav">
+	<div class="navBar <?php echo bootg_nav_is_transparent_here() ? 'navBar-transparent' : 'navBar-light'; ?>" data-testid="main-nav">
 		<div class="container">
 			<div class="navBar_header navBar_section-header">
 				<?php if ( has_custom_logo() ) : ?>

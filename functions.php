@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BOOTG_VERSION', '0.1.1' );
+define( 'BOOTG_VERSION', '0.1.2' );
 define( 'BOOTG_DIR', get_template_directory() );
 define( 'BOOTG_URI', get_template_directory_uri() );
 
@@ -43,6 +43,7 @@ require_once BOOTG_DIR . '/inc/forms/forms-render.php';
 require_once BOOTG_DIR . '/inc/forms/forms-migrate.php';
 require_once BOOTG_DIR . '/inc/error-search-templates.php';
 require_once BOOTG_DIR . '/inc/updates.php';
+require_once BOOTG_DIR . '/inc/nav-settings.php';
 
 add_action( 'after_setup_theme', function () {
 	add_theme_support( 'weavit-engine' );

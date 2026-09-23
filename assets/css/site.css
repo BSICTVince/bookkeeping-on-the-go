@@ -41,7 +41,7 @@ h1,h2,h3,h4,h5,.font-display{font-family:'Archivo',sans-serif}
 .u-scalingSvg_shape{position:absolute;top:0;left:0;width:100%;height:100%;fill:currentColor}
 
 /* ============ NavBar (client markup) ============ */
-.navBar{position:sticky;top:0;z-index:60;background:#fff;transition:box-shadow .3s ease}
+.navBar{position:sticky;top:0;z-index:60;background:#fff;transition:box-shadow .3s ease,background-color .3s ease,color .3s ease}
 .navBar.navBar-scrolled{box-shadow:0 6px 24px -8px rgba(36,39,42,.18)}
 /* max-width tied to theme.json's settings.layout.wideSize (var(--wp--style--global--wide-size))
    instead of a hardcoded 80rem — same value today (1280px), but now follows Site Editor
@@ -56,8 +56,30 @@ h1,h2,h3,h4,h5,.font-display{font-family:'Archivo',sans-serif}
    widths, so the logo box vanishes from layout while still painting (overlap bug). */
 .navBar_header{display:flex;align-items:center;justify-content:space-between;padding:.85rem 0;flex-shrink:0}
 .navBar_brand{display:block;flex-shrink:0}
-.navBar_logo{height:44px;width:auto;display:block}
-@media(min-width:1024px){.navBar_logo{height:52px}}
+/* Height is admin-configurable (Site Options > Navigation, 1-200px, --bootg-logo-height)
+   but fluidly scaled down on narrow viewports instead of jumping at a fixed breakpoint --
+   linearly interpolates from 32px at a 375px viewport up to the chosen height at 1024px,
+   clamped at both ends so it never goes below 32px or above the configured value. */
+.navBar_logo{height:clamp(32px, calc(32px + (var(--bootg-logo-height, 52px) - 32px) * ((100vw - 375px) / 649px)), var(--bootg-logo-height, 52px));width:auto;display:block}
+
+/* ---- Transparent nav variant (Site Options > Navigation, per selected page) ----
+   Sits absolutely over the page's hero (the hero is the first thing the header's
+   sibling markup renders, so top:0 lands it exactly on the hero's top edge) with
+   see-through background and light text/icons; .navBar-scrolled (toggled by the
+   existing scroll listener in site.js) flips it solid the moment the visitor
+   scrolls, so it always stays readable once the hero is out of view. */
+.navBar-transparent{position:absolute;top:0;left:0;right:0;background:transparent;color:#fff}
+.navBar-transparent .navBar_logo,
+.navBar-transparent .navList > .menu-item > a,
+.navBar-transparent .navBar_phone,
+.navBar-transparent .socialIcons a,
+.navBar-transparent .dropButton_button{color:#fff}
+.navBar-transparent.navBar-scrolled{position:fixed;background:#fff;color:inherit;box-shadow:0 6px 24px -8px rgba(36,39,42,.18)}
+.navBar-transparent.navBar-scrolled .navBar_logo,
+.navBar-transparent.navBar-scrolled .navList > .menu-item > a,
+.navBar-transparent.navBar-scrolled .navBar_phone,
+.navBar-transparent.navBar-scrolled .socialIcons a,
+.navBar-transparent.navBar-scrolled .dropButton_button{color:inherit}
 
 .navBar_menuToggle{display:flex;align-items:center;gap:1rem}
 @media(min-width:1024px){.navBar_menuToggle{display:none}}
@@ -419,5 +441,4 @@ body.gsap-motion .reveal{transition:none}
    add_theme_support('custom-logo'), which prints .custom-logo instead — apply the
    same sizing so the uploaded logo isn't rendered at native (huge) resolution. */
 .navBar_brand .custom-logo-link{display:block}
-.navBar_brand .custom-logo{height:44px;width:auto;display:block}
-@media(min-width:1024px){.navBar_brand .custom-logo{height:52px}}
+.navBar_brand .custom-logo{height:clamp(32px, calc(32px + (var(--bootg-logo-height, 52px) - 32px) * ((100vw - 375px) / 649px)), var(--bootg-logo-height, 52px));width:auto;display:block}
