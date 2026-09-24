@@ -40,6 +40,20 @@ h1,h2,h3,h4,h5,.font-display{font-family:'Archivo',sans-serif}
 .u-scalingSvg{position:relative;display:block;width:100%}
 .u-scalingSvg_shape{position:absolute;top:0;left:0;width:100%;height:100%;fill:currentColor}
 
+/* ============ Footer text/links ============ */
+/* theme.json sets a global link color (Action Purple) that a plain <a> with
+   no color class of its own picks up instead of inheriting its parent's
+   text-white/* -- an explicitly-matched rule on the element itself always
+   wins over inheritance, even a near-zero-specificity global one. Every
+   footer link relies on inherited color (only a hover:text-white class of
+   its own), so they rendered purple-on-dark-purple, unreadable. Forces
+   every footer text color, link or not, to solid white. */
+footer,
+footer .text-white\/50,
+footer .text-white\/60,
+footer .text-white\/90,
+footer a{color:#fff}
+
 /* ============ NavBar (client markup) ============ */
 .navBar{position:sticky;top:0;z-index:60;background:#fff;transition:box-shadow .3s ease,background-color .3s ease,color .3s ease}
 .navBar.navBar-scrolled{box-shadow:0 6px 24px -8px rgba(36,39,42,.18)}
