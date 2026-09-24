@@ -265,6 +265,22 @@ function bootg_render_content_tools_page() {
 			<div class="notice notice-success is-dismissible"><p><?php echo (int) $_GET['bootg_menu_links_fixed']; ?> menu link(s) repointed to their real pages.</p></div>
 		<?php endif; ?>
 
+		<?php if ( isset( $_GET['bootg_legal_pages'] ) ) : ?>
+			<?php if ( 'done' === $_GET['bootg_legal_pages'] ) : ?>
+				<div class="notice notice-success is-dismissible"><p>Privacy Policy, Terms and Conditions, and the two service pages were created/updated with the migrated content from the original site.</p></div>
+			<?php else : ?>
+				<div class="notice notice-error is-dismissible"><p>Could not create/update one or more legal/service pages.</p></div>
+			<?php endif; ?>
+		<?php endif; ?>
+
+		<h2>Legal &amp; Service Pages</h2>
+		<p class="description">One-click creation (or content refresh, if they already exist) of <strong>Privacy Policy</strong> (<code>/privacy-policy/</code>), <strong>Terms and Conditions</strong> (<code>/terms-and-conditions/</code>), <strong>Reporting to Public Trustees</strong> (<code>/reporting-to-public-trustees/</code>), and <strong>Payroll Specialists</strong> (<code>/payroll-specialists/</code>) — content migrated from the original site. Also points the footer's Privacy/Terms links at the new pages. Safe to run again.</p>
+		<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" style="margin-bottom:2em;">
+			<?php wp_nonce_field( 'bootg_create_legal_pages' ); ?>
+			<input type="hidden" name="action" value="bootg_create_legal_pages">
+			<?php submit_button( 'Create / Update Legal & Service Pages', 'secondary', 'submit', false ); ?>
+		</form>
+
 		<h2>Fix Menu Links</h2>
 		<p class="description">As pages (About Us, Contact, 7 Steps, Calculators, Key Dates, Templates &amp; Checklists, ATO Compliance, Dates to Remember) get built after the menus were first created, their menu items are left pointing at <code>#</code> placeholders. This repoints exactly those — dropdown category headers (About Us, Services, Partners, Resources, Compliance Resources) are left alone since they never had one single destination. Safe to run again.</p>
 		<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" style="margin-bottom:2em;">
