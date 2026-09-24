@@ -88,7 +88,7 @@ footer a{color:#fff}
    existing scroll listener in site.js) flips it solid the moment the visitor
    scrolls, so it always stays readable once the hero is out of view. */
 @media(min-width:1024px){
-	.navBar-transparent{position:absolute;top:0;left:0;right:0;background:transparent;color:#fff}
+	.navBar-transparent{position:absolute;top:0;left:0;right:0;background:transparent;color:var(--bootg-nav-text-color, #fff)}
 	/* Logged-in visitors get the fixed wp-admin toolbar, which would otherwise sit on top of
 	   (and visually crop) this absolutely-positioned nav's top edge -- offset by its reserved
 	   height, using WP core's own exposed custom property, only when it's actually present. */
@@ -98,7 +98,13 @@ footer a{color:#fff}
 	.navBar-transparent .navList > .menu-item > a,
 	.navBar-transparent .navBar_phone,
 	.navBar-transparent .socialIcons a,
-	.navBar-transparent .dropButton_button{color:#fff}
+	.navBar-transparent .dropButton_button{color:var(--bootg-nav-text-color, #fff)}
+	/* Initial/hover text color are admin-configurable (Site Options > Navigation)
+	   since a fixed white-on-photo (or purple hover) can wash out or clash
+	   depending on the specific hero image -- these override the site-wide
+	   defaults (white / --action) only while the nav is in its see-through state. */
+	.navBar-transparent .navList > .menu-item > a:hover,
+	.navBar-transparent .navBar_phone:hover{color:var(--bootg-nav-text-hover-color, var(--action))}
 	/* .socialIcons_icon's own background (--mist, a near-white lavender) stays put
 	   by default, so a white icon glyph on it washes out to near-invisible -- give
 	   the circle a translucent-white backdrop so the glyph has contrast. */

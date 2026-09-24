@@ -15,9 +15,11 @@ define( 'BOOTG_NAV_OPTION', 'bootg_nav_options' );
 
 function bootg_nav_defaults() {
 	return array(
-		'transparent_homepage' => false,
-		'transparent_pages'    => array(),
-		'logo_height'          => 52,
+		'transparent_homepage'   => false,
+		'transparent_pages'      => array(),
+		'logo_height'            => 52,
+		'text_color'             => '#ffffff',
+		'text_hover_color'       => '#643486',
 	);
 }
 
@@ -35,6 +37,8 @@ function bootg_sanitize_nav_settings( $input ) {
 	$output['transparent_pages']     = array_map( 'absint', (array) ( $input['transparent_pages'] ?? array() ) );
 	$height                          = absint( $input['logo_height'] ?? 52 );
 	$output['logo_height']           = min( 200, max( 1, $height ?: 52 ) );
+	$output['text_color']            = sanitize_hex_color( $input['text_color'] ?? '' ) ?: '#ffffff';
+	$output['text_hover_color']      = sanitize_hex_color( $input['text_hover_color'] ?? '' ) ?: '#643486';
 	return $output;
 }
 
@@ -80,7 +84,22 @@ add_filter( 'body_class', function ( $classes ) {
  */
 add_action( 'wp_head', function () {
 	$settings = bootg_get_nav_settings();
-	printf( '<style>:root{--bootg-logo-height:%dpx}</style>', (int) $settings['logo_height'] );
+	printf(
+		'<style>:root{--bootg-logo-height:%dpx;--bootg-nav-text-color:%s;--bootg-nav-text-hover-color:%s}</style>',
+		(int) $settings['logo_height'],
+		esc_attr( $settings['text_color'] ),
+		esc_attr( $settings['text_hover_color'] )
+	);
+} );
+
+/** Native WP color picker on the Navigation tab only. */
+add_action( 'admin_enqueue_scripts', function ( $hook ) {
+	if ( 'appearance_page_bootg-site-options' !== $hook || 'navigation' !== ( $_GET['tab'] ?? '' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only tab check.
+		return;
+	}
+	wp_enqueue_style( 'wp-color-picker' );
+	wp_enqueue_script( 'wp-color-picker' );
+	wp_add_inline_script( 'wp-color-picker', 'jQuery(function($){$(".bootg-color-picker").wpColorPicker();});' );
 } );
 
 function bootg_render_nav_settings_tab() {
@@ -125,6 +144,21 @@ function bootg_render_nav_settings_tab() {
 					</label>
 				</div>
 			<?php endforeach; ?>
+		</div>
+
+		<div class="bootg-nav-card">
+			<h2>Transparent Nav Text Colors</h2>
+			<p class="description">The menu text, phone number, and logo sit directly over a photo while the nav above is transparent — if a particular hero image makes the default white hard to read, adjust the colors here. Only affects pages with Transparent Navigation enabled; the solid nav (and the same nav once scrolled) always uses the theme's normal colors.</p>
+			<table class="form-table" role="presentation" style="margin:0;">
+				<tr>
+					<th style="width:160px;padding-left:0;"><label for="bootg_text_color">Text color</label></th>
+					<td><input type="text" id="bootg_text_color" name="<?php echo esc_attr( BOOTG_NAV_OPTION ); ?>[text_color]" value="<?php echo esc_attr( $settings['text_color'] ); ?>" class="bootg-color-picker" data-default-color="#ffffff"></td>
+				</tr>
+				<tr>
+					<th style="width:160px;padding-left:0;"><label for="bootg_text_hover_color">Hover color</label></th>
+					<td><input type="text" id="bootg_text_hover_color" name="<?php echo esc_attr( BOOTG_NAV_OPTION ); ?>[text_hover_color]" value="<?php echo esc_attr( $settings['text_hover_color'] ); ?>" class="bootg-color-picker" data-default-color="#643486"></td>
+				</tr>
+			</table>
 		</div>
 
 		<div class="bootg-nav-card">
