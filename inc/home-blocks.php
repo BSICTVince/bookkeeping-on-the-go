@@ -76,6 +76,13 @@ function bootg_render_partner_logos_section() {
 	</section>';
 }
 
+/**
+ * Auto-picks a testimonial (the one flagged "spotlight", else the most
+ * recent) and renders it with bootg_render_testimonial_card() -- the same
+ * function the per-entry [bootg_testimonial id] shortcode uses, so the
+ * homepage spotlight and a manually-embedded structured-fields testimonial
+ * always look identical and can't drift apart.
+ */
 function bootg_render_testimonial_spotlight() {
 	$spotlight = get_posts( array(
 		'post_type'      => 'testimonial',
@@ -86,35 +93,10 @@ function bootg_render_testimonial_spotlight() {
 	if ( ! $spotlight ) {
 		$spotlight = get_posts( array( 'post_type' => 'testimonial', 'posts_per_page' => 1 ) );
 	}
-	if ( ! $spotlight ) {
+	if ( ! $spotlight || ! function_exists( 'bootg_render_testimonial_card' ) ) {
 		return '';
 	}
-	$t        = $spotlight[0];
-	$quote    = get_post_meta( $t->ID, 'quote', true );
-	$name     = get_post_meta( $t->ID, 'author_name', true ) ?: get_the_title( $t );
-	$business = get_post_meta( $t->ID, 'author_business', true );
-	$rating   = (int) get_post_meta( $t->ID, 'rating', true ) ?: 5;
-
-	$star = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>';
-
-	ob_start();
-	?>
-	<section class="relative overflow-hidden py-16 lg:py-24 bg-white">
-		<div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-			<p class="chapter-tag"><span class="chapter-num">04</span><span class="chapter-label">Client Stories</span></p>
-			<div class="flex justify-center gap-1 text-action mb-6" aria-label="<?php echo esc_attr( $rating ); ?> out of 5 stars">
-				<?php echo str_repeat( $star, max( 1, min( 5, $rating ) ) ); // phpcs:ignore ?>
-			</div>
-			<blockquote class="text-2xl sm:text-3xl font-display font-bold text-navy leading-snug mb-7">&ldquo;<?php echo esc_html( $quote ); ?>&rdquo;</blockquote>
-			<p class="font-bold text-charcoal"><?php echo esc_html( $name ); ?></p>
-			<?php if ( $business ) : ?>
-				<p class="text-sm text-slate-400 mb-8"><?php echo esc_html( $business ); ?></p>
-			<?php endif; ?>
-			<a href="<?php echo esc_url( get_post_type_archive_link( 'testimonial' ) ?: home_url( '/testimonials/' ) ); ?>" class="btn btn-outline px-6 py-3 text-sm">Read More Stories</a>
-		</div>
-	</section>
-	<?php
-	return ob_get_clean();
+	return bootg_render_testimonial_card( $spotlight[0] );
 }
 
 function bootg_render_latest_post_section() {
