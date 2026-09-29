@@ -132,7 +132,6 @@
       if (scrollable <= 0) { return; }
       var rect = heroScrub.getBoundingClientRect();
       var p = Math.max(0, Math.min(1, -rect.top / scrollable));
-      heroImg.style.filter = 'blur(' + ((1 - p) * 16).toFixed(1) + 'px)';
       heroImg.style.transform = 'scale(' + (1.12 - p * 0.12).toFixed(3) + ')';
     };
     window.addEventListener('scroll', function () {
