@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BOOTG_VERSION', '0.1.17' );
+define( 'BOOTG_VERSION', '0.1.18' );
 define( 'BOOTG_DIR', get_template_directory() );
 define( 'BOOTG_URI', get_template_directory_uri() );
 
@@ -65,6 +65,23 @@ add_action( 'after_setup_theme', function () {
 		'primary'     => __( 'Primary Menu', 'bootg' ),
 		'client-area' => __( 'Client Area Menu', 'bootg' ),
 		'footer'      => __( 'Footer Quick Links', 'bootg' ),
+	) );
+} );
+
+/**
+ * Extra footer column, editable from Appearance > Widgets — this theme is
+ * otherwise fully hand-coded (no widget areas anywhere), so this is the
+ * one spot admins can drop in a text/menu/HTML widget without a developer.
+ */
+add_action( 'widgets_init', function () {
+	register_sidebar( array(
+		'name'          => __( 'Footer Extra', 'bootg' ),
+		'id'            => 'footer-widgets',
+		'description'   => __( 'Shown as an extra column at the end of the site footer.', 'bootg' ),
+		'before_widget' => '<div class="footer-widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="text-sm font-bold tracking-widest uppercase mb-4 text-white/90">',
+		'after_title'   => '</h5>',
 	) );
 } );
 

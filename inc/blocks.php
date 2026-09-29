@@ -233,7 +233,7 @@ function bootg_render_site_footer() {
 	<footer class="bg-navydeep text-white pt-16 pb-8">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="grid gap-10 lg:grid-cols-12 mb-12">
-				<div class="lg:col-span-4">
+				<div class="lg:col-span-3">
 					<h4 class="text-lg font-bold mb-4"><?php bloginfo( 'name' ); ?></h4>
 					<p class="text-sm text-white/60 leading-relaxed mb-5"><?php echo esc_html( bootg_get_option( 'footer_tagline' ) ); ?></p>
 					<?php if ( $phone ) : ?>
@@ -266,11 +266,17 @@ function bootg_render_site_footer() {
 					</ul>
 				</div>
 
-				<div class="lg:col-span-3">
+				<div class="lg:col-span-2">
 					<h5 class="text-sm font-bold tracking-widest uppercase mb-4 text-white/90">Stay Connected</h5>
 					<p class="text-sm text-white/60 mb-4">Sign up to receive news, updates, and compliance alerts.</p>
 					<?php echo bootg_render_newsletter_form(); // phpcs:ignore ?>
 				</div>
+
+				<?php if ( is_active_sidebar( 'footer-widgets' ) ) : ?>
+					<div class="lg:col-span-2 text-sm text-white/60">
+						<?php dynamic_sidebar( 'footer-widgets' ); ?>
+					</div>
+				<?php endif; ?>
 			</div>
 
 			<hr class="border-white/10 mb-6">
