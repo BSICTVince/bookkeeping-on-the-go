@@ -275,7 +275,7 @@ function bootg_render_site_footer() {
 
 			<hr class="border-white/10 mb-6">
 			<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-sm text-white/50">
-				<p class="mb-0"><?php echo wp_kses_post( bootg_get_option( 'footer_copyright' ) ); ?></p>
+				<p class="mb-0"><?php echo wp_kses_post( bootg_get_option( 'footer_copyright' ) ); ?> &mdash; ABN 22 189 686 917 &middot; BAS Agent # 92390002</p>
 				<div class="flex gap-5">
 					<?php if ( bootg_get_option( 'privacy_url' ) ) : ?>
 						<a href="<?php echo esc_url( bootg_get_option( 'privacy_url' ) ); ?>" target="_blank" rel="noopener" class="hover:text-white transition-colors">Privacy</a>

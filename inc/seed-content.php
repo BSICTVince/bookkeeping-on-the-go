@@ -212,6 +212,7 @@ add_action( 'admin_post_bootg_seed_menus', function () {
 		bootg_add_menu_item( $menu_id, array_merge( bootg_cpt_link_args( 'service', 'bas-ias-lodgments', 'BAS and IAS' ), array( 'menu-item-parent-id' => $services ) ) );
 		bootg_add_menu_item( $menu_id, array_merge( bootg_cpt_link_args( 'service', 'bookkeeping-reconciliations', 'Bookkeeping' ), array( 'menu-item-parent-id' => $services ) ) );
 		bootg_add_menu_item( $menu_id, array_merge( bootg_cpt_link_args( 'service', 'payroll-cloud-setup', 'Cloud Bookkeeping Setup and Support' ), array( 'menu-item-parent-id' => $services ) ) );
+		bootg_add_menu_item( $menu_id, array_merge( bootg_cpt_link_args( 'page', 'public-trustee-reporting', 'Public Trustee Reporting' ), array( 'menu-item-parent-id' => $services ) ) );
 
 		$partners = bootg_add_menu_item( $menu_id, array( 'menu-item-title' => 'Partners', 'menu-item-url' => '#', 'menu-item-type' => 'custom' ) );
 		foreach ( array(
