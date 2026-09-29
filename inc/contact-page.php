@@ -83,6 +83,12 @@ function bootg_render_contact_page() {
 					</div>
 				</div>
 
+				<div class="bg-white rounded-xl border border-slate-200 shadow-sm p-8">
+					<h2 class="text-2xl font-extrabold text-navy mb-2">Send Us a Message</h2>
+					<p class="text-sm text-slate-500 mb-8">Tell us a little about your business and what you need help with.</p>
+					<?php echo bootg_render_form( bootg_get_contact_form_id() ); // phpcs:ignore ?>
+				</div>
+
 				<div class="bg-navy rounded-xl p-8 text-white">
 					<h3 class="font-bold text-lg mb-4">What To Expect</h3>
 					<ul class="space-y-3 text-sm text-white/80">
@@ -95,9 +101,9 @@ function bootg_render_contact_page() {
 
 			<div class="lg:col-span-3 reveal reveal-d1">
 				<div class="bg-white rounded-xl border border-slate-200 shadow-sm p-8 lg:p-10">
-					<h2 class="text-2xl font-extrabold text-navy mb-2">Send Us a Message</h2>
-					<p class="text-sm text-slate-500 mb-8">Tell us a little about your business and what you need help with.</p>
-					<?php echo bootg_render_form( bootg_get_contact_form_id() ); // phpcs:ignore ?>
+					<h2 class="text-2xl font-extrabold text-navy mb-2">Book a Free Consultation</h2>
+					<p class="text-sm text-slate-500 mb-8">Pick a time that works for you — we'll confirm by email straight away.</p>
+					<iframe src="https://calendly.com/bookkeepingonthego/20min" style="width:100%;height:740px;border:0" frameborder="0" scrolling="yes" title="Book a Free Consultation"></iframe>
 				</div>
 			</div>
 		</div>
