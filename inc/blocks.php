@@ -260,10 +260,9 @@ function bootg_render_site_footer() {
 				<div class="lg:col-span-3">
 					<h5 class="text-sm font-bold tracking-widest uppercase mb-4 text-white/90">Specialist Areas</h5>
 					<ul class="space-y-2.5 text-sm text-white/60">
-						<?php $bootg_payroll_service = get_page_by_path( 'payroll-cloud-setup', OBJECT, 'service' ); ?>
-						<li><a href="<?php echo esc_url( $bootg_payroll_service ? get_permalink( $bootg_payroll_service ) : bootg_page_url( 'services' ) ); ?>" class="hover:text-white transition-colors">Payroll Specialists in Perth</a></li>
-						<li>Public Trustee Reporting</li>
-						<li>Nonprofit Compliance Accounting</li>
+						<li><a href="<?php echo esc_url( bootg_page_url( 'payroll-specialists-perth' ) ); ?>" class="hover:text-white transition-colors">Payroll Specialists in Perth</a></li>
+						<li><a href="<?php echo esc_url( bootg_page_url( 'public-trustee-reporting' ) ); ?>" class="hover:text-white transition-colors">Public Trustee Reporting</a></li>
+						<li><a href="<?php echo esc_url( bootg_page_url( 'nonprofit-compliance-accounting' ) ); ?>" class="hover:text-white transition-colors">Nonprofit Compliance Accounting</a></li>
 					</ul>
 				</div>
 

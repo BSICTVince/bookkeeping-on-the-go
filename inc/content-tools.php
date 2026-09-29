@@ -151,6 +151,24 @@ function bootg_render_content_tools_page() {
 			<?php submit_button( 'Create Compliance Pages', 'secondary', 'submit', false ); ?>
 		</form>
 
+		<?php if ( isset( $_GET['bootg_specialist_pages'] ) ) : ?>
+			<?php if ( 'created' === $_GET['bootg_specialist_pages'] ) : ?>
+				<div class="notice notice-success is-dismissible"><p>Specialist Area pages created: <a href="<?php echo esc_url( home_url( '/payroll-specialists-perth/' ) ); ?>" target="_blank">/payroll-specialists-perth/</a>, <a href="<?php echo esc_url( home_url( '/public-trustee-reporting/' ) ); ?>" target="_blank">/public-trustee-reporting/</a> and <a href="<?php echo esc_url( home_url( '/nonprofit-compliance-accounting/' ) ); ?>" target="_blank">/nonprofit-compliance-accounting/</a>.</p></div>
+			<?php elseif ( 'exists' === $_GET['bootg_specialist_pages'] ) : ?>
+				<div class="notice notice-info is-dismissible"><p>Those Specialist Area pages already exist — nothing changed.</p></div>
+			<?php else : ?>
+				<div class="notice notice-error is-dismissible"><p>Could not create one or more Specialist Area pages.</p></div>
+			<?php endif; ?>
+		<?php endif; ?>
+
+		<h2>Specialist Area Pages</h2>
+		<p class="description">One-time creation of the <strong>Payroll Specialists in Perth</strong>, <strong>Public Trustee Reporting</strong>, and <strong>Nonprofit Compliance Accounting</strong> pages linked from the footer's Specialist Areas list.</p>
+		<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" style="margin-bottom:2em;">
+			<?php wp_nonce_field( 'bootg_create_specialist_pages' ); ?>
+			<input type="hidden" name="action" value="bootg_create_specialist_pages">
+			<?php submit_button( 'Create Specialist Area Pages', 'secondary', 'submit', false ); ?>
+		</form>
+
 		<?php if ( isset( $_GET['bootg_partner_logos'] ) ) : ?>
 			<?php if ( 'done' === $_GET['bootg_partner_logos'] ) : ?>
 				<div class="notice notice-success is-dismissible"><p>Partner logos downloaded into the Media Library.</p></div>

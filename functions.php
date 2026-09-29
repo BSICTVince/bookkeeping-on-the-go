@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BOOTG_VERSION', '0.1.12' );
+define( 'BOOTG_VERSION', '0.1.13' );
 define( 'BOOTG_DIR', get_template_directory() );
 define( 'BOOTG_URI', get_template_directory_uri() );
 
@@ -38,6 +38,7 @@ require_once BOOTG_DIR . '/inc/blog-seed.php';
 require_once BOOTG_DIR . '/inc/contact-page.php';
 require_once BOOTG_DIR . '/inc/about-page.php';
 require_once BOOTG_DIR . '/inc/compliance-pages.php';
+require_once BOOTG_DIR . '/inc/specialist-pages.php';
 require_once BOOTG_DIR . '/inc/resource-pages.php';
 require_once BOOTG_DIR . '/inc/legal-pages.php';
 require_once BOOTG_DIR . '/inc/forms/forms-render.php';
