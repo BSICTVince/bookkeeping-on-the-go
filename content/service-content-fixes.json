@@ -1,10 +1,10 @@
 {
 	"Bookkeeping & Reconciliations": {
-		"content": "We’re beside you every step of the way — coding transactions, reconciling every account, and turning your numbers into plain-English summaries you can act on. Behind or overdue? Rescue bookkeeping is our specialty.",
+		"content": "We’re beside you every step of the way — coding transactions, reconciling every account, and turning your numbers into plain-english financial statements you can act on. Behind or overdue? Rescue bookkeeping is our specialty.",
 		"meta": {
 			"eyebrow": "Day-to-Day Finances",
 			"hero_headline": "Books You Can Actually <span class=\"text-action\">Rely On.</span>",
-			"features": "Transaction coding and bank reconciliation\nAccounts payable and receivable management\nMonthly profit & loss and cash-flow summaries\nCatch-up and rescue bookkeeping for overdue books"
+			"features": "Transaction coding and bank reconciliation\nAccounts payable and receivable management\nMonthly profit & loss and cash-flow statements\nCatch-up and rescue bookkeeping for overdue books"
 		}
 	},
 	"BAS & IAS Lodgments": {

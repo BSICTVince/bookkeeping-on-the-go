@@ -81,8 +81,8 @@ function bootg_render_ato_compliance() {
 function bootg_dates_to_remember_items() {
 	return array(
 		array( 'tag' => 'Monthly', 'title' => '21st — Monthly BAS', 'body' => 'Monthly activity statements lodge and pay by the 21st of the following month.' ),
-		array( 'tag' => 'Quarterly', 'title' => '28th — BAS & Super', 'body' => 'Quarterly BAS for self-lodgers: 28 Oct, 28 Feb, 28 Apr, 28 Jul.' ),
-		array( 'tag' => 'Agent Perk', 'title' => 'Agent Lodgment Extensions', 'body' => 'Registered agent electronic lodgment extends quarterly BAS to 25 Aug, 25 Nov, 29 Mar and 26 May.' ),
+		array( 'tag' => 'Quarterly', 'title' => '28th — BAS', 'body' => 'Quarterly BAS for self-lodgers: 28 Oct, 28 Feb, 28 Apr, 28 Jul.' ),
+		array( 'tag' => 'Agent Perk', 'title' => 'Agent Lodgment Extensions', 'body' => 'Registered agent electronic lodgment extends quarterly BAS due dates. Extension dates can change each year — check the current ATO BAS agent lodgment program.', 'link' => 'https://www.ato.gov.au/tax-and-super-professionals/for-tax-professionals/prepare-and-lodge/bas-agent-lodgment-program-2026-27' ),
 		array( 'tag' => 'Yearly', 'title' => '14 July — STP Finalisation', 'body' => 'Finalise Single Touch Payroll data so employee income statements become "tax ready".' ),
 		array( 'tag' => 'Yearly', 'title' => '31 October — Tax Returns', 'body' => 'Self-lodger deadline — or engage a registered agent by this date to extend to 15 May.' ),
 		array( 'tag' => 'Yearly', 'title' => '28 August — TPAR', 'body' => 'Taxable Payments Annual Report for construction, cleaning, courier, IT and security businesses.' ),
@@ -107,12 +107,14 @@ function bootg_render_dates_to_remember() {
 			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 				<?php foreach ( bootg_dates_to_remember_items() as $i => $item ) :
 					$delay = $i % 3 === 1 ? ' reveal-d1' : ( $i % 3 === 2 ? ' reveal-d2' : '' );
+					$tag   = ! empty( $item['link'] ) ? 'a' : 'div';
 					?>
-					<div class="bg-mist rounded-xl border border-slate-200 p-7 flex flex-col service-block reveal<?php echo esc_attr( $delay ); ?>">
+					<<?php echo esc_html( $tag ); ?><?php if ( ! empty( $item['link'] ) ) : ?> href="<?php echo esc_url( $item['link'] ); ?>" target="_blank" rel="noopener"<?php endif; ?> class="bg-mist rounded-xl border border-slate-200 p-7 flex flex-col service-block reveal<?php echo esc_attr( $delay ); ?><?php echo ! empty( $item['link'] ) ? ' hover:border-action hover:shadow-md transition-all' : ''; ?>">
 						<span class="bg-action/10 text-action text-xs font-bold tracking-wide uppercase rounded-full px-3 py-1 self-start mb-4"><?php echo esc_html( $item['tag'] ); ?></span>
 						<h3 class="text-lg font-bold text-navy mb-2"><?php echo esc_html( $item['title'] ); ?></h3>
 						<p class="text-sm text-slate-500 leading-relaxed mb-0"><?php echo esc_html( $item['body'] ); ?></p>
-					</div>
+						<?php if ( ! empty( $item['link'] ) ) : ?><span class="text-action text-sm font-semibold mt-4">View ATO Lodgment Program &rarr;</span><?php endif; ?>
+					</<?php echo esc_html( $tag ); ?>>
 				<?php endforeach; ?>
 			</div>
 		</div>
