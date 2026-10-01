@@ -457,16 +457,22 @@ body::after{content:"";position:fixed;inset:0;z-index:75;pointer-events:none;opa
 /* Testimonials page: the Trustindex Google reviews widget is shared (its
    layout/style config lives on Trustindex's account, not per-embed), and
    the homepage uses it as a slider -- this overrides the same embed to lay
-   out as a 2-column grid here instead, without touching the shared config.
-   Item width is fixed around Trustindex's own ~300px design width; going
-   to 3 columns at typical content widths makes their internal header
-   layout (avatar/name/platform badge) overlap. */
+   out as a true 2-column CSS grid here instead, without touching the
+   shared config. A flex-wrap-based cap left the widget's own slider JS
+   still fighting the layout (it kept setting an inline `left` offset on
+   each item from its internal carousel-track math, shoving them off
+   -canvas), so this both switches to `display:grid` -- which can't slip
+   in a stray phantom column the way percentage flex-basis rounding can
+   -- and pins position/left/top back to neutral so nothing can nudge
+   items out of their grid cell. Item width is fixed around Trustindex's
+   own ~300px design width; 3 columns at typical content widths makes
+   their internal header layout (avatar/name/platform badge) overlap. */
 [data-testid="testimonials-google-reviews"] .ti-controls,
 [data-testid="testimonials-google-reviews"] .ti-controls-line{display:none!important}
-[data-testid="testimonials-google-reviews"] .ti-reviews-container-wrapper{flex-wrap:wrap!important;overflow:visible!important;width:100%!important;row-gap:1.5rem}
-[data-testid="testimonials-google-reviews"] .ti-review-item{flex:0 0 48%!important;max-width:48%!important}
+[data-testid="testimonials-google-reviews"] .ti-reviews-container-wrapper{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:1.5rem!important;overflow:visible!important;width:100%!important;transform:none!important;transition:none!important}
+[data-testid="testimonials-google-reviews"] .ti-review-item{flex:unset!important;width:100%!important;max-width:100%!important;position:relative!important;left:0!important;top:0!important}
 @media (max-width:640px){
-	[data-testid="testimonials-google-reviews"] .ti-review-item{flex:0 0 100%!important;max-width:100%!important}
+	[data-testid="testimonials-google-reviews"] .ti-reviews-container-wrapper{grid-template-columns:1fr!important}
 }
 
 /* Homepage: the same shared Trustindex widget shows all its reviews here,
