@@ -451,6 +451,9 @@ body::after{content:"";position:fixed;inset:0;z-index:75;pointer-events:none;opa
 .svc-circle{width:9rem;height:9rem;border-radius:9999px;object-fit:cover;display:block;margin:-4.5rem auto 1.5rem;border:5px solid #fff;box-shadow:0 18px 36px -14px rgba(59,35,80,.35)}
 .svc-title{color:var(--action);text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px;text-decoration-color:rgba(100,52,134,.35)}
 
+/* Photo-top cards: the hover bar would cut across the circular photo, so skip it here -- the card lift/shadow on hover is enough. */
+.service-card.svc-photo-card::before{content:none}
+
 /* --- GSAP-driven reveals: disable CSS transition to avoid double-easing --- */
 body.gsap-motion .reveal{transition:none}
 
