@@ -13,7 +13,6 @@ add_action( 'init', function () {
 	add_shortcode( 'bootg_7_steps', 'bootg_render_7_steps' );
 	add_shortcode( 'bootg_key_dates', 'bootg_render_key_dates' );
 	add_shortcode( 'bootg_templates_checklists', 'bootg_render_templates_checklists' );
-	add_shortcode( 'bootg_calculators', 'bootg_render_calculators' );
 } );
 
 function bootg_resource_cta( $heading ) {
@@ -225,36 +224,13 @@ function bootg_render_templates_checklists() {
 }
 
 /* ---------------------------------------------------------------------
- * Calculators — matches the original site's calculator catalogue
- * (break-even, burn rate, GST, retirement savings, etc.) but built as
- * our own in-house widget (Weavit Engine's [bootg_calculators_widget]
- * shortcode) instead of embedding the original's third-party
- * smartbizcalcs.com iframe.
+ * Calculators now live at /calculators/ entirely via the Weavit Engine
+ * plugin's own `bootg_calculator` custom post type (see
+ * weavit-engine/inc/calculators.php) — its own rewrite rules, archive,
+ * and single templates, with one unique URL per calculator (e.g.
+ * /calculators/gst/). No theme Page or shortcode needed here any more;
+ * the plugin retires the old static "Calculators" Page automatically.
  * ------------------------------------------------------------------- */
-
-function bootg_render_calculators() {
-	ob_start();
-	?>
-	<section class="relative overflow-hidden bg-navydeep text-white" data-testid="page-hero">
-		<div class="hero-blob w-[420px] h-[420px] bg-action/20 -top-32 -right-24"></div>
-		<div class="hero-blob w-[280px] h-[280px] bg-white/5 bottom-0 -left-20"></div>
-		<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-			<p class="text-sm font-semibold text-white/50 mb-4 reveal"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="hover:text-white transition-colors">Home</a> <span class="mx-2">/</span> Resources <span class="mx-2">/</span> <span class="text-white">Calculators</span></p>
-			<h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] mb-5 reveal reveal-d1">Free <span class="text-action">Calculators</span></h1>
-			<p class="text-base md:text-lg text-white/70 leading-relaxed max-w-2xl mb-8 reveal reveal-d2">Quick tools to check your numbers before you make decisions.</p>
-		</div>
-	</section>
-
-	<section class="py-16 lg:py-24 bg-white" data-testid="calculators-embed">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<?php echo do_shortcode( '[bootg_calculators_widget]' ); ?>
-		</div>
-	</section>
-
-	<?php echo bootg_resource_cta( 'Prefer to talk it through?' ); // phpcs:ignore ?>
-	<?php
-	return ob_get_clean();
-}
 
 /** One-click creation of the Resources pages. */
 function bootg_create_resource_page( $slug, $title, $shortcode ) {
@@ -279,12 +255,11 @@ add_action( 'admin_post_bootg_create_resource_pages', function () {
 	}
 	check_admin_referer( 'bootg_create_resource_pages' );
 
-	$steps       = bootg_create_resource_page( '7-steps', '7 Steps to Increasing Profit', '[bootg_7_steps]' );
-	$dates       = bootg_create_resource_page( 'key-dates', 'Key Dates', '[bootg_key_dates]' );
-	$templates   = bootg_create_resource_page( 'resources', 'Templates & Checklists', '[bootg_templates_checklists]' );
-	$calculators = bootg_create_resource_page( 'calculators', 'Calculators', '[bootg_calculators]' );
+	$steps     = bootg_create_resource_page( '7-steps', '7 Steps to Increasing Profit', '[bootg_7_steps]' );
+	$dates     = bootg_create_resource_page( 'key-dates', 'Key Dates', '[bootg_key_dates]' );
+	$templates = bootg_create_resource_page( 'resources', 'Templates & Checklists', '[bootg_templates_checklists]' );
 
-	$results = array( $steps, $dates, $templates, $calculators );
+	$results = array( $steps, $dates, $templates );
 	$result  = in_array( 'error', $results, true ) ? 'error' : ( in_array( 'created', $results, true ) ? 'created' : 'exists' );
 
 	wp_safe_redirect( add_query_arg(
