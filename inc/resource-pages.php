@@ -225,9 +225,11 @@ function bootg_render_templates_checklists() {
 }
 
 /* ---------------------------------------------------------------------
- * Calculators — placeholder page (matches the original site: the
- * interactive calculators were never actually built there either, just
- * this "refreshed soon" notice pointing to Guides and Templates instead).
+ * Calculators — matches the original site's calculator catalogue
+ * (break-even, burn rate, GST, retirement savings, etc.) but built as
+ * our own in-house widget (Weavit Engine's [bootg_calculators_widget]
+ * shortcode) instead of embedding the original's third-party
+ * smartbizcalcs.com iframe.
  * ------------------------------------------------------------------- */
 
 function bootg_render_calculators() {
@@ -243,24 +245,13 @@ function bootg_render_calculators() {
 		</div>
 	</section>
 
-	<section class="py-16 lg:py-24 bg-white" data-testid="info-section">
-		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 mb-6 service-block reveal">
-				<h2 class="text-2xl font-extrabold text-navy mb-3">Calculators index</h2>
-				<p class="text-slate-500 leading-relaxed mb-0">Our online calculators index is currently being refreshed. In the meantime, our free business guides and templates cover the same ground — break-even, cash flow, pricing and more.</p>
-				<div class="flex flex-wrap gap-3 mt-6">
-					<a href="<?php echo esc_url( bootg_page_url( 'guides' ) ); ?>" class="btn btn-outline px-5 py-2.5 text-sm">Browse Business Guides</a>
-					<a href="<?php echo esc_url( bootg_page_url( 'resources' ) ); ?>" class="btn btn-outline px-5 py-2.5 text-sm">Templates &amp; Checklists</a>
-				</div>
-			</div>
-			<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 mb-6 service-block reveal">
-				<h2 class="text-2xl font-extrabold text-navy mb-3">Prefer a human?</h2>
-				<p class="text-slate-500 leading-relaxed mb-0">Call <?php echo esc_html( bootg_get_option( 'phone' ) ); ?> and we'll run the numbers with you — break-even, cash flow forecasts, hiring affordability and pricing reviews are all part of a free consultation.</p>
-			</div>
+	<section class="py-16 lg:py-24 bg-white" data-testid="calculators-embed">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<?php echo do_shortcode( '[bootg_calculators_widget]' ); ?>
 		</div>
 	</section>
 
-	<?php echo bootg_resource_cta( 'Let us run the numbers for you' ); // phpcs:ignore ?>
+	<?php echo bootg_resource_cta( 'Prefer to talk it through?' ); // phpcs:ignore ?>
 	<?php
 	return ob_get_clean();
 }
