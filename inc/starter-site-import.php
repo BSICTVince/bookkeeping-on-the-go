@@ -49,6 +49,11 @@ function bootg_starter_site_steps() {
 			'run'    => 'bootg_fix_integration_content',
 			'format' => function ( $r ) { return $r . ' integration(s) updated.'; },
 		),
+		'guides'                  => array(
+			'label'  => 'Import Business Guides',
+			'run'    => 'bootg_seed_guides',
+			'format' => function ( $r ) { return $r . ' guide(s) created.'; },
+		),
 		'hero_image'              => array(
 			'label'  => 'Download homepage hero image',
 			'run'    => 'bootg_migrate_hero_image',

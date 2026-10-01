@@ -231,6 +231,18 @@ function bootg_render_content_tools_page() {
 			<?php submit_button( 'Fix Service Content', 'secondary', 'submit', false ); ?>
 		</form>
 
+		<?php if ( isset( $_GET['bootg_guides_seeded'] ) ) : ?>
+			<div class="notice notice-success is-dismissible"><p><?php echo esc_html( (int) $_GET['bootg_guides_seeded'] ); ?> guide(s) created.</p></div>
+		<?php endif; ?>
+
+		<h2>Migrate Business Guides</h2>
+		<p class="description">One-time import of the starter Business Guides (content/guides.json) — original write-ups, categorized to match the shared Topics Catalog. Safe to run again — existing guides (matched by title) are skipped.</p>
+		<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" style="margin-bottom:2em;">
+			<?php wp_nonce_field( 'bootg_seed_guides' ); ?>
+			<input type="hidden" name="action" value="bootg_seed_guides">
+			<?php submit_button( 'Import Guides', 'secondary', 'submit', false ); ?>
+		</form>
+
 		<h2>Migrate Starter Content</h2>
 		<p class="description">One-time import of Services, Integrations, a Testimonial, and Team Members from the original site copy. Safe to run again — existing items (matched by title) are skipped.</p>
 		<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" style="margin-bottom:2em;">

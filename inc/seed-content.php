@@ -75,6 +75,24 @@ add_action( 'admin_post_bootg_seed_content', function () {
 	exit;
 } );
 
+/** Imports the starter Business Guides from the theme's starter content JSON. Returns the count created. */
+function bootg_seed_guides() {
+	return bootg_import_cpt_items( 'guide', bootg_load_json( BOOTG_DIR . '/content/guides.json' ) );
+}
+
+add_action( 'admin_post_bootg_seed_guides', function () {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'Not allowed.' );
+	}
+	check_admin_referer( 'bootg_seed_guides' );
+
+	wp_safe_redirect( add_query_arg(
+		array( 'page' => 'bootg-content-tools', 'bootg_guides_seeded' => bootg_seed_guides() ),
+		admin_url( 'themes.php' )
+	) );
+	exit;
+} );
+
 /**
  * One-click "fix stale menu links" — bootg_seed_menus() only had real pages
  * to link to for some items on first run; everything else got a "#"
