@@ -249,6 +249,13 @@ function bootg_render_testimonial_archive() {
 
 	$cards = '';
 	foreach ( $testimonials as $t ) {
+		// Custom-HTML testimonials (e.g. a third-party reviews widget embed) render
+		// their own markup elsewhere -- skip them here so they don't also show up
+		// as a plain quote card using whatever sample quote/author meta they have.
+		if ( 'custom_code' === get_post_meta( $t->ID, 'content_mode', true ) ) {
+			continue;
+		}
+
 		$quote    = get_post_meta( $t->ID, 'quote', true );
 		$name     = get_post_meta( $t->ID, 'author_name', true ) ?: get_the_title( $t );
 		$business = get_post_meta( $t->ID, 'author_business', true );
@@ -272,11 +279,13 @@ function bootg_render_testimonial_archive() {
 			<p class="text-base md:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">Real results for real businesses across Australia.</p>
 		</div>
 	</section>
+	<?php if ( $cards ) : ?>
 	<section class="py-16 lg:py-24 bg-white">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><?php echo $cards; // phpcs:ignore ?></div>
 		</div>
 	</section>
+	<?php endif; ?>
 	<section class="py-16 lg:py-24 bg-mist" data-testid="testimonials-google-reviews">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="max-w-2xl mb-10 text-center mx-auto">
