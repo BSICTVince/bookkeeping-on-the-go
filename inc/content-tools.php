@@ -71,7 +71,7 @@ function bootg_render_content_tools_page() {
 	?>
 	<div class="wrap">
 		<h1>Content Tools</h1>
-		<p class="description">One-time / re-runnable tools that create pages and seed starter content for this site. Business details (phone, email, socials) live on <a href="<?php echo esc_url( admin_url( 'themes.php?page=bootg-site-options' ) ); ?>">Appearance &rarr; Site Options</a>.</p>
+		<p class="description">One-time / re-runnable tools that create pages and seed starter content for this site. Business details (phone, email, socials) live on <a href="<?php echo esc_url( admin_url( 'admin.php?page=bootg-site-options' ) ); ?>">Weavit &rarr; Site Options</a>.</p>
 
 		<?php if ( isset( $_GET['bootg_page_templates_fixed'] ) ) : ?>
 			<div class="notice notice-success is-dismissible"><p><?php echo (int) $_GET['bootg_page_templates_fixed']; ?> page template(s) switched to Full-Width Content Page.</p></div>

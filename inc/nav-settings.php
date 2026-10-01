@@ -94,7 +94,7 @@ add_action( 'wp_head', function () {
 
 /** Native WP color picker on the Navigation tab only. */
 add_action( 'admin_enqueue_scripts', function ( $hook ) {
-	if ( 'appearance_page_bootg-site-options' !== $hook || 'navigation' !== ( $_GET['tab'] ?? '' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only tab check.
+	if ( 'weavit_page_bootg-site-options' !== $hook || 'navigation' !== ( $_GET['tab'] ?? '' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only tab check.
 		return;
 	}
 	wp_enqueue_style( 'wp-color-picker' );
