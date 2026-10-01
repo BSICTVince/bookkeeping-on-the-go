@@ -38,7 +38,7 @@ function bootg_render_services_grid_section() {
 		$summary   = get_post_meta( $service->ID, 'card_summary', true ) ?: $service->post_content;
 		$cta_url   = get_post_meta( $service->ID, 'cta_url', true ) ?: get_permalink( $service );
 		$cta_label = get_post_meta( $service->ID, 'cta_label', true ) ?: 'Learn More';
-		$image     = get_the_post_thumbnail( $service, 'medium', array( 'class' => 'svc-circle' ) );
+		$image     = get_the_post_thumbnail( $service, 'full', array( 'class' => 'svc-circle' ) );
 
 		$cards .= '<div class="service-card svc-photo-card bg-mist rounded-xl border border-slate-200 shadow-sm px-8 pb-8 flex flex-col text-center reveal">';
 		$cards .= $image;
