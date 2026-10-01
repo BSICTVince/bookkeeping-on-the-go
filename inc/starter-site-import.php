@@ -13,6 +13,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/** Creates the Policy Statement / TASA 2009 Disclosure Weavit Downloads (see weavit-engine/inc/downloads.php) if they don't already exist. Returns a count of newly-created downloads. */
+function bootg_seed_downloads() {
+	$created = 0;
+	foreach ( array(
+		'policy-statement'     => array( 'Policy Statement', 'https://bookkeepingonthego.net.au/app/uploads/Policy-Statement.pdf' ),
+		'tasa-2009-disclosure' => array( 'Tax Agent Services Act 2009 Disclosure Statement', 'https://bookkeepingonthego.net.au/app/uploads/Tax-Agents-Services-Act-2009-Disclosure-Statement.pdf' ),
+	) as $slug => $def ) {
+		$existing = get_page_by_path( $slug, OBJECT, 'weavit_download' );
+		if ( $existing ) {
+			continue;
+		}
+		$result = weavit_create_download_from_url( $slug, $def[0], $def[1] );
+		if ( ! is_wp_error( $result ) ) {
+			++$created;
+		}
+	}
+	return $created;
+}
+
 function bootg_starter_site_steps() {
 	return array(
 		'seed_content'            => array(
@@ -39,6 +58,11 @@ function bootg_starter_site_steps() {
 			'label'  => 'Download partner logos',
 			'run'    => 'bootg_migrate_partner_logos',
 			'format' => function ( $r ) { return 'partial' === $r ? 'Some logos failed to download — check your connection.' : 'Partner logos ready.'; },
+		),
+		'downloads'               => array(
+			'label'  => 'Create compliance PDF downloads',
+			'run'    => 'bootg_seed_downloads',
+			'format' => function ( $r ) { return $r . ' download(s) created.'; },
 		),
 		'contact_page'            => array(
 			'label'  => 'Create Contact page',

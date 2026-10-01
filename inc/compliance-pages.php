@@ -66,8 +66,8 @@ function bootg_render_ato_compliance() {
 				<h2 class="text-2xl font-extrabold text-navy mb-3">Our Formal Statements</h2>
 				<p class="text-slate-500 leading-relaxed mb-0">In line with the Tax Agent Services Act 2009, our policy and disclosure statements are available for you to read:</p>
 				<div class="flex flex-wrap gap-3 mt-6">
-					<a href="https://bookkeepingonthego.net.au/app/uploads/Policy-Statement.pdf" target="_blank" rel="noopener" class="btn btn-outline px-5 py-2.5 text-sm">Policy Statement</a>
-					<a href="https://bookkeepingonthego.net.au/app/uploads/Tax-Agents-Services-Act-2009-Disclosure-Statement.pdf" target="_blank" rel="noopener" class="btn btn-outline px-5 py-2.5 text-sm">TASA 2009 Disclosure</a>
+					<?php echo do_shortcode( '[weavit_download slug="policy-statement" label="Policy Statement" class="btn btn-outline px-5 py-2.5 text-sm"]' ); ?>
+					<?php echo do_shortcode( '[weavit_download slug="tasa-2009-disclosure" label="TASA 2009 Disclosure" class="btn btn-outline px-5 py-2.5 text-sm"]' ); ?>
 				</div>
 			</div>
 		</div>
