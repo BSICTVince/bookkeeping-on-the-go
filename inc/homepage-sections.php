@@ -223,7 +223,7 @@ function bootg_home_default_sections() {
 
 		// Section 9 — Final CTA
 		'
-<section class="relative overflow-hidden py-20 lg:py-28 bg-navydeep text-white" data-testid="home-cta-band">
+<section class="relative overflow-hidden py-20 lg:py-28 bg-navydeep text-white" data-testid="home-cta-band" style="background-image:linear-gradient(rgba(42,22,56,.88),rgba(42,22,56,.88)),url(\'https://bookkeepingonthego.net.au/app/uploads/Bookkeeping-on-the-go-Qualified-Bookkeeping-and-BASIAS-Services-in-Perth-and-Beyond.jpg\');background-size:cover;background-position:center">
 	<div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
 		<p class="chapter-tag chapter-light"><span class="chapter-num">06</span><span class="chapter-label">Your Next Chapter</span></p>
 		<h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.1] mb-5">Your next chapter starts with <span class="text-action">sorted books.</span></h2>
