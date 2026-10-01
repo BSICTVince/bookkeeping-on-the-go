@@ -42,7 +42,6 @@ function bootg_render_services_grid_section() {
 
 		$cards .= '<div class="service-card svc-photo-card bg-mist rounded-xl border border-slate-200 shadow-sm px-8 pb-8 flex flex-col text-center reveal">';
 		$cards .= $image;
-		$cards .= '<svg class="svc-arc" viewBox="0 0 140 140" aria-hidden="true"><path d="M9,92 Q70,136 131,92"/></svg>';
 		$cards .= '<h3 class="svc-title text-xl font-bold mb-3">' . esc_html( get_the_title( $service ) ) . '</h3>';
 		$cards .= '<p class="text-slate-500 text-sm leading-relaxed mb-6">' . esc_html( wp_strip_all_tags( $summary ) ) . '</p>';
 		$cards .= '<a href="' . esc_url( $cta_url ) . '" class="service-link font-bold text-sm mt-auto mx-auto">' . esc_html( $cta_label ) . ' <span aria-hidden="true">&rarr;</span></a>';
