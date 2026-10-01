@@ -476,6 +476,7 @@ body::after{content:"";position:fixed;inset:0;z-index:75;pointer-events:none;opa
 [data-testid="homepage-google-reviews"] .ti-reviews-container-wrapper{flex-wrap:wrap!important;overflow:visible!important;width:100%!important;justify-content:center}
 [data-testid="homepage-google-reviews"] .ti-review-item{flex:0 0 31%!important;max-width:31%!important}
 [data-testid="homepage-google-reviews"] .ti-review-item:nth-child(n+4){display:none!important}
+[data-testid="homepage-google-reviews"] .ti-reviews-container-wrapper{transform:none!important;transition:none!important}
 @media (max-width:900px){
 	[data-testid="homepage-google-reviews"] .ti-review-item{flex:0 0 100%!important;max-width:100%!important}
 }
