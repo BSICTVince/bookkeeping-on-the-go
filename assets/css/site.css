@@ -475,26 +475,21 @@ body::after{content:"";position:fixed;inset:0;z-index:75;pointer-events:none;opa
 	[data-testid="testimonials-google-reviews"] .ti-reviews-container-wrapper{grid-template-columns:1fr!important}
 }
 
-/* Homepage: the same shared Trustindex widget shows all its reviews here,
-   3 at a time -- Trustindex's own slider JS fights a CSS-only cap (stale
-   transform math leaves a blank gap when it auto-rotates), so site.js
-   takes over paging instead and these rules just freeze/style the base
-   widget for that: hide its own arrows/dots, stop its auto-rotate
-   transform, and lay out each page's 3 items evenly. */
+/* Homepage: cap the same shared Trustindex widget to 3 reviews, shown
+   statically side by side instead of cycling as a slider. Reverted from
+   a JS-driven 3-per-page pager (prev/next arrows) back to this simpler,
+   proven-stable version after the pager intermittently rendered blank
+   on mobile. Pins position/left/top too, same as the testimonials grid
+   fix, in case Trustindex's slider JS tries to set its own inline
+   carousel-track offset on an item. */
 [data-testid="homepage-google-reviews"] .ti-controls,
 [data-testid="homepage-google-reviews"] .ti-controls-line{display:none!important}
 [data-testid="homepage-google-reviews"] .ti-reviews-container-wrapper{flex-wrap:wrap!important;overflow:visible!important;width:100%!important;justify-content:center;transform:none!important;transition:none!important}
-[data-testid="homepage-google-reviews"] .ti-review-item{flex:0 0 31%!important;max-width:31%!important}
+[data-testid="homepage-google-reviews"] .ti-review-item{flex:0 0 31%!important;max-width:31%!important;position:relative!important;left:0!important;top:0!important}
+[data-testid="homepage-google-reviews"] .ti-review-item:nth-child(n+4){display:none!important}
 @media (max-width:900px){
 	[data-testid="homepage-google-reviews"] .ti-review-item{flex:0 0 100%!important;max-width:100%!important}
 }
-
-/* Prev/next arrows for the homepage reviews pager, added by site.js */
-.reviews-pager-nav{display:flex;justify-content:center;gap:.75rem;margin-top:2rem}
-.reviews-pager-arrow{display:flex;align-items:center;justify-content:center;width:2.75rem;height:2.75rem;border-radius:9999px;border:1px solid #E2E8F0;background:#fff;color:var(--action);cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
-.reviews-pager-arrow svg{width:1.1rem;height:1.1rem}
-.reviews-pager-arrow:hover:not(.is-disabled){background:var(--action);color:#fff;border-color:var(--action)}
-.reviews-pager-arrow.is-disabled{opacity:.35;cursor:default;pointer-events:none}
 
 /* --- GSAP-driven reveals: disable CSS transition to avoid double-easing --- */
 body.gsap-motion .reveal{transition:none}
