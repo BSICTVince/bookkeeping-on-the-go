@@ -454,6 +454,21 @@ body::after{content:"";position:fixed;inset:0;z-index:75;pointer-events:none;opa
 /* Photo-top cards: the hover bar would cut across the circular photo, so skip it here -- the card lift/shadow on hover is enough. */
 .service-card.svc-photo-card::before{content:none}
 
+/* Testimonials page: the Trustindex Google reviews widget is shared (its
+   layout/style config lives on Trustindex's account, not per-embed), and
+   the homepage uses it as a slider -- this overrides the same embed to lay
+   out as a 2-column grid here instead, without touching the shared config.
+   Item width is fixed around Trustindex's own ~300px design width; going
+   to 3 columns at typical content widths makes their internal header
+   layout (avatar/name/platform badge) overlap. */
+[data-testid="testimonials-google-reviews"] .ti-controls,
+[data-testid="testimonials-google-reviews"] .ti-controls-line{display:none!important}
+[data-testid="testimonials-google-reviews"] .ti-reviews-container-wrapper{flex-wrap:wrap!important;overflow:visible!important;width:100%!important;row-gap:1.5rem}
+[data-testid="testimonials-google-reviews"] .ti-review-item{flex:0 0 48%!important;max-width:48%!important}
+@media (max-width:640px){
+	[data-testid="testimonials-google-reviews"] .ti-review-item{flex:0 0 100%!important;max-width:100%!important}
+}
+
 /* --- GSAP-driven reveals: disable CSS transition to avoid double-easing --- */
 body.gsap-motion .reveal{transition:none}
 

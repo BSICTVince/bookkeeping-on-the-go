@@ -277,6 +277,15 @@ function bootg_render_testimonial_archive() {
 			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><?php echo $cards; // phpcs:ignore ?></div>
 		</div>
 	</section>
+	<section class="py-16 lg:py-24 bg-mist" data-testid="testimonials-google-reviews">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="max-w-2xl mb-10 text-center mx-auto">
+				<h2 class="text-3xl sm:text-4xl font-extrabold text-navy mb-3">What Clients Say on Google</h2>
+				<p class="text-base text-slate-500">Real, verified reviews straight from Google.</p>
+			</div>
+			<?php echo do_shortcode( '[trustindex no-registration=google]' ); // phpcs:ignore ?>
+		</div>
+	</section>
 	<?php
 	return ob_get_clean();
 }
