@@ -142,19 +142,22 @@ function bootg_create_compliance_page( $slug, $title, $shortcode ) {
 	return is_wp_error( $page_id ) ? 'error' : 'created';
 }
 
+/** Creates both Compliance pages. Returns 'exists', 'created', or 'error'. */
+function bootg_create_compliance_pages() {
+	$ato   = bootg_create_compliance_page( 'ato-compliance', 'ATO Compliance', '[bootg_ato_compliance]' );
+	$dates = bootg_create_compliance_page( 'dates-to-remember', 'Dates to Remember', '[bootg_dates_to_remember]' );
+
+	return ( 'error' === $ato || 'error' === $dates ) ? 'error' : ( ( 'created' === $ato || 'created' === $dates ) ? 'created' : 'exists' );
+}
+
 add_action( 'admin_post_bootg_create_compliance_pages', function () {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		wp_die( 'Not allowed.' );
 	}
 	check_admin_referer( 'bootg_create_compliance_pages' );
 
-	$ato   = bootg_create_compliance_page( 'ato-compliance', 'ATO Compliance', '[bootg_ato_compliance]' );
-	$dates = bootg_create_compliance_page( 'dates-to-remember', 'Dates to Remember', '[bootg_dates_to_remember]' );
-
-	$result = ( 'error' === $ato || 'error' === $dates ) ? 'error' : ( ( 'created' === $ato || 'created' === $dates ) ? 'created' : 'exists' );
-
 	wp_safe_redirect( add_query_arg(
-		array( 'page' => 'bootg-content-tools', 'bootg_compliance_pages' => $result ),
+		array( 'page' => 'bootg-content-tools', 'bootg_compliance_pages' => bootg_create_compliance_pages() ),
 		admin_url( 'themes.php' )
 	) );
 	exit;

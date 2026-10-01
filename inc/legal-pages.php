@@ -214,30 +214,35 @@ function bootg_upsert_legal_page( $slug, $title, $shortcode ) {
 	return is_wp_error( $page_id ) ? array( 'status' => 'error' ) : array( 'status' => 'created', 'id' => $page_id );
 }
 
-add_action( 'admin_post_bootg_create_legal_pages', function () {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( 'Not allowed.' );
-	}
-	check_admin_referer( 'bootg_create_legal_pages' );
-
-	$privacy   = bootg_upsert_legal_page( 'privacy-policy', 'Privacy Policy', '[bootg_privacy_policy]' );
-	$terms     = bootg_upsert_legal_page( 'terms-and-conditions', 'Terms and Conditions', '[bootg_terms_conditions]' );
-	$trustees  = bootg_upsert_legal_page( 'reporting-to-public-trustees', 'Reporting to Public Trustees', '[bootg_public_trustees]' );
-	$payroll   = bootg_upsert_legal_page( 'payroll-specialists', 'Payroll Specialists', '[bootg_payroll_specialists]' );
+/** Creates/updates the 4 legal/service pages and repoints the footer's Privacy/Terms links. Returns 'done' or 'error'. */
+function bootg_create_legal_pages() {
+	$privacy  = bootg_upsert_legal_page( 'privacy-policy', 'Privacy Policy', '[bootg_privacy_policy]' );
+	$terms    = bootg_upsert_legal_page( 'terms-and-conditions', 'Terms and Conditions', '[bootg_terms_conditions]' );
+	$trustees = bootg_upsert_legal_page( 'reporting-to-public-trustees', 'Reporting to Public Trustees', '[bootg_public_trustees]' );
+	$payroll  = bootg_upsert_legal_page( 'payroll-specialists', 'Payroll Specialists', '[bootg_payroll_specialists]' );
 
 	$results = array( $privacy, $terms, $trustees, $payroll );
 	$result  = in_array( 'error', wp_list_pluck( $results, 'status' ), true ) ? 'error' : 'done';
 
 	// Keep the footer's Privacy/Terms links (site-options.php) pointing at these pages.
 	if ( 'error' !== $privacy['status'] ) {
-		$options                 = wp_parse_args( get_option( BOOTG_OPTION, array() ), bootg_default_options() );
-		$options['privacy_url']  = get_permalink( $privacy['id'] );
-		$options['terms_url']    = get_permalink( $terms['id'] );
+		$options                = wp_parse_args( get_option( BOOTG_OPTION, array() ), bootg_default_options() );
+		$options['privacy_url'] = get_permalink( $privacy['id'] );
+		$options['terms_url']   = get_permalink( $terms['id'] );
 		update_option( BOOTG_OPTION, $options );
 	}
 
+	return $result;
+}
+
+add_action( 'admin_post_bootg_create_legal_pages', function () {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'Not allowed.' );
+	}
+	check_admin_referer( 'bootg_create_legal_pages' );
+
 	wp_safe_redirect( add_query_arg(
-		array( 'page' => 'bootg-content-tools', 'bootg_legal_pages' => $result ),
+		array( 'page' => 'bootg-content-tools', 'bootg_legal_pages' => bootg_create_legal_pages() ),
 		admin_url( 'themes.php' )
 	) );
 	exit;

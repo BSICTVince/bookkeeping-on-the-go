@@ -249,21 +249,24 @@ function bootg_create_resource_page( $slug, $title, $shortcode ) {
 	return is_wp_error( $page_id ) ? 'error' : 'created';
 }
 
+/** Creates the Resource pages (7 Steps, Key Dates, Templates & Checklists). Returns 'exists', 'created', or 'error'. */
+function bootg_create_resource_pages() {
+	$steps     = bootg_create_resource_page( '7-steps', '7 Steps to Increasing Profit', '[bootg_7_steps]' );
+	$dates     = bootg_create_resource_page( 'key-dates', 'Key Dates', '[bootg_key_dates]' );
+	$templates = bootg_create_resource_page( 'resources', 'Templates & Checklists', '[bootg_templates_checklists]' );
+
+	$results = array( $steps, $dates, $templates );
+	return in_array( 'error', $results, true ) ? 'error' : ( in_array( 'created', $results, true ) ? 'created' : 'exists' );
+}
+
 add_action( 'admin_post_bootg_create_resource_pages', function () {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		wp_die( 'Not allowed.' );
 	}
 	check_admin_referer( 'bootg_create_resource_pages' );
 
-	$steps     = bootg_create_resource_page( '7-steps', '7 Steps to Increasing Profit', '[bootg_7_steps]' );
-	$dates     = bootg_create_resource_page( 'key-dates', 'Key Dates', '[bootg_key_dates]' );
-	$templates = bootg_create_resource_page( 'resources', 'Templates & Checklists', '[bootg_templates_checklists]' );
-
-	$results = array( $steps, $dates, $templates );
-	$result  = in_array( 'error', $results, true ) ? 'error' : ( in_array( 'created', $results, true ) ? 'created' : 'exists' );
-
 	wp_safe_redirect( add_query_arg(
-		array( 'page' => 'bootg-content-tools', 'bootg_resource_pages' => $result ),
+		array( 'page' => 'bootg-content-tools', 'bootg_resource_pages' => bootg_create_resource_pages() ),
 		admin_url( 'themes.php' )
 	) );
 	exit;

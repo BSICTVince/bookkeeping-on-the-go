@@ -124,21 +124,24 @@ function bootg_create_specialist_page( $slug, $title, $shortcode ) {
 	return is_wp_error( $page_id ) ? 'error' : 'created';
 }
 
+/** Creates all 3 Specialist Area pages. Returns 'exists', 'created', or 'error'. */
+function bootg_create_specialist_pages() {
+	$payroll   = bootg_create_specialist_page( 'payroll-specialists-perth', 'Payroll Specialists in Perth', '[bootg_specialist_payroll]' );
+	$trustee   = bootg_create_specialist_page( 'public-trustee-reporting', 'Public Trustee Reporting', '[bootg_specialist_public_trustee]' );
+	$nonprofit = bootg_create_specialist_page( 'nonprofit-compliance-accounting', 'Nonprofit Compliance Accounting', '[bootg_specialist_nonprofit]' );
+
+	$results = array( $payroll, $trustee, $nonprofit );
+	return in_array( 'error', $results, true ) ? 'error' : ( in_array( 'created', $results, true ) ? 'created' : 'exists' );
+}
+
 add_action( 'admin_post_bootg_create_specialist_pages', function () {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		wp_die( 'Not allowed.' );
 	}
 	check_admin_referer( 'bootg_create_specialist_pages' );
 
-	$payroll   = bootg_create_specialist_page( 'payroll-specialists-perth', 'Payroll Specialists in Perth', '[bootg_specialist_payroll]' );
-	$trustee   = bootg_create_specialist_page( 'public-trustee-reporting', 'Public Trustee Reporting', '[bootg_specialist_public_trustee]' );
-	$nonprofit = bootg_create_specialist_page( 'nonprofit-compliance-accounting', 'Nonprofit Compliance Accounting', '[bootg_specialist_nonprofit]' );
-
-	$results = array( $payroll, $trustee, $nonprofit );
-	$result  = in_array( 'error', $results, true ) ? 'error' : ( in_array( 'created', $results, true ) ? 'created' : 'exists' );
-
 	wp_safe_redirect( add_query_arg(
-		array( 'page' => 'bootg-content-tools', 'bootg_specialist_pages' => $result ),
+		array( 'page' => 'bootg-content-tools', 'bootg_specialist_pages' => bootg_create_specialist_pages() ),
 		admin_url( 'themes.php' )
 	) );
 	exit;

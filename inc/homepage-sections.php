@@ -30,13 +30,8 @@ function bootg_hero_image_url() {
 	return BOOTG_HERO_IMAGE_SRC;
 }
 
-/** One-click sideload of the homepage hero image into the Media Library. Safe to run again. */
-add_action( 'admin_post_bootg_migrate_hero_image', function () {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( 'Not allowed.' );
-	}
-	check_admin_referer( 'bootg_migrate_hero_image' );
-
+/** One-click sideload of the homepage hero image into the Media Library. Safe to run again. Returns 'done'. */
+function bootg_migrate_hero_image() {
 	if ( ! function_exists( 'media_sideload_image' ) ) {
 		require_once ABSPATH . 'wp-admin/includes/media.php';
 		require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -51,8 +46,17 @@ add_action( 'admin_post_bootg_migrate_hero_image', function () {
 		}
 	}
 
+	return 'done';
+}
+
+add_action( 'admin_post_bootg_migrate_hero_image', function () {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'Not allowed.' );
+	}
+	check_admin_referer( 'bootg_migrate_hero_image' );
+
 	wp_safe_redirect( add_query_arg(
-		array( 'page' => 'bootg-content-tools', 'bootg_hero_image' => 'done' ),
+		array( 'page' => 'bootg-content-tools', 'bootg_hero_image' => bootg_migrate_hero_image() ),
 		admin_url( 'themes.php' )
 	) );
 	exit;

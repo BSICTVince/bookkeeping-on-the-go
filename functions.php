@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BOOTG_VERSION', '0.1.35' );
+define( 'BOOTG_VERSION', '0.1.36' );
 define( 'BOOTG_DIR', get_template_directory() );
 define( 'BOOTG_URI', get_template_directory_uri() );
 
@@ -29,6 +29,7 @@ require_once BOOTG_DIR . '/inc/class-nav-walker.php';
 require_once BOOTG_DIR . '/inc/partner-logos.php';
 require_once BOOTG_DIR . '/inc/content-tools.php';
 require_once BOOTG_DIR . '/inc/seed-content.php';
+require_once BOOTG_DIR . '/inc/starter-site-import.php';
 require_once BOOTG_DIR . '/inc/blocks.php';
 require_once BOOTG_DIR . '/inc/home-blocks.php';
 require_once BOOTG_DIR . '/inc/homepage-sections.php';

@@ -50,20 +50,25 @@ add_action( 'admin_post_bootg_fix_integration_content', function () {
 	exit;
 } );
 
+/** Imports Services, Integrations, Testimonials, and Team Members from the theme's starter content JSON. Returns the count created. */
+function bootg_seed_content() {
+	$created  = 0;
+	$created += bootg_import_cpt_items( 'service', bootg_load_json( BOOTG_DIR . '/content/services.json' ) );
+	$created += bootg_import_cpt_items( 'integration', bootg_load_json( BOOTG_DIR . '/content/integrations.json' ) );
+	$created += bootg_import_cpt_items( 'testimonial', bootg_load_json( BOOTG_DIR . '/content/testimonials.json' ) );
+	$created += bootg_import_cpt_items( 'team_member', bootg_load_json( BOOTG_DIR . '/content/team-members.json' ) );
+
+	return $created;
+}
+
 add_action( 'admin_post_bootg_seed_content', function () {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		wp_die( 'Not allowed.' );
 	}
 	check_admin_referer( 'bootg_seed_content' );
 
-	$created = 0;
-	$created += bootg_import_cpt_items( 'service', bootg_load_json( BOOTG_DIR . '/content/services.json' ) );
-	$created += bootg_import_cpt_items( 'integration', bootg_load_json( BOOTG_DIR . '/content/integrations.json' ) );
-	$created += bootg_import_cpt_items( 'testimonial', bootg_load_json( BOOTG_DIR . '/content/testimonials.json' ) );
-	$created += bootg_import_cpt_items( 'team_member', bootg_load_json( BOOTG_DIR . '/content/team-members.json' ) );
-
 	$redirect = add_query_arg(
-		array( 'page' => 'bootg-content-tools', 'bootg_seed_created' => $created ),
+		array( 'page' => 'bootg-content-tools', 'bootg_seed_created' => bootg_seed_content() ),
 		admin_url( 'themes.php' )
 	);
 	wp_safe_redirect( $redirect );
@@ -188,12 +193,8 @@ function bootg_archive_link_args( $post_type, $title ) {
 	);
 }
 
-add_action( 'admin_post_bootg_seed_menus', function () {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( 'Not allowed.' );
-	}
-	check_admin_referer( 'bootg_seed_menus' );
-
+/** Builds the Primary/Client Area/Footer menus (skips any location already assigned). Returns a report string. */
+function bootg_seed_menus() {
 	$locations = get_theme_mod( 'nav_menu_locations', array() );
 	$report    = array();
 
@@ -276,8 +277,17 @@ add_action( 'admin_post_bootg_seed_menus', function () {
 
 	set_theme_mod( 'nav_menu_locations', $locations );
 
+	return implode( ', ', $report ) ?: 'none (already set up)';
+}
+
+add_action( 'admin_post_bootg_seed_menus', function () {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'Not allowed.' );
+	}
+	check_admin_referer( 'bootg_seed_menus' );
+
 	wp_safe_redirect( add_query_arg(
-		array( 'page' => 'bootg-content-tools', 'bootg_menus_created' => rawurlencode( implode( ', ', $report ) ?: 'none (already set up)' ) ),
+		array( 'page' => 'bootg-content-tools', 'bootg_menus_created' => rawurlencode( bootg_seed_menus() ) ),
 		admin_url( 'themes.php' )
 	) );
 	exit;

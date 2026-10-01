@@ -147,17 +147,11 @@ function bootg_render_about_page() {
 	return ob_get_clean();
 }
 
-/** One-click creation of the "About Us" page (slug: about) with the shortcode as its content. */
-add_action( 'admin_post_bootg_create_about_page', function () {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( 'Not allowed.' );
-	}
-	check_admin_referer( 'bootg_create_about_page' );
-
+/** One-click creation of the "About Us" page (slug: about) with the shortcode as its content. Returns 'exists', 'created', or 'error'. */
+function bootg_create_about_page() {
 	$existing = get_page_by_path( 'about' );
 	if ( $existing ) {
-		wp_safe_redirect( add_query_arg( array( 'page' => 'bootg-content-tools', 'bootg_about_page' => 'exists' ), admin_url( 'themes.php' ) ) );
-		exit;
+		return 'exists';
 	}
 
 	$page_id = wp_insert_post( array(
@@ -169,8 +163,17 @@ add_action( 'admin_post_bootg_create_about_page', function () {
 		'page_template' => 'page-full-width',
 	), true );
 
+	return is_wp_error( $page_id ) ? 'error' : 'created';
+}
+
+add_action( 'admin_post_bootg_create_about_page', function () {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'Not allowed.' );
+	}
+	check_admin_referer( 'bootg_create_about_page' );
+
 	wp_safe_redirect( add_query_arg(
-		array( 'page' => 'bootg-content-tools', 'bootg_about_page' => is_wp_error( $page_id ) ? 'error' : 'created' ),
+		array( 'page' => 'bootg-content-tools', 'bootg_about_page' => bootg_create_about_page() ),
 		admin_url( 'themes.php' )
 	) );
 	exit;

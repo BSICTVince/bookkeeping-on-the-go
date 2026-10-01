@@ -53,13 +53,8 @@ function bootg_render_partner_logo_img( $key, $extra_class = '' ) {
 	return '<img src="' . esc_url( $url ) . '" alt="' . esc_attr( $label ) . '" class="partner-logo' . ( $extra_class ? ' ' . esc_attr( $extra_class ) : '' ) . '" loading="lazy">';
 }
 
-/** One-click sideload of every partner-logo image into the Media Library. Safe to run again — skips ones already sideloaded. */
-add_action( 'admin_post_bootg_migrate_partner_logos', function () {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( 'Not allowed.' );
-	}
-	check_admin_referer( 'bootg_migrate_partner_logos' );
-
+/** One-click sideload of every partner-logo image into the Media Library. Safe to run again — skips ones already sideloaded. Returns 'done' or 'partial'. */
+function bootg_migrate_partner_logos() {
 	require_once ABSPATH . 'wp-admin/includes/media.php';
 	require_once ABSPATH . 'wp-admin/includes/file.php';
 	require_once ABSPATH . 'wp-admin/includes/image.php';
@@ -81,8 +76,17 @@ add_action( 'admin_post_bootg_migrate_partner_logos', function () {
 
 	update_option( BOOTG_PARTNER_LOGO_OPTION, $media );
 
+	return $failed ? 'partial' : 'done';
+}
+
+add_action( 'admin_post_bootg_migrate_partner_logos', function () {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'Not allowed.' );
+	}
+	check_admin_referer( 'bootg_migrate_partner_logos' );
+
 	wp_safe_redirect( add_query_arg(
-		array( 'page' => 'bootg-content-tools', 'bootg_partner_logos' => $failed ? 'partial' : 'done' ),
+		array( 'page' => 'bootg-content-tools', 'bootg_partner_logos' => bootg_migrate_partner_logos() ),
 		admin_url( 'themes.php' )
 	) );
 	exit;
