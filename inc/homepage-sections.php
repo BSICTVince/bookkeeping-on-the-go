@@ -96,7 +96,7 @@ function bootg_home_default_sections() {
 			<div class="lg:col-span-5">
 				<div class="hero-stage">
 					<figure class="hero-frame">
-						<img src="https://bookkeepingonthego.net.au/app/uploads/Bookkeeping-on-the-go-Qualified-Bookkeeping-and-BASIAS-Services-in-Perth-and-Beyond.jpg" alt="Qualified bookkeeping and BAS/IAS services in Perth and beyond">
+						<img src="' . esc_url( get_theme_file_uri( 'assets/images/hero-laptop.webp' ) ) . '" alt="Bookkeeping On The Go dashboard on a laptop — BAS and bookkeeping services">
 					</figure>
 					<div class="bg-white rounded-xl border p-6 relative mt-6 lg:mt-0 lg:absolute lg:-bottom-10 lg:-left-12 lg:max-w-[19rem] z-10" style="box-shadow:0 30px 60px -25px rgba(42,22,56,.35);border-color:#EAE1F1">
 						<div class="absolute -top-3 left-6 bg-action text-white text-[11px] font-bold tracking-widest uppercase rounded-full px-3 py-1">Free Setup Review</div>

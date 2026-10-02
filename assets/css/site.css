@@ -436,7 +436,7 @@ body::after{content:"";position:fixed;inset:0;z-index:75;pointer-events:none;opa
 .hero-spot{position:absolute;inset:-14% -16%;z-index:0;background:radial-gradient(closest-side,rgba(100,52,134,.30),rgba(100,52,134,.08) 55%,transparent 72%);filter:blur(6px);animation:spotPulse 7s ease-in-out infinite;pointer-events:none}
 @keyframes spotPulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.07);opacity:1}}
 .hero-frame{position:relative;z-index:1;border-radius:1.35rem;overflow:hidden;transform:rotate(1.6deg);box-shadow:0 45px 90px -32px rgba(42,22,56,.55);border:1px solid rgba(255,255,255,.65)}
-.hero-frame img{display:block;width:100%;aspect-ratio:4/4.4;object-fit:cover;transform:scale(1.05)}
+.hero-frame img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;transform:scale(1.05)}
 .hero-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(205deg,rgba(100,52,134,.16),transparent 42%,rgba(42,22,56,.32))}
 
 /* --- Manifesto chapter tags --- */
