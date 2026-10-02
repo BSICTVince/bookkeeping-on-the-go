@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BOOTG_VERSION', '0.1.43' );
+define( 'BOOTG_VERSION', '0.1.44' );
 define( 'BOOTG_DIR', get_template_directory() );
 define( 'BOOTG_URI', get_template_directory_uri() );
 
@@ -31,6 +31,9 @@ require_once BOOTG_DIR . '/inc/content-tools.php';
 require_once BOOTG_DIR . '/inc/seed-content.php';
 require_once BOOTG_DIR . '/inc/starter-site-import.php';
 require_once BOOTG_DIR . '/inc/blocks.php';
+require_once BOOTG_DIR . '/inc/components/section.php';
+require_once BOOTG_DIR . '/inc/components/hero.php';
+require_once BOOTG_DIR . '/inc/components/button.php';
 require_once BOOTG_DIR . '/inc/home-blocks.php';
 require_once BOOTG_DIR . '/inc/homepage-sections.php';
 require_once BOOTG_DIR . '/inc/cpt-templates.php';
@@ -111,5 +114,19 @@ add_action( 'init', function () {
 		'name'  => 'bootg-mist',
 		'label' => __( 'Mist background', 'bootg' ),
 	) );
+} );
+
+/** Editor UI for the Weavit Page Designer components (Section/Hero/Button) — see assets/js/components.js. */
+add_action( 'enqueue_block_editor_assets', function () {
+	if ( ! function_exists( 'bootg_module_enabled' ) || ! bootg_module_enabled( 'page-designer' ) ) {
+		return;
+	}
+	wp_enqueue_script(
+		'bootg-components',
+		BOOTG_URI . '/assets/js/components.js',
+		array( 'wp-blocks', 'wp-block-editor', 'wp-element', 'wp-components', 'wp-i18n' ),
+		BOOTG_VERSION,
+		true
+	);
 } );
 
