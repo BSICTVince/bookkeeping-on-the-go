@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'init', function () {
 	register_block_type( 'bootg/service-single', array( 'render_callback' => 'bootg_render_service_single' ) );
 	register_block_type( 'bootg/integration-single', array( 'render_callback' => 'bootg_render_integration_single' ) );
-	register_block_type( 'bootg/team-archive', array( 'render_callback' => 'bootg_render_team_archive' ) );
+	add_shortcode( 'bootg_team_page', 'bootg_render_team_page' );
 	register_block_type( 'bootg/team-single', array( 'render_callback' => 'bootg_render_team_single' ) );
 	register_block_type( 'bootg/testimonial-archive', array( 'render_callback' => 'bootg_render_testimonial_archive' ) );
 	register_block_type( 'bootg/service-archive', array( 'render_callback' => 'bootg_render_service_archive' ) );
@@ -199,7 +199,11 @@ function bootg_team_excerpt( $member ) {
 	return wp_trim_words( (string) ( $paragraphs[0] ?? '' ), 28 );
 }
 
-function bootg_render_team_archive() {
+function bootg_render_team_page() {
+	if ( ! post_type_exists( 'team_member' ) ) {
+		return '';
+	}
+
 	$members = get_posts( array(
 		'post_type'      => 'team_member',
 		'posts_per_page' => -1,
@@ -263,7 +267,7 @@ function bootg_render_team_single() {
 	$linkedin = get_post_meta( $member->ID, 'linkedin_url', true );
 	$certs    = array_filter( array_map( 'trim', explode( "\n", (string) get_post_meta( $member->ID, 'certifications', true ) ) ) );
 	$photo    = get_the_post_thumbnail( $member, 'large', array( 'class' => 'block w-full aspect-square object-cover rounded-xl' ) );
-	$team_url = get_post_type_archive_link( 'team_member' ) ?: home_url( '/team/' );
+	$team_url = bootg_page_url( 'team' );
 
 	$bio = '';
 	foreach ( preg_split( '/\R\s*\R/', trim( wp_strip_all_tags( $member->post_content ) ) ) as $paragraph ) {
@@ -569,4 +573,22 @@ function bootg_render_guide_single() {
 	</section>
 	<?php
 	return ob_get_clean();
+}
+
+/** One-click creation of the "Team" page (slug: team) with the shortcode as its content. Returns 'exists', 'created', or 'error'. */
+function bootg_create_team_page() {
+	if ( get_page_by_path( 'team' ) ) {
+		return 'exists';
+	}
+
+	$page_id = wp_insert_post( array(
+		'post_type'     => 'page',
+		'post_title'    => 'Team',
+		'post_name'     => 'team',
+		'post_status'   => 'publish',
+		'post_content'  => '[bootg_team_page]',
+		'page_template' => 'page-full-width',
+	), true );
+
+	return is_wp_error( $page_id ) ? 'error' : 'created';
 }

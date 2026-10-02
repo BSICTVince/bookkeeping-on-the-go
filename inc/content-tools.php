@@ -31,7 +31,7 @@ add_action( 'admin_menu', function () {
  * existed. Safe to run again.
  */
 function bootg_fix_page_templates() {
-	$slugs = array( 'contact', 'about', 'ato-compliance', 'dates-to-remember', '7-steps', 'key-dates', 'resources' );
+	$slugs = array( 'contact', 'about', 'team', 'ato-compliance', 'dates-to-remember', '7-steps', 'key-dates', 'resources' );
 	$fixed = 0;
 
 	foreach ( $slugs as $slug ) {

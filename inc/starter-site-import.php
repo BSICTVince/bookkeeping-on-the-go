@@ -79,6 +79,11 @@ function bootg_starter_site_steps() {
 			'run'    => 'bootg_create_about_page',
 			'format' => 'bootg_starter_site_page_message',
 		),
+		'team_page'               => array(
+			'label'  => 'Create Team page',
+			'run'    => 'bootg_create_team_page',
+			'format' => 'bootg_starter_site_page_message',
+		),
 		'compliance_pages'        => array(
 			'label'  => 'Create Compliance pages',
 			'run'    => 'bootg_create_compliance_pages',

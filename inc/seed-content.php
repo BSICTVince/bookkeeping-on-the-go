@@ -226,7 +226,7 @@ function bootg_seed_menus() {
 
 		$about = bootg_add_menu_item( $menu_id, array( 'menu-item-title' => 'About Us', 'menu-item-url' => '#', 'menu-item-type' => 'custom' ) );
 		bootg_add_menu_item( $menu_id, array_merge( array( 'menu-item-title' => 'About Us', 'menu-item-url' => '#', 'menu-item-type' => 'custom' ), array( 'menu-item-parent-id' => $about ) ) );
-		bootg_add_menu_item( $menu_id, array_merge( bootg_archive_link_args( 'team_member', 'Meet Our Team' ), array( 'menu-item-parent-id' => $about ) ) );
+		bootg_add_menu_item( $menu_id, array_merge( bootg_cpt_link_args( 'page', 'team', 'Meet Our Team' ), array( 'menu-item-parent-id' => $about ) ) );
 		bootg_add_menu_item( $menu_id, array_merge( bootg_archive_link_args( 'testimonial', 'Testimonials' ), array( 'menu-item-parent-id' => $about ) ) );
 
 		$services = bootg_add_menu_item( $menu_id, array( 'menu-item-title' => 'Services', 'menu-item-url' => '#', 'menu-item-type' => 'custom' ) );
