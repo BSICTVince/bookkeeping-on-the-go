@@ -237,7 +237,9 @@ function bootg_seed_menus() {
 
 		$partners = bootg_add_menu_item( $menu_id, array( 'menu-item-title' => 'Partners', 'menu-item-url' => '#', 'menu-item-type' => 'custom' ) );
 		foreach ( array(
+			'cin7'               => 'Cin7',
 			'cloud-accounting'   => 'Cloud Accounting',
+			'deputy'             => 'Deputy',
 			'dext'               => 'Dext',
 			'hubdoc'             => 'Hubdoc',
 			'myob'               => 'MYOB',

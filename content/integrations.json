@@ -13,7 +13,7 @@
 		"meta": {
 			"subtitle": "Local Expertise for Australia's Own Platform",
 			"intro": "As an MYOB Diamond Partner and Certified Consultant, we configure MYOB properly from day one — and keep it running smoothly.",
-			"partner_badge_label": "MYOB Certified Consultant",
+			"partner_badge_label": "MYOB Diamond Partner",
 			"login_url": "https://www.myob.com/au"
 		}
 	},
@@ -57,6 +57,22 @@
 		"meta": {
 			"subtitle": "Your Business, In Your Pocket",
 			"intro": "Manage all aspects of your business when and where you need it — we'll get you set up on the right cloud stack."
+		}
+	},
+	{
+		"title": "Cin7",
+		"meta": {
+			"subtitle": "Inventory That Balances With Your Books",
+			"intro": "As a Cin7 partner, we connect Cin7 to your accounting platform so stock, orders and cost of goods flow into your books accurately.",
+			"partner_badge_label": "Cin7 Partner"
+		}
+	},
+	{
+		"title": "Deputy",
+		"meta": {
+			"subtitle": "Rosters, Timesheets and Payroll, Connected",
+			"intro": "As a Deputy partner, we connect Deputy to your payroll and ledger so timesheets turn into accurate, compliant pay runs.",
+			"partner_badge_label": "Deputy Partner"
 		}
 	}
 ]

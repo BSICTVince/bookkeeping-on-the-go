@@ -200,20 +200,36 @@ function bootg_render_team_archive() {
 	foreach ( $members as $member ) {
 		$role     = get_post_meta( $member->ID, 'role', true );
 		$linkedin = get_post_meta( $member->ID, 'linkedin_url', true );
-		$photo    = get_the_post_thumbnail( $member, 'medium', array( 'class' => 'w-32 h-32 rounded-full object-cover mx-auto mb-5 ring-4 ring-white shadow-xl' ) );
+		$certs    = array_filter( array_map( 'trim', explode( "\n", (string) get_post_meta( $member->ID, 'certifications', true ) ) ) );
+		$photo    = get_the_post_thumbnail( $member, 'medium', array( 'class' => 'w-40 h-40 rounded-full object-cover mx-auto mb-5 ring-4 ring-white shadow-xl' ) );
 
-		$cards .= '<div class="bg-mist rounded-xl border border-slate-200 p-8 text-center reveal">';
+		$cards .= '<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 grid lg:grid-cols-12 gap-8 lg:gap-12 reveal" data-testid="team-member">';
+		$cards .= '<div class="lg:col-span-4 text-center">';
 		$cards .= $photo;
-		$cards .= '<h2 class="text-lg font-bold text-navy">' . esc_html( get_the_title( $member ) ) . '</h2>';
+		$cards .= '<h2 class="text-xl font-bold text-navy">' . esc_html( get_the_title( $member ) ) . '</h2>';
 		if ( $role ) {
 			$cards .= '<p class="text-action text-xs font-bold tracking-widest uppercase mb-3 mt-1">' . esc_html( $role ) . '</p>';
-		}
-		if ( $member->post_content ) {
-			$cards .= '<p class="text-sm text-slate-500 leading-relaxed mb-5">' . esc_html( wp_strip_all_tags( $member->post_content ) ) . '</p>';
 		}
 		if ( $linkedin ) {
 			$cards .= '<a href="' . esc_url( $linkedin ) . '" target="_blank" rel="noopener" class="text-action font-bold text-sm hover:text-actiondark transition-colors">Connect on LinkedIn &rarr;</a>';
 		}
+		$cards .= '</div>';
+
+		$cards .= '<div class="lg:col-span-8">';
+		foreach ( preg_split( '/\R\s*\R/', trim( wp_strip_all_tags( $member->post_content ) ) ) as $paragraph ) {
+			if ( '' !== trim( $paragraph ) ) {
+				$cards .= '<p class="text-slate-500 leading-relaxed mb-4">' . esc_html( trim( $paragraph ) ) . '</p>';
+			}
+		}
+		if ( $certs ) {
+			$cards .= '<h3 class="text-sm font-bold text-navy tracking-widest uppercase mt-6 mb-3">Certifications &amp; Software</h3>';
+			$cards .= '<ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2">';
+			foreach ( $certs as $cert ) {
+				$cards .= '<li class="check-item flex gap-2 text-sm text-slate-600">' . bootg_check_icon() . '<span>' . esc_html( $cert ) . '</span></li>';
+			}
+			$cards .= '</ul>';
+		}
+		$cards .= '</div>';
 		$cards .= '</div>';
 	}
 
@@ -227,7 +243,7 @@ function bootg_render_team_archive() {
 	</section>
 	<section class="py-16 lg:py-24 bg-white">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto"><?php echo $cards; // phpcs:ignore ?></div>
+			<div class="space-y-8 max-w-5xl mx-auto"><?php echo $cards; // phpcs:ignore ?></div>
 			<div class="mt-14 bg-navy rounded-2xl p-8 lg:p-12 text-white grid lg:grid-cols-12 gap-6 items-center reveal">
 				<div class="lg:col-span-9">
 					<h2 class="text-2xl sm:text-3xl font-extrabold mb-2">Work with a team that treats your books like their own</h2>

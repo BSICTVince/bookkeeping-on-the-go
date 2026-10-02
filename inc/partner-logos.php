@@ -24,7 +24,7 @@ function bootg_partner_logo_defs() {
 
 /** The keys shown in the homepage marquee — a fixed subset, matching the original site's homepage (not every certification, just this row). */
 function bootg_homepage_marquee_logo_keys() {
-	return array( 'xero-gold-partner', 'quickbooks-proadvisor', 'myob-certified-consultant', 'dext-partner', 'hubdoc-partner', 'tpb-bas-agent' );
+	return array( 'xero-gold-partner', 'quickbooks-proadvisor', 'myob-diamond-partner', 'myob-certified-consultant', 'dext-partner', 'hubdoc-partner', 'cin7-partner', 'tpb-bas-agent' );
 }
 
 /** Local (sideloaded) URL for a partner logo if we have one, else the original external URL — always resolves to a working image. */
@@ -32,6 +32,9 @@ function bootg_get_partner_logo_url( $key ) {
 	$defs = bootg_partner_logo_defs();
 	if ( ! isset( $defs[ $key ] ) ) {
 		return '';
+	}
+	if ( ! empty( $defs[ $key ]['file'] ) ) {
+		return get_theme_file_uri( $defs[ $key ]['file'] );
 	}
 	$media = get_option( BOOTG_PARTNER_LOGO_OPTION, array() );
 	if ( ! empty( $media[ $key ] ) ) {
@@ -50,6 +53,7 @@ function bootg_render_partner_logo_img( $key, $extra_class = '' ) {
 	}
 	$url   = bootg_get_partner_logo_url( $key );
 	$label = $defs[ $key ]['label'];
+	$extra_class = trim( $extra_class . ' ' . ( $defs[ $key ]['class'] ?? '' ) );
 	return '<img src="' . esc_url( $url ) . '" alt="' . esc_attr( $label ) . '" class="partner-logo' . ( $extra_class ? ' ' . esc_attr( $extra_class ) : '' ) . '" loading="lazy">';
 }
 
@@ -63,7 +67,7 @@ function bootg_migrate_partner_logos() {
 	$failed = 0;
 
 	foreach ( bootg_partner_logo_defs() as $key => $def ) {
-		if ( ! empty( $media[ $key ] ) && get_post( $media[ $key ] ) ) {
+		if ( ! empty( $def['file'] ) || ( ! empty( $media[ $key ] ) && get_post( $media[ $key ] ) ) ) {
 			continue;
 		}
 		$attachment_id = media_sideload_image( $def['url'], 0, $def['label'], 'id' );

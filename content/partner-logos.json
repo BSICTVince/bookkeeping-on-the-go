@@ -17,7 +17,8 @@
 	},
 	"myob-diamond-partner": {
 		"label": "MYOB Diamond Partner",
-		"url": "https://bookkeepingonthego.net.au/app/uploads/Partner-Program-logo-Diamond-vertical-e1725430455423-96x100.png"
+		"file": "assets/images/partners/myob-diamond-partner.png",
+		"class": "partner-logo--tall"
 	},
 	"dext-partner": {
 		"label": "Dext Partner",
@@ -30,5 +31,9 @@
 	"tpb-bas-agent": {
 		"label": "Registered BAS Agent — Tax Practitioners Board",
 		"url": "https://bookkeepingonthego.net.au/app/uploads/TPB-logo-with-BAS-agent-number-80x100.png"
+	},
+	"cin7-partner": {
+		"label": "Cin7 Partner",
+		"file": "assets/images/partners/cin7-partner.png"
 	}
 }

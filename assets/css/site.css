@@ -259,6 +259,7 @@ footer a{color:#fff}
 /* ============ 3. Partner logo + exit popup base (lines 947-952) ============ */
 .partner-logo{height:56px;width:auto;object-fit:contain;filter:grayscale(0);opacity:1;transition:transform .35s ease}
 .partner-logo:hover{filter:none;opacity:1;transform:translateY(-3px)}
+.partner-logo--tall{height:84px}
 .exit-popup{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:1.25rem;background:rgba(36,39,42,.55);backdrop-filter:blur(6px)}
 .exit-popup.open{display:flex}
 .exit-popup_card{background:#fff;border-radius:1rem;max-width:26rem;width:100%;padding:2.25rem;position:relative;box-shadow:0 30px 60px -15px rgba(36,39,42,.4);animation:popIn .35s cubic-bezier(.22,1,.36,1)}

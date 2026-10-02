@@ -161,8 +161,8 @@ function bootg_home_default_sections() {
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="grid grid-cols-2 lg:grid-cols-4 gap-10 text-center">
 			<div class="reveal">
-				<p class="stat-num mb-2">20+</p>
-				<p class="text-sm font-semibold text-slate-500">Years combined experience</p>
+				<p class="stat-num mb-2" style="font-size:clamp(1.9rem,3.4vw,2.9rem);line-height:1.15">Since 2002</p>
+				<p class="text-sm font-semibold text-slate-500">Established by Natalie Adams</p>
 			</div>
 			<div class="reveal reveal-d1">
 				<p class="stat-num mb-2">500+</p>

@@ -40,5 +40,17 @@
 		"meta": {
 			"features": "Platform selection across Xero, MYOB and QuickBooks\nLive bank feeds and reconciliation automation\nReceipt and bill capture with Dext or Hubdoc\nApp stack design, training and ongoing support"
 		}
+	},
+	"Cin7": {
+		"content": "Cin7 brings your inventory, orders and sales channels into one place. We connect it to Xero, MYOB or QuickBooks so stock levels, cost of goods and sales flow into your books automatically — no double entry, no end-of-month surprises.",
+		"meta": {
+			"features": "Cin7 setup connected to your accounting platform\nInventory, purchase order and sales order syncing\nCost of goods and stock valuation reconciled to your ledger\nBAS and GST handled across every sales channel"
+		}
+	},
+	"Deputy": {
+		"content": "Deputy takes the guesswork out of rostering and timesheets. We connect it to your payroll and accounting platform so approved hours flow straight through to accurate, compliant pay runs — no re-keying, no payroll surprises.",
+		"meta": {
+			"features": "Deputy setup with rosters, awards and timesheets\nTimesheet and leave syncing to your payroll platform\nPayroll, super and STP compliance\nOngoing training and support for your managers"
+		}
 	}
 }
