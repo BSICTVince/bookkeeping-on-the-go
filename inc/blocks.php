@@ -272,7 +272,7 @@ function bootg_render_site_footer() {
 					?>
 				</div>
 
-				<div class="lg:col-span-3">
+				<div class="lg:col-span-2">
 					<h5 class="text-sm font-bold tracking-widest uppercase mb-4 text-white/90">Specialist Areas</h5>
 					<ul class="space-y-2.5 text-sm text-white/60">
 						<li><a href="<?php echo esc_url( bootg_page_url( 'payroll-specialists-perth' ) ); ?>" class="hover:text-white transition-colors">Payroll Specialists in Perth</a></li>
@@ -281,7 +281,7 @@ function bootg_render_site_footer() {
 					</ul>
 				</div>
 
-				<div class="lg:col-span-2">
+				<div class="lg:col-span-3">
 					<h5 class="text-sm font-bold tracking-widest uppercase mb-4 text-white/90">Stay Connected</h5>
 					<p class="text-sm text-white/60 mb-4">Sign up to receive news, updates, and compliance alerts.</p>
 					<?php echo bootg_render_newsletter_form(); // phpcs:ignore ?>
