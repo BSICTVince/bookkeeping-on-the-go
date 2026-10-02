@@ -26,7 +26,7 @@ header.wp-block-group{display:contents}
   --charcoal:#453E4C; --mist:#F7F3FA;
 }
 html{scroll-behavior:smooth}
-body{font-family:'Source Sans 3',sans-serif;color:var(--charcoal);-webkit-font-smoothing:antialiased}
+body{font-family:'Source Sans 3',sans-serif;color:#1d1a20;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4,h5,.font-display{font-family:'Archivo',sans-serif}
 ::selection{background:var(--action);color:#fff}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -369,9 +369,7 @@ body{background:#FFFEFE}
 .bg-mist{background-image:radial-gradient(60rem 26rem at 108% -8%, rgba(100,52,134,.16), transparent 60%),radial-gradient(48rem 22rem at -8% 108%, rgba(100,52,134,.13), transparent 60%),linear-gradient(180deg,#FCFAFD,#F3EDF8)}
 .bg-navydeep:not([data-testid$="cta-band"]){background-image:radial-gradient(52rem 22rem at 88% -10%, rgba(100,52,134,.32), transparent 60%),radial-gradient(40rem 20rem at 0% 110%, rgba(100,52,134,.2), transparent 60%)}
 .border-slate-200{border-color:#EAE1F1 !important}
-.text-slate-600{color:#564D60 !important}
-.text-slate-500{color:#1d1a20 !important}
-.text-slate-400{color:#8F8699 !important}
+.text-slate-400,.text-slate-500,.text-slate-600,.text-charcoal{color:#1d1a20 !important}
 .btn-outline:hover{border-color:#643486;color:#643486}
 .service-link{color:#643486}
 .pain-icon{color:#C9A8E2}
@@ -512,7 +510,7 @@ body.gsap-motion .reveal{transition:none}
 /* .check-item — from the original per-service/per-integration page templates
    (not part of the homepage's style blocks, so it wasn't in the earlier
    concatenation), used on single-service.html / single-integration.html. */
-.check-item{display:flex;gap:.6rem;align-items:flex-start;font-size:.95rem;color:#4A5568}
+.check-item{display:flex;gap:.6rem;align-items:flex-start;font-size:.95rem;color:#1d1a20}
 
 /* .prose — minimal spacing for post_content (the WP editor body) rendered
    inside single-service/single-integration; not part of the original site. */

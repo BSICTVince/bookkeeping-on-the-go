@@ -82,12 +82,12 @@ function bootg_home_default_sections() {
 					Reclaim your <em>weekends.</em><br>
 					<span class="text-action">Stay 100% compliant.</span>
 				</h1>
-				<p class="reveal reveal-d1 text-base md:text-lg leading-relaxed mb-9 max-w-xl" style="color:#564D60">We empower small-to-medium businesses and nonprofits across Australia with stress-free, professional bookkeeping, payroll, and BAS/IAS services.</p>
+				<p class="reveal reveal-d1 text-base md:text-lg leading-relaxed mb-9 max-w-xl" style="color:#1d1a20">We empower small-to-medium businesses and nonprofits across Australia with stress-free, professional bookkeeping, payroll, and BAS/IAS services.</p>
 				<div class="reveal reveal-d2 flex flex-wrap gap-4">
 					<a href="' . esc_url( $contact_url ) . '" class="btn btn-primary px-7 py-3.5 text-base">Book a Free Consultation</a>
 					<a href="' . esc_url( $services_url ) . '" class="btn btn-outline px-7 py-3.5 text-base">Explore Our Services</a>
 				</div>
-				<div class="reveal reveal-d3 mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm font-semibold" style="color:#6E6478">
+				<div class="reveal reveal-d3 mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm font-semibold" style="color:#1d1a20">
 					<span class="flex items-center gap-2"><svg class="w-4 h-4 text-action" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg> Registered BAS Agent</span>
 					<span class="flex items-center gap-2"><svg class="w-4 h-4 text-action" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg> Xero Gold Partner</span>
 					<span class="flex items-center gap-2"><svg class="w-4 h-4 text-action" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg> No-obligation consult</span>
@@ -101,9 +101,9 @@ function bootg_home_default_sections() {
 					<div class="bg-white rounded-xl border p-6 relative mt-6 lg:mt-0 lg:absolute lg:-bottom-10 lg:-left-12 lg:max-w-[19rem] z-10" style="box-shadow:0 30px 60px -25px rgba(42,22,56,.35);border-color:#EAE1F1">
 						<div class="absolute -top-3 left-6 bg-action text-white text-[11px] font-bold tracking-widest uppercase rounded-full px-3 py-1">Free Setup Review</div>
 						<h3 class="text-lg font-bold text-navy mb-1.5 mt-1">Ready to Switch to Cloud Bookkeeping?</h3>
-						<p class="text-sm leading-relaxed mb-5" style="color:#6E6478">Let our certified team configure the perfect software stack for your business workflow.</p>
+						<p class="text-sm leading-relaxed mb-5" style="color:#1d1a20">Let our certified team configure the perfect software stack for your business workflow.</p>
 						<a href="' . esc_url( $contact_url ) . '" class="btn btn-dark w-full py-3 text-sm tracking-wide">Help Me Get Set Up</a>
-						<p class="text-xs text-center mt-3 mb-0" style="color:#8F8699">Response within one business day</p>
+						<p class="text-xs text-center mt-3 mb-0" style="color:#1d1a20">Response within one business day</p>
 					</div>
 				</div>
 			</div>
