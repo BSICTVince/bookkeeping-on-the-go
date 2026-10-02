@@ -15,6 +15,7 @@ add_action( 'init', function () {
 	register_block_type( 'bootg/service-single', array( 'render_callback' => 'bootg_render_service_single' ) );
 	register_block_type( 'bootg/integration-single', array( 'render_callback' => 'bootg_render_integration_single' ) );
 	register_block_type( 'bootg/team-archive', array( 'render_callback' => 'bootg_render_team_archive' ) );
+	register_block_type( 'bootg/team-single', array( 'render_callback' => 'bootg_render_team_single' ) );
 	register_block_type( 'bootg/testimonial-archive', array( 'render_callback' => 'bootg_render_testimonial_archive' ) );
 	register_block_type( 'bootg/service-archive', array( 'render_callback' => 'bootg_render_service_archive' ) );
 	register_block_type( 'bootg/integration-archive', array( 'render_callback' => 'bootg_render_integration_archive' ) );
@@ -189,6 +190,15 @@ function bootg_render_integration_single() {
 	return ob_get_clean();
 }
 
+/** Short card blurb: the manual excerpt if set, else the first couple of sentences of the bio. */
+function bootg_team_excerpt( $member ) {
+	if ( has_excerpt( $member ) ) {
+		return get_the_excerpt( $member );
+	}
+	$paragraphs = preg_split( '/\R\s*\R/', trim( wp_strip_all_tags( $member->post_content ) ) );
+	return wp_trim_words( (string) ( $paragraphs[0] ?? '' ), 28 );
+}
+
 function bootg_render_team_archive() {
 	$members = get_posts( array(
 		'post_type'      => 'team_member',
@@ -198,39 +208,24 @@ function bootg_render_team_archive() {
 
 	$cards = '';
 	foreach ( $members as $member ) {
-		$role     = get_post_meta( $member->ID, 'role', true );
-		$linkedin = get_post_meta( $member->ID, 'linkedin_url', true );
-		$certs    = array_filter( array_map( 'trim', explode( "\n", (string) get_post_meta( $member->ID, 'certifications', true ) ) ) );
-		$photo    = get_the_post_thumbnail( $member, 'medium', array( 'class' => 'w-40 h-40 rounded-full object-cover mx-auto mb-5 ring-4 ring-white shadow-xl' ) );
+		$role    = get_post_meta( $member->ID, 'role', true );
+		$excerpt = bootg_team_excerpt( $member );
+		$link    = get_permalink( $member );
+		$photo   = get_the_post_thumbnail( $member, 'large', array( 'class' => 'block w-full aspect-square object-cover rounded-xl' ) );
 
-		$cards .= '<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 grid lg:grid-cols-12 gap-8 lg:gap-12 reveal" data-testid="team-member">';
-		$cards .= '<div class="lg:col-span-4 text-center">';
-		$cards .= $photo;
-		$cards .= '<h2 class="text-xl font-bold text-navy">' . esc_html( get_the_title( $member ) ) . '</h2>';
+		$cards .= '<article class="reveal flex flex-col" data-testid="team-member">';
+		if ( $photo ) {
+			$cards .= '<a href="' . esc_url( $link ) . '" class="block mb-5" tabindex="-1" aria-hidden="true">' . $photo . '</a>';
+		}
+		$cards .= '<h2 class="text-xl font-bold text-navy mb-1"><a href="' . esc_url( $link ) . '">' . esc_html( get_the_title( $member ) ) . '</a></h2>';
 		if ( $role ) {
-			$cards .= '<p class="text-action text-xs font-bold tracking-widest uppercase mb-3 mt-1">' . esc_html( $role ) . '</p>';
+			$cards .= '<p class="text-action text-sm font-bold mb-3">' . esc_html( $role ) . '</p>';
 		}
-		if ( $linkedin ) {
-			$cards .= '<a href="' . esc_url( $linkedin ) . '" target="_blank" rel="noopener" class="text-action font-bold text-sm hover:text-actiondark transition-colors">Connect on LinkedIn &rarr;</a>';
+		if ( $excerpt ) {
+			$cards .= '<p class="text-ink leading-relaxed mb-5">' . esc_html( $excerpt ) . '</p>';
 		}
-		$cards .= '</div>';
-
-		$cards .= '<div class="lg:col-span-8">';
-		foreach ( preg_split( '/\R\s*\R/', trim( wp_strip_all_tags( $member->post_content ) ) ) as $paragraph ) {
-			if ( '' !== trim( $paragraph ) ) {
-				$cards .= '<p class="text-ink leading-relaxed mb-4">' . esc_html( trim( $paragraph ) ) . '</p>';
-			}
-		}
-		if ( $certs ) {
-			$cards .= '<h3 class="text-sm font-bold text-navy tracking-widest uppercase mt-6 mb-3">Certifications &amp; Software</h3>';
-			$cards .= '<ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2">';
-			foreach ( $certs as $cert ) {
-				$cards .= '<li class="check-item flex gap-2 text-sm text-ink">' . bootg_check_icon() . '<span>' . esc_html( $cert ) . '</span></li>';
-			}
-			$cards .= '</ul>';
-		}
-		$cards .= '</div>';
-		$cards .= '</div>';
+		$cards .= '<div class="mt-auto"><a href="' . esc_url( $link ) . '" class="btn btn-outline px-5 py-2.5 text-sm">View Profile &raquo;</a></div>';
+		$cards .= '</article>';
 	}
 
 	ob_start();
@@ -243,14 +238,72 @@ function bootg_render_team_archive() {
 	</section>
 	<section class="py-16 lg:py-24 bg-white">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="space-y-8 max-w-5xl mx-auto"><?php echo $cards; // phpcs:ignore ?></div>
-			<div class="mt-14 bg-navy rounded-2xl p-8 lg:p-12 text-white grid lg:grid-cols-12 gap-6 items-center reveal">
+			<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14"><?php echo $cards; // phpcs:ignore ?></div>
+			<div class="mt-20 bg-navy rounded-2xl p-8 lg:p-12 text-white grid lg:grid-cols-12 gap-6 items-center reveal">
 				<div class="lg:col-span-9">
 					<h2 class="text-2xl sm:text-3xl font-extrabold mb-2">Work with a team that treats your books like their own</h2>
 					<p class="text-white/70 leading-relaxed mb-0">Every client gets a dedicated bookkeeper backed by the whole team — so you're never left waiting.</p>
 				</div>
 				<div class="lg:col-span-3 lg:text-right">
 					<a href="<?php echo esc_url( bootg_page_url( 'contact' ) ); ?>" class="btn btn-primary px-7 py-3.5 text-base">Get In Touch</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<?php
+	return ob_get_clean();
+}
+
+function bootg_render_team_single() {
+	$member = get_post();
+	if ( ! $member || 'team_member' !== $member->post_type ) {
+		return '';
+	}
+	$role     = get_post_meta( $member->ID, 'role', true );
+	$linkedin = get_post_meta( $member->ID, 'linkedin_url', true );
+	$certs    = array_filter( array_map( 'trim', explode( "\n", (string) get_post_meta( $member->ID, 'certifications', true ) ) ) );
+	$photo    = get_the_post_thumbnail( $member, 'large', array( 'class' => 'block w-full aspect-square object-cover rounded-xl' ) );
+	$team_url = get_post_type_archive_link( 'team_member' ) ?: home_url( '/team/' );
+
+	$bio = '';
+	foreach ( preg_split( '/\R\s*\R/', trim( wp_strip_all_tags( $member->post_content ) ) ) as $paragraph ) {
+		if ( '' !== trim( $paragraph ) ) {
+			$bio .= '<p class="text-ink leading-relaxed mb-4">' . esc_html( trim( $paragraph ) ) . '</p>';
+		}
+	}
+
+	ob_start();
+	?>
+	<section class="relative overflow-hidden bg-navydeep text-white" data-testid="page-hero">
+		<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+			<h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] mb-3"><?php echo esc_html( get_the_title( $member ) ); ?></h1>
+			<?php if ( $role ) : ?>
+				<p class="text-base md:text-lg text-white/70 mb-0"><?php echo esc_html( $role ); ?></p>
+			<?php endif; ?>
+		</div>
+	</section>
+
+	<section class="py-16 lg:py-24 bg-white" data-testid="team-profile">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+			<div class="lg:col-span-4 reveal">
+				<?php echo $photo; // phpcs:ignore ?>
+				<?php if ( $linkedin ) : ?>
+					<p class="mt-5 mb-0"><a href="<?php echo esc_url( $linkedin ); ?>" target="_blank" rel="noopener" class="text-action font-bold text-sm hover:text-actiondark transition-colors">Connect on LinkedIn &rarr;</a></p>
+				<?php endif; ?>
+			</div>
+			<div class="lg:col-span-8 reveal reveal-d1">
+				<?php echo $bio; // phpcs:ignore ?>
+				<?php if ( $certs ) : ?>
+					<h2 class="text-sm font-bold text-navy tracking-widest uppercase mt-8 mb-4">Certifications &amp; Software</h2>
+					<ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-8">
+						<?php foreach ( $certs as $cert ) : ?>
+							<li class="check-item flex gap-2 text-sm text-ink"><?php echo bootg_check_icon(); // phpcs:ignore ?><span><?php echo esc_html( $cert ); ?></span></li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+				<div class="flex flex-wrap gap-4 mt-6">
+					<a href="<?php echo esc_url( bootg_page_url( 'contact' ) ); ?>" class="btn btn-primary px-6 py-3 text-sm">Get In Touch</a>
+					<a href="<?php echo esc_url( $team_url ); ?>" class="btn btn-outline px-6 py-3 text-sm">&laquo; Meet The Whole Team</a>
 				</div>
 			</div>
 		</div>
