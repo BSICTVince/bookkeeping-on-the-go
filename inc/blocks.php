@@ -14,10 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Footer newsletter signup — compact inline layout (kept from the original
- * design), wired to the Forms engine's shared submit endpoint so signups
- * land as entries in wp-admin instead of vanishing into a front-end-only
- * mock handler.
+ * Footer newsletter signup — stacked layout (the original's side-by-side
+ * input+button didn't fit the narrow footer column and squeezed the input
+ * to near-zero width), wired to the Forms engine's shared submit endpoint
+ * so signups land as entries in wp-admin instead of vanishing into a
+ * front-end-only mock handler.
  */
 function bootg_render_newsletter_form() {
 	$form_id  = bootg_get_newsletter_form_id();
@@ -36,7 +37,7 @@ function bootg_render_newsletter_form() {
 
 	ob_start();
 	?>
-	<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" class="flex">
+	<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" class="flex flex-col gap-2.5">
 		<?php wp_nonce_field( 'bootg_form_submit_' . $form_id ); ?>
 		<input type="hidden" name="action" value="bootg_form_submit">
 		<input type="hidden" name="bootg_form_id" value="<?php echo esc_attr( $form_id ); ?>">
@@ -46,8 +47,8 @@ function bootg_render_newsletter_form() {
 		</p>
 		<label for="newsletterEmail" class="sr-only">Your email address</label>
 		<input id="newsletterEmail" name="bootg_field[<?php echo esc_attr( $field_id ); ?>]" type="email" required placeholder="Your email address"
-			class="w-full min-w-0 rounded-l-lg border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-action focus:border-transparent">
-		<button type="submit" class="btn btn-primary rounded-l-none rounded-r-lg px-5 py-2.5 text-sm shrink-0"><?php echo esc_html( $settings['submit_label'] ); ?></button>
+			class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-action focus:border-transparent">
+		<button type="submit" class="btn btn-primary w-full rounded-lg px-5 py-2.5 text-sm"><?php echo esc_html( $settings['submit_label'] ); ?></button>
 	</form>
 	<?php echo $status; // phpcs:ignore ?>
 	<?php
