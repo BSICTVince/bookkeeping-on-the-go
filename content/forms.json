@@ -42,6 +42,19 @@
 		}
 	},
 	{
+		"slug": "xero-course-signup",
+		"title": "Xero Course Signup",
+		"fields": [
+			{ "field_id": "first_name", "type": "text", "label": "First Name", "placeholder": "First name", "required": true, "width": "half" },
+			{ "field_id": "last_name", "type": "text", "label": "Last Name", "placeholder": "Last name", "required": true, "width": "half" },
+			{ "field_id": "email", "type": "email", "label": "Email", "placeholder": "you@business.com.au", "required": true, "width": "full" }
+		],
+		"settings": {
+			"submit_label": "Sign Me Up",
+			"success_message": "Thanks — check your inbox, your first lesson is on its way."
+		}
+	},
+	{
 		"slug": "newsletter-signup",
 		"title": "Newsletter Signup",
 		"fields": [

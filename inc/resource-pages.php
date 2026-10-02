@@ -13,6 +13,7 @@ add_action( 'init', function () {
 	add_shortcode( 'bootg_7_steps', 'bootg_render_7_steps' );
 	add_shortcode( 'bootg_key_dates', 'bootg_render_key_dates' );
 	add_shortcode( 'bootg_templates_checklists', 'bootg_render_templates_checklists' );
+	add_shortcode( 'bootg_get_started_xero', 'bootg_render_get_started_xero' );
 } );
 
 function bootg_resource_cta( $heading ) {
@@ -65,6 +66,46 @@ function bootg_render_7_steps() {
 	</section>
 
 	<?php echo bootg_resource_cta( 'Want profit advice tailored to your business?' ); // phpcs:ignore ?>
+	<?php
+	return ob_get_clean();
+}
+
+/* ---------------------------------------------------------------------
+ * Get Started with Xero — free 7-day email course signup
+ * ------------------------------------------------------------------- */
+
+function bootg_render_get_started_xero() {
+	ob_start();
+	?>
+	<section class="relative overflow-hidden bg-navydeep text-white" data-testid="page-hero">
+		<div class="hero-blob w-[420px] h-[420px] bg-action/20 -top-32 -right-24"></div>
+		<div class="hero-blob w-[280px] h-[280px] bg-white/5 bottom-0 -left-20"></div>
+		<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+			<p class="text-sm font-semibold text-white/50 mb-4 reveal"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="hover:text-white transition-colors">Home</a> <span class="mx-2">/</span> <a href="<?php echo esc_url( bootg_page_url( 'resources' ) ); ?>" class="hover:text-white transition-colors">Resources</a> <span class="mx-2">/</span> <span class="text-white">Get Started with Xero</span></p>
+			<h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] mb-5 reveal reveal-d1">Get Started with <span class="text-action">Xero</span></h1>
+			<p class="text-base md:text-lg text-white/70 leading-relaxed max-w-2xl mb-8 reveal reveal-d2">A free 7-day email crash course that gets you comfortable in Xero — a few minutes a day, no jargon.</p>
+		</div>
+	</section>
+
+	<section class="py-16 lg:py-24 bg-white" data-testid="course-section">
+		<div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="bg-mist rounded-2xl border border-slate-200 p-8 lg:p-12 reveal">
+				<span class="bg-action/10 text-action text-xs font-bold tracking-wide uppercase rounded-full px-3 py-1">Free 7-Day Course</span>
+				<h2 class="text-2xl sm:text-3xl font-extrabold text-navy mt-4 mb-3">Sign up for the course</h2>
+				<p class="text-slate-500 leading-relaxed mb-6">One short, practical email a day for a week — each one covers a single Xero task so it actually sticks. By day 7 you'll be comfortable finding your way around on your own.</p>
+				<ul class="space-y-2.5 mb-8">
+					<li class="check-item"><?php echo bootg_check_icon(); // phpcs:ignore ?>Finding your way around the Xero dashboard</li>
+					<li class="check-item"><?php echo bootg_check_icon(); // phpcs:ignore ?>Connecting your bank accounts</li>
+					<li class="check-item"><?php echo bootg_check_icon(); // phpcs:ignore ?>Creating quotes and invoicing customers</li>
+					<li class="check-item"><?php echo bootg_check_icon(); // phpcs:ignore ?>Paying suppliers and managing expenses</li>
+					<li class="check-item"><?php echo bootg_check_icon(); // phpcs:ignore ?>Attaching files and staying organised</li>
+				</ul>
+				<?php echo bootg_render_form( bootg_get_xero_course_form_id() ); // phpcs:ignore ?>
+			</div>
+		</div>
+	</section>
+
+	<?php echo bootg_resource_cta( 'Want a hand setting Xero up properly?' ); // phpcs:ignore ?>
 	<?php
 	return ob_get_clean();
 }
@@ -171,49 +212,98 @@ function bootg_render_key_dates() {
  * Templates & Checklists — resource directory
  * ------------------------------------------------------------------- */
 
-function bootg_templates_checklists_items() {
+/**
+ * Content grouped the same way the original site's "Find Content By Type"
+ * page organised it — Checklists / Templates grouped from the plain-
+ * language Guides (weavit-engine CPT, our own content/guides.json), plus
+ * a short Courses list of the two real email-course pages. Every link is
+ * internal now; nothing points at the old production domain any more.
+ */
+function bootg_templates_checklists_groups() {
 	return array(
-		array( 'tag' => 'Checklist', 'title' => 'Business productivity checklist', 'url' => 'https://bookkeepingonthego.net.au/resources/business-productivity-checklist/' ),
-		array( 'tag' => 'Checklist', 'title' => 'Creating cash reserves checklist', 'url' => 'https://bookkeepingonthego.net.au/resources/creating-cash-reserves-checklist/' ),
-		array( 'tag' => 'Checklist', 'title' => 'Growth checklist', 'url' => 'https://bookkeepingonthego.net.au/resources/growth-checklist/' ),
-		array( 'tag' => 'Checklist', 'title' => 'Start-up checklist', 'url' => 'https://bookkeepingonthego.net.au/resources/start-up-checklist/' ),
-		array( 'tag' => 'Course', 'title' => 'Get Started with Xero', 'url' => 'https://bookkeepingonthego.net.au/resources/get-started-with-xero/' ),
-		array( 'tag' => 'Course', 'title' => '7 steps to increasing profit and keeping more cash in the business', 'url' => '__internal_7_steps' ),
-		array( 'tag' => 'Template', 'title' => 'Profit increase template', 'url' => 'https://bookkeepingonthego.net.au/resources/profit-increase-template/' ),
-		array( 'tag' => 'Template', 'title' => 'Start-up costs template', 'url' => 'https://bookkeepingonthego.net.au/resources/start-up-costs-template/' ),
-		array( 'tag' => 'Template', 'title' => 'Break even template', 'url' => 'https://bookkeepingonthego.net.au/resources/break-even-template/' ),
-		array( 'tag' => 'Template', 'title' => 'Product pricing template', 'url' => 'https://bookkeepingonthego.net.au/resources/product-pricing-template/' ),
-		array( 'tag' => 'Template', 'title' => 'Business plan template', 'url' => 'https://bookkeepingonthego.net.au/resources/business-plan-template/' ),
+		'Checklists' => array(
+			'simple-ways-to-get-more-done-each-week',
+			'building-a-rainy-day-fund-for-your-business',
+			'is-your-business-ready-to-grow',
+			'getting-your-new-business-off-the-ground',
+		),
+		'Templates'  => array(
+			'small-changes-that-add-up-to-more-profit',
+			'working-out-what-itll-really-cost-to-start-up',
+			'how-many-sales-do-you-need-to-break-even',
+			'pricing-your-products-so-you-actually-make-money',
+			'writing-a-business-plan-without-the-jargon',
+		),
 	);
 }
 
+function bootg_templates_checklists_courses() {
+	return array(
+		array( 'title' => 'Get Started with Xero', 'url' => bootg_page_url( 'get-started-with-xero' ) ),
+		array( 'title' => '7 Steps to Increasing Profit', 'url' => bootg_page_url( '7-steps' ) ),
+	);
+}
+
+function bootg_render_resource_type_card( $heading, $items, $see_all_url = '' ) {
+	ob_start();
+	?>
+	<div class="bg-mist rounded-xl border border-slate-200 overflow-hidden reveal">
+		<div class="bg-navy px-6 py-4">
+			<h3 class="text-white font-bold text-lg"><?php echo esc_html( $heading ); ?></h3>
+		</div>
+		<div class="p-6">
+			<ul class="space-y-3 mb-2">
+				<?php foreach ( $items as $item ) : ?>
+					<li><a href="<?php echo esc_url( $item['url'] ); ?>" class="text-action font-semibold hover:text-action-dark transition-colors"><?php echo esc_html( $item['title'] ); ?></a></li>
+				<?php endforeach; ?>
+			</ul>
+			<?php if ( $see_all_url ) : ?>
+				<hr class="border-slate-200 my-4">
+				<a href="<?php echo esc_url( $see_all_url ); ?>" class="text-navy font-bold text-sm">See All <span aria-hidden="true">&rarr;</span></a>
+			<?php endif; ?>
+		</div>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+
 function bootg_render_templates_checklists() {
+	$guides_url = get_post_type_archive_link( 'guide' ) ?: home_url( '/guides/' );
+
+	$cards = array();
+	foreach ( bootg_templates_checklists_groups() as $heading => $slugs ) {
+		$items = array();
+		foreach ( $slugs as $slug ) {
+			$post = get_page_by_path( $slug, OBJECT, 'guide' );
+			if ( $post ) {
+				$items[] = array( 'title' => get_the_title( $post ), 'url' => get_permalink( $post ) );
+			}
+		}
+		if ( $items ) {
+			$cards[ $heading ] = $items;
+		}
+	}
+
 	ob_start();
 	?>
 	<section class="relative overflow-hidden bg-navydeep text-white" data-testid="page-hero">
 		<div class="hero-blob w-[420px] h-[420px] bg-action/20 -top-32 -right-24"></div>
 		<div class="hero-blob w-[280px] h-[280px] bg-white/5 bottom-0 -left-20"></div>
-		<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-			<p class="text-sm font-semibold text-white/50 mb-4 reveal"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="hover:text-white transition-colors">Home</a> <span class="mx-2">/</span> Resources <span class="mx-2">/</span> <span class="text-white">Templates &amp; Checklists</span></p>
-			<h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] mb-5 reveal reveal-d1">Templates &amp; <span class="text-action">Checklists</span></h1>
-			<p class="text-base md:text-lg text-white/70 leading-relaxed max-w-2xl mb-8 reveal reveal-d2">Free tools and resources to help you grow and manage your business.</p>
+		<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 text-center">
+			<h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] mb-5 reveal reveal-d1">Find Content By <span class="text-action">Type</span></h1>
+			<p class="text-base md:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto reveal reveal-d2">Free tools and resources to help you grow and manage your business.</p>
 		</div>
 	</section>
 
 	<section class="py-16 lg:py-24 bg-white" data-testid="listing-section">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-				<?php foreach ( bootg_templates_checklists_items() as $i => $item ) :
-					$delay = $i % 3 === 1 ? ' reveal-d1' : ( $i % 3 === 2 ? ' reveal-d2' : '' );
-					$url   = '__internal_7_steps' === $item['url'] ? bootg_page_url( '7-steps' ) : $item['url'];
-					$external = '__internal_7_steps' !== $item['url'];
-					?>
-					<a href="<?php echo esc_url( $url ); ?>" <?php echo $external ? 'target="_blank" rel="noopener"' : ''; // phpcs:ignore ?> class="bg-mist rounded-xl border border-slate-200 p-7 flex flex-col service-block reveal<?php echo esc_attr( $delay ); ?>">
-						<span class="bg-action/10 text-action text-xs font-bold tracking-wide uppercase rounded-full px-3 py-1 self-start mb-4"><?php echo esc_html( $item['tag'] ); ?></span>
-						<h3 class="text-lg font-bold text-navy mb-2"><?php echo esc_html( $item['title'] ); ?></h3>
-						<span class="service-link font-bold text-sm mt-auto">Open <span aria-hidden="true">&rarr;</span></span>
-					</a>
+		<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="grid md:grid-cols-2 gap-6 mb-6">
+				<?php foreach ( $cards as $heading => $items ) : ?>
+					<?php echo bootg_render_resource_type_card( $heading, $items, $guides_url ); // phpcs:ignore ?>
 				<?php endforeach; ?>
+			</div>
+			<div class="grid md:grid-cols-2 gap-6">
+				<?php echo bootg_render_resource_type_card( 'Courses', bootg_templates_checklists_courses() ); // phpcs:ignore ?>
 			</div>
 		</div>
 	</section>
@@ -249,13 +339,14 @@ function bootg_create_resource_page( $slug, $title, $shortcode ) {
 	return is_wp_error( $page_id ) ? 'error' : 'created';
 }
 
-/** Creates the Resource pages (7 Steps, Key Dates, Templates & Checklists). Returns 'exists', 'created', or 'error'. */
+/** Creates the Resource pages (7 Steps, Key Dates, Templates & Checklists, Get Started with Xero). Returns 'exists', 'created', or 'error'. */
 function bootg_create_resource_pages() {
 	$steps     = bootg_create_resource_page( '7-steps', '7 Steps to Increasing Profit', '[bootg_7_steps]' );
 	$dates     = bootg_create_resource_page( 'key-dates', 'Key Dates', '[bootg_key_dates]' );
 	$templates = bootg_create_resource_page( 'resources', 'Templates & Checklists', '[bootg_templates_checklists]' );
+	$xero      = bootg_create_resource_page( 'get-started-with-xero', 'Get Started with Xero', '[bootg_get_started_xero]' );
 
-	$results = array( $steps, $dates, $templates );
+	$results = array( $steps, $dates, $templates, $xero );
 	return in_array( 'error', $results, true ) ? 'error' : ( in_array( 'created', $results, true ) ? 'created' : 'exists' );
 }
 

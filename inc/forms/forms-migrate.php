@@ -31,6 +31,11 @@ function bootg_get_7_steps_form_id() {
 	return bootg_get_system_form_id( '7-steps-signup' );
 }
 
+function bootg_get_xero_course_form_id() {
+	bootg_ensure_system_forms();
+	return bootg_get_system_form_id( 'xero-course-signup' );
+}
+
 function bootg_get_newsletter_form_id() {
 	bootg_ensure_system_forms();
 	return bootg_get_system_form_id( 'newsletter-signup' );
