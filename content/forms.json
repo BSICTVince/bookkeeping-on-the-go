@@ -45,7 +45,8 @@
 		"slug": "newsletter-signup",
 		"title": "Newsletter Signup",
 		"fields": [
-			{ "field_id": "email", "type": "email", "label": "Email", "placeholder": "Your email address", "required": true }
+			{ "field_id": "email", "type": "email", "label": "Email", "placeholder": "Your email address", "required": true },
+			{ "field_id": "consent", "type": "checkbox", "label": "I agree to receive your newsletters and accept the data privacy statement.", "required": true }
 		],
 		"settings": {
 			"submit_label": "Subscribe",

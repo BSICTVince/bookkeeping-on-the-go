@@ -18,12 +18,20 @@ if ( ! defined( 'ABSPATH' ) ) {
  * input+button didn't fit the narrow footer column and squeezed the input
  * to near-zero width), wired to the Forms engine's shared submit endpoint
  * so signups land as entries in wp-admin instead of vanishing into a
- * front-end-only mock handler.
+ * front-end-only mock handler. Includes a required consent checkbox
+ * (content/forms.json) ahead of any real newsletter sends.
  */
 function bootg_render_newsletter_form() {
-	$form_id  = bootg_get_newsletter_form_id();
-	$fields   = bootg_get_form_schema( $form_id );
-	$field_id = $fields[0]['field_id'] ?? 'email';
+	$form_id       = bootg_get_newsletter_form_id();
+	$fields        = bootg_get_form_schema( $form_id );
+	$field_id      = $fields[0]['field_id'] ?? 'email';
+	$consent_field = null;
+	foreach ( $fields as $field ) {
+		if ( 'checkbox' === ( $field['type'] ?? '' ) ) {
+			$consent_field = $field;
+			break;
+		}
+	}
 	$settings = bootg_get_form_settings( $form_id );
 
 	$status = '';
@@ -37,7 +45,7 @@ function bootg_render_newsletter_form() {
 
 	ob_start();
 	?>
-	<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" class="flex flex-col gap-3">
+	<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" class="flex flex-col gap-2.5">
 		<?php wp_nonce_field( 'bootg_form_submit_' . $form_id ); ?>
 		<input type="hidden" name="action" value="bootg_form_submit">
 		<input type="hidden" name="bootg_form_id" value="<?php echo esc_attr( $form_id ); ?>">
@@ -45,15 +53,16 @@ function bootg_render_newsletter_form() {
 		<p style="position:absolute;left:-9999px;" aria-hidden="true">
 			<label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
 		</p>
-		<div class="flex items-center gap-3 rounded-2xl bg-mist pl-4 pr-2.5 py-2.5">
-			<label for="newsletterEmail" class="sr-only">Your email address</label>
-			<input id="newsletterEmail" name="bootg_field[<?php echo esc_attr( $field_id ); ?>]" type="email" required placeholder="Your email *"
-				class="flex-1 min-w-0 bg-transparent border-0 p-0 text-sm text-charcoal placeholder-charcoal/50 focus:outline-none focus:ring-0">
-			<span class="shrink-0 w-9 h-9 rounded-lg flex items-center justify-center text-white" style="background:linear-gradient(135deg,#B87FE0,#643486 45%,#4A2364)" aria-hidden="true">
-				<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7z"></path></svg>
-			</span>
-		</div>
-		<button type="submit" class="btn btn-primary w-full rounded-full px-6 py-3.5 text-sm"><?php echo esc_html( $settings['submit_label'] ); ?></button>
+		<label for="newsletterEmail" class="sr-only">Your email address</label>
+		<input id="newsletterEmail" name="bootg_field[<?php echo esc_attr( $field_id ); ?>]" type="email" required placeholder="Your email address"
+			class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-action focus:border-transparent">
+		<button type="submit" class="btn btn-primary w-full rounded-lg px-5 py-2.5 text-sm"><?php echo esc_html( $settings['submit_label'] ); ?></button>
+		<?php if ( $consent_field ) : ?>
+			<label class="flex items-start gap-2 text-xs text-white/60 leading-snug">
+				<input type="checkbox" name="bootg_field[<?php echo esc_attr( $consent_field['field_id'] ); ?>]" value="1" <?php echo ! empty( $consent_field['required'] ) ? 'required' : ''; ?> class="mt-0.5 shrink-0" style="accent-color:#B87FE0">
+				<span><?php echo esc_html( $consent_field['label'] ); ?></span>
+			</label>
+		<?php endif; ?>
 	</form>
 	<?php echo $status; // phpcs:ignore ?>
 	<?php
