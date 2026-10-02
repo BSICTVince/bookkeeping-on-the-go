@@ -55,8 +55,8 @@ function bootg_render_newsletter_form() {
 		</p>
 		<label for="newsletterEmail" class="sr-only">Your email address</label>
 		<input id="newsletterEmail" name="bootg_field[<?php echo esc_attr( $field_id ); ?>]" type="email" required placeholder="Your email address"
-			class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-action focus:border-transparent">
-		<button type="submit" class="btn btn-primary w-full rounded-lg px-5 py-2.5 text-sm"><?php echo esc_html( $settings['submit_label'] ); ?></button>
+			class="w-full border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-action focus:border-transparent" style="border-radius:0;">
+		<button type="submit" class="btn btn-primary w-full px-5 py-2.5 text-sm" style="border-radius:0;"><?php echo esc_html( $settings['submit_label'] ); ?></button>
 		<?php if ( $consent_field ) : ?>
 			<label class="flex items-start gap-2 text-xs text-white/60 leading-snug">
 				<input type="checkbox" name="bootg_field[<?php echo esc_attr( $consent_field['field_id'] ); ?>]" value="1" <?php echo ! empty( $consent_field['required'] ) ? 'required' : ''; ?> class="mt-0.5 shrink-0" style="accent-color:#B87FE0">
