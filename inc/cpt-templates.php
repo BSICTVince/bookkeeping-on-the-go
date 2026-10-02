@@ -76,7 +76,7 @@ function bootg_render_service_single() {
 				<?php endif; ?>
 				<h2 class="text-3xl sm:text-4xl font-extrabold text-navy mb-5">What's Included</h2>
 				<?php if ( $body ) : ?>
-					<div class="text-slate-500 leading-relaxed mb-8 prose"><?php echo $body; // phpcs:ignore ?></div>
+					<div class="text-ink leading-relaxed mb-8 prose"><?php echo $body; // phpcs:ignore ?></div>
 				<?php endif; ?>
 				<?php echo $features; // phpcs:ignore ?>
 				<div class="flex flex-wrap gap-4">
@@ -87,7 +87,7 @@ function bootg_render_service_single() {
 			<div class="lg:col-span-5 reveal reveal-d1">
 				<div class="bg-mist rounded-xl border border-slate-200 shadow-sm p-8 sticky top-28">
 					<h3 class="text-xl font-bold text-navy mb-2">Ready to get started?</h3>
-					<p class="text-sm text-slate-500 leading-relaxed mb-6">No judgement — just a plan. We'll get you sorted and keep you current.</p>
+					<p class="text-sm text-ink leading-relaxed mb-6">No judgement — just a plan. We'll get you sorted and keep you current.</p>
 					<a href="<?php echo esc_url( $contact ); ?>" class="btn btn-dark w-full py-3 text-sm mb-3">Book a Free Consultation</a>
 					<?php if ( $phone ) : ?>
 						<a href="tel:<?php echo esc_attr( $phone_link ); ?>" class="btn btn-outline w-full py-3 text-sm">Call <?php echo esc_html( $phone ); ?></a>
@@ -149,7 +149,7 @@ function bootg_render_integration_single() {
 				<p class="text-action font-bold text-sm tracking-[0.18em] uppercase mb-3"><?php echo esc_html( $badge ); ?></p>
 				<h2 class="text-3xl sm:text-4xl font-extrabold text-navy mb-5">Why <?php echo esc_html( get_the_title( $post ) ); ?> for your business?</h2>
 				<?php if ( $body ) : ?>
-					<div class="text-slate-500 leading-relaxed mb-8 prose"><?php echo $body; // phpcs:ignore ?></div>
+					<div class="text-ink leading-relaxed mb-8 prose"><?php echo $body; // phpcs:ignore ?></div>
 				<?php endif; ?>
 				<?php echo $features; // phpcs:ignore ?>
 				<div class="flex flex-wrap gap-4">
@@ -163,7 +163,7 @@ function bootg_render_integration_single() {
 					<?php if ( $logo ) : ?>
 						<div class="mb-6"><?php echo $logo; // phpcs:ignore ?></div>
 					<?php endif; ?>
-					<p class="text-sm text-slate-500 leading-relaxed mb-6">We have the experience and the direct support channels to get your file right, fast.</p>
+					<p class="text-sm text-ink leading-relaxed mb-6">We have the experience and the direct support channels to get your file right, fast.</p>
 					<?php if ( $login_url ) : ?>
 						<a href="<?php echo esc_url( $login_url ); ?>" target="_blank" rel="noopener" class="btn btn-outline w-full py-3 text-sm mb-3">Client Login</a>
 					<?php endif; ?>
@@ -218,14 +218,14 @@ function bootg_render_team_archive() {
 		$cards .= '<div class="lg:col-span-8">';
 		foreach ( preg_split( '/\R\s*\R/', trim( wp_strip_all_tags( $member->post_content ) ) ) as $paragraph ) {
 			if ( '' !== trim( $paragraph ) ) {
-				$cards .= '<p class="text-slate-500 leading-relaxed mb-4">' . esc_html( trim( $paragraph ) ) . '</p>';
+				$cards .= '<p class="text-ink leading-relaxed mb-4">' . esc_html( trim( $paragraph ) ) . '</p>';
 			}
 		}
 		if ( $certs ) {
 			$cards .= '<h3 class="text-sm font-bold text-navy tracking-widest uppercase mt-6 mb-3">Certifications &amp; Software</h3>';
 			$cards .= '<ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2">';
 			foreach ( $certs as $cert ) {
-				$cards .= '<li class="check-item flex gap-2 text-sm text-slate-600">' . bootg_check_icon() . '<span>' . esc_html( $cert ) . '</span></li>';
+				$cards .= '<li class="check-item flex gap-2 text-sm text-ink">' . bootg_check_icon() . '<span>' . esc_html( $cert ) . '</span></li>';
 			}
 			$cards .= '</ul>';
 		}
@@ -280,9 +280,9 @@ function bootg_render_testimonial_archive() {
 		$cards .= '<div class="bg-mist rounded-xl border border-slate-200 p-8 reveal">';
 		$cards .= '<div class="flex gap-1 text-action mb-4">' . str_repeat( $star, max( 1, min( 5, $rating ) ) ) . '</div>';
 		$cards .= '<blockquote class="text-lg font-display font-bold text-navy leading-snug mb-4">&ldquo;' . esc_html( $quote ) . '&rdquo;</blockquote>';
-		$cards .= '<p class="font-bold text-charcoal mb-0">' . esc_html( $name ) . '</p>';
+		$cards .= '<p class="font-bold text-ink mb-0">' . esc_html( $name ) . '</p>';
 		if ( $business ) {
-			$cards .= '<p class="text-sm text-slate-400">' . esc_html( $business ) . '</p>';
+			$cards .= '<p class="text-sm text-ink">' . esc_html( $business ) . '</p>';
 		}
 		$cards .= '</div>';
 	}
@@ -306,7 +306,7 @@ function bootg_render_testimonial_archive() {
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="max-w-2xl mb-10 text-center mx-auto">
 				<h2 class="text-3xl sm:text-4xl font-extrabold text-navy mb-3">What Clients Say on Google</h2>
-				<p class="text-base text-slate-500">Real, verified reviews straight from Google.</p>
+				<p class="text-base text-ink">Real, verified reviews straight from Google.</p>
 			</div>
 			<?php echo do_shortcode( '[trustindex no-registration=google]' ); // phpcs:ignore ?>
 		</div>
@@ -326,12 +326,12 @@ function bootg_render_service_archive() {
 	foreach ( $services as $i => $service ) {
 		$summary  = get_post_meta( $service->ID, 'card_summary', true ) ?: $service->post_content;
 		$features = bootg_features_list( get_post_meta( $service->ID, 'features', true ) );
-		$features = $features ?: '<p class="text-slate-500 leading-relaxed">' . esc_html( wp_strip_all_tags( $summary ) ) . '</p>';
+		$features = $features ?: '<p class="text-ink leading-relaxed">' . esc_html( wp_strip_all_tags( $summary ) ) . '</p>';
 
 		$blocks .= '<div class="service-block grid lg:grid-cols-2 gap-8 items-center bg-mist rounded-xl border border-slate-200 p-8 lg:p-12 reveal">';
 		$blocks .= '<div><p class="chapter-tag"><span class="chapter-num">' . esc_html( sprintf( '%02d', $i + 1 ) ) . '</span></p>';
 		$blocks .= '<h2 class="text-2xl sm:text-3xl font-extrabold text-navy mb-4">' . esc_html( get_the_title( $service ) ) . '</h2>';
-		$blocks .= '<p class="text-slate-500 leading-relaxed mb-6">' . esc_html( wp_strip_all_tags( $summary ) ) . '</p>';
+		$blocks .= '<p class="text-ink leading-relaxed mb-6">' . esc_html( wp_strip_all_tags( $summary ) ) . '</p>';
 		$blocks .= '<a href="' . esc_url( get_permalink( $service ) ) . '" class="btn btn-outline px-6 py-3 text-sm">Learn More</a></div>';
 		$blocks .= $features;
 		$blocks .= '</div>';
@@ -393,7 +393,7 @@ function bootg_render_integration_archive() {
 		$cards .= '<p class="text-action font-bold text-xs tracking-widest uppercase mb-2">' . esc_html( $badge ) . '</p>';
 		$cards .= '<h2 class="text-xl font-bold text-navy mb-2">' . esc_html( get_the_title( $integration ) ) . '</h2>';
 		if ( $intro ) {
-			$cards .= '<p class="text-slate-500 text-sm leading-relaxed mb-4">' . esc_html( $intro ) . '</p>';
+			$cards .= '<p class="text-ink text-sm leading-relaxed mb-4">' . esc_html( $intro ) . '</p>';
 		}
 		$cards .= '<span class="service-link font-bold text-sm mt-auto">Learn More <span aria-hidden="true">&rarr;</span></span>';
 		$cards .= '</a>';
@@ -443,7 +443,7 @@ function bootg_render_guide_archive() {
 
 	$cards = '';
 	if ( ! $guides ) {
-		$cards = '<p class="text-slate-400 col-span-3 text-center">Add Guides from wp-admin to populate this page.</p>';
+		$cards = '<p class="text-ink col-span-3 text-center">Add Guides from wp-admin to populate this page.</p>';
 	}
 	foreach ( $guides as $guide ) {
 		$subtitle = get_post_meta( $guide->ID, 'subtitle', true );
@@ -456,7 +456,7 @@ function bootg_render_guide_archive() {
 			$cards .= '<p class="text-action font-bold text-xs tracking-widest uppercase mb-2">' . esc_html( $subtitle ) . '</p>';
 		}
 		$cards .= '<h2 class="text-lg font-bold text-navy mb-2">' . esc_html( get_the_title( $guide ) ) . '</h2>';
-		$cards .= '<p class="text-slate-500 text-sm leading-relaxed mb-4">' . esc_html( $excerpt ) . '</p>';
+		$cards .= '<p class="text-ink text-sm leading-relaxed mb-4">' . esc_html( $excerpt ) . '</p>';
 		$cards .= '<span class="service-link font-bold text-sm mt-auto">Read Guide <span aria-hidden="true">&rarr;</span></span>';
 		$cards .= '</a>';
 	}
@@ -507,7 +507,7 @@ function bootg_render_guide_single() {
 		<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 			<?php echo $image; // phpcs:ignore ?>
 			<?php if ( $body ) : ?>
-				<div class="text-slate-600 leading-relaxed prose"><?php echo $body; // phpcs:ignore ?></div>
+				<div class="text-ink leading-relaxed prose"><?php echo $body; // phpcs:ignore ?></div>
 			<?php endif; ?>
 			<div class="mt-10">
 				<a href="<?php echo esc_url( $cta_url ); ?>" class="btn btn-primary px-7 py-3.5 text-base"><?php echo esc_html( $cta_label ); ?></a>

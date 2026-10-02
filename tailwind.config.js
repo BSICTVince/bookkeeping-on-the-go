@@ -15,6 +15,7 @@ module.exports = {
         actiondark: '#4A2364',
         charcoal: '#453E4C',
         mist: '#F7F3FA',
+        ink: '#1d1a20',
       },
       fontFamily: {
         display: ['Archivo', 'sans-serif'],

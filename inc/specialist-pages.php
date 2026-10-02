@@ -39,7 +39,7 @@ function bootg_render_specialist_page( $crumb, $title_html, $subtitle, $blocks, 
 			<?php foreach ( $blocks as $block ) : ?>
 				<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 mb-6 service-block reveal">
 					<h2 class="text-2xl font-extrabold text-navy mb-3"><?php echo esc_html( $block['heading'] ); ?></h2>
-					<p class="text-slate-500 leading-relaxed mb-0"><?php echo esc_html( $block['body'] ); ?></p>
+					<p class="text-ink leading-relaxed mb-0"><?php echo esc_html( $block['body'] ); ?></p>
 				</div>
 			<?php endforeach; ?>
 		</div>

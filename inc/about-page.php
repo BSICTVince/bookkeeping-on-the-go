@@ -34,9 +34,9 @@ function bootg_render_about_page() {
 			<div class="reveal">
 				<p class="chapter-tag"><span class="chapter-num">01</span><span class="chapter-label">Our Story</span></p>
 				<h2 class="text-3xl sm:text-4xl font-extrabold text-navy mb-5">Bookkeeping and BAS Specialists in Perth &amp; Beyond</h2>
-				<p class="text-slate-500 leading-relaxed mb-4">Natalie Adams established Bookkeeping On The Go in 2002 as an independent bookkeeping and BAS service. Her vision was to help business owners by providing high quality service and expert advice. Natalie has stayed true to that since day one.</p>
-				<p class="text-slate-500 leading-relaxed mb-4">In that time, we've gained extensive experience and helped countless clients grow. Our diverse expertise covers a broad range of industries including real estate, security, building and construction, manufacturing, mechanical, transport, hospitality, labour hire, irrigation and trades, and many more.</p>
-				<p class="text-slate-500 leading-relaxed">Our team is committed to providing complete and holistic bookkeeping services so you have everything you need to succeed. We value integrity, professionalism, strong attention to detail, and have only our clients' best interests in mind.</p>
+				<p class="text-ink leading-relaxed mb-4">Natalie Adams established Bookkeeping On The Go in 2002 as an independent bookkeeping and BAS service. Her vision was to help business owners by providing high quality service and expert advice. Natalie has stayed true to that since day one.</p>
+				<p class="text-ink leading-relaxed mb-4">In that time, we've gained extensive experience and helped countless clients grow. Our diverse expertise covers a broad range of industries including real estate, security, building and construction, manufacturing, mechanical, transport, hospitality, labour hire, irrigation and trades, and many more.</p>
+				<p class="text-ink leading-relaxed">Our team is committed to providing complete and holistic bookkeeping services so you have everything you need to succeed. We value integrity, professionalism, strong attention to detail, and have only our clients' best interests in mind.</p>
 			</div>
 			<div class="space-y-4 reveal reveal-d1">
 				<div class="bg-mist rounded-xl border border-slate-200 p-6 flex items-center gap-5">
@@ -45,7 +45,7 @@ function bootg_render_about_page() {
 					</div>
 					<div>
 						<p class="font-bold text-navy">Est. 2002</p>
-						<p class="text-sm text-slate-500">Founded by Natalie Adams to help business owners succeed with high quality service and expert advice.</p>
+						<p class="text-sm text-ink">Founded by Natalie Adams to help business owners succeed with high quality service and expert advice.</p>
 					</div>
 				</div>
 				<div class="bg-mist rounded-xl border border-slate-200 p-6 flex items-center gap-5">
@@ -54,7 +54,7 @@ function bootg_render_about_page() {
 					</div>
 					<div>
 						<p class="font-bold text-navy">Gosnells, WA — or Fully Remote</p>
-						<p class="text-sm text-slate-500">Happy to work at our office or yours if you're local, or completely remotely if you prefer.</p>
+						<p class="text-sm text-ink">Happy to work at our office or yours if you're local, or completely remotely if you prefer.</p>
 					</div>
 				</div>
 				<div class="bg-mist rounded-xl border border-slate-200 p-6 flex items-center gap-5">
@@ -63,7 +63,7 @@ function bootg_render_about_page() {
 					</div>
 					<div>
 						<p class="font-bold text-navy">Registered BAS Agent</p>
-						<p class="text-sm text-slate-500">Registered with the Tax Practitioners Board, holding a Certificate IV in Bookkeeping and Professional Indemnity Insurance.</p>
+						<p class="text-sm text-ink">Registered with the Tax Practitioners Board, holding a Certificate IV in Bookkeeping and Professional Indemnity Insurance.</p>
 					</div>
 				</div>
 				<div class="bg-mist rounded-xl border border-slate-200 p-6 flex items-center gap-5">
@@ -72,7 +72,7 @@ function bootg_render_about_page() {
 					</div>
 					<div>
 						<p class="font-bold text-navy">Full-Service Support</p>
-						<p class="text-sm text-slate-500">We liaise with your accountant, the ATO, and other regulators on your behalf, and prepare accurate financial reports — plus the small stuff like filing and debtors statements.</p>
+						<p class="text-sm text-ink">We liaise with your accountant, the ATO, and other regulators on your behalf, and prepare accurate financial reports — plus the small stuff like filing and debtors statements.</p>
 					</div>
 				</div>
 			</div>
@@ -84,9 +84,9 @@ function bootg_render_about_page() {
 			<div class="max-w-2xl mb-12 reveal">
 				<p class="chapter-tag"><span class="chapter-num">02</span><span class="chapter-label">Our Mission</span></p>
 				<h2 class="text-3xl sm:text-4xl font-extrabold text-navy mb-4">Mission Statement</h2>
-				<p class="text-slate-500 leading-relaxed">We provide peace of mind and high quality bookkeeping services to every client. We empower you to make the best possible decisions for your business by providing you the tools and information you need.</p>
+				<p class="text-ink leading-relaxed">We provide peace of mind and high quality bookkeeping services to every client. We empower you to make the best possible decisions for your business by providing you the tools and information you need.</p>
 			</div>
-			<p class="uppercase text-slate-400 text-xs font-bold tracking-[0.2em] mb-6">Company Values</p>
+			<p class="uppercase text-ink text-xs font-bold tracking-[0.2em] mb-6">Company Values</p>
 			<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
 				<?php
 				$about_values = array( 'Personal Integrity', 'Professional Ethics', 'Accuracy', 'Accountability', 'Commitment', 'Excellent Customer Service', 'Positive Attitude' );
@@ -110,7 +110,7 @@ function bootg_render_about_page() {
 				<div class="lg:col-span-9 text-center lg:text-left">
 					<p class="chapter-tag"><span class="chapter-num">03</span><span class="chapter-label">Meet The Founder</span></p>
 					<h2 class="text-2xl sm:text-3xl font-extrabold text-navy mb-3">Natalie Adams</h2>
-					<p class="text-slate-500 leading-relaxed mb-6 max-w-2xl">Natalie founded Bookkeeping On The Go in 2002, driven by a vision to help business owners succeed through high quality service and expert advice — a promise she's kept every day since. She and her team are registered BAS Agents with the Tax Practitioners Board, hold a Certificate IV in Bookkeeping, and carry Professional Indemnity Insurance, so you can feel confident in the support and knowledge guiding your business toward success.</p>
+					<p class="text-ink leading-relaxed mb-6 max-w-2xl">Natalie founded Bookkeeping On The Go in 2002, driven by a vision to help business owners succeed through high quality service and expert advice — a promise she's kept every day since. She and her team are registered BAS Agents with the Tax Practitioners Board, hold a Certificate IV in Bookkeeping, and carry Professional Indemnity Insurance, so you can feel confident in the support and knowledge guiding your business toward success.</p>
 					<a href="https://www.linkedin.com/in/natalie-adams-0159b582" target="_blank" rel="noopener" class="btn btn-outline px-6 py-3 text-sm">
 						<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
 						Connect on LinkedIn
@@ -122,7 +122,7 @@ function bootg_render_about_page() {
 
 	<section class="py-14 bg-mist border-t border-slate-200" data-testid="about-certifications-section">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-			<p class="uppercase text-slate-400 text-xs font-bold tracking-[0.2em] mb-8">Our Certifications &amp; Partnerships</p>
+			<p class="uppercase text-ink text-xs font-bold tracking-[0.2em] mb-8">Our Certifications &amp; Partnerships</p>
 			<div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-6">
 				<?php foreach ( array_keys( bootg_partner_logo_defs() ) as $logo_key ) : ?>
 					<?php echo bootg_render_partner_logo_img( $logo_key ); // phpcs:ignore ?>

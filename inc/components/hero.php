@@ -56,7 +56,7 @@ function bootg_render_weavit_hero( $attributes, $content ) {
 				<h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy mb-5 leading-[1.1]"><?php echo wp_kses_post( $title ); ?></h2>
 			<?php endif; ?>
 			<?php if ( $description ) : ?>
-				<p class="text-base md:text-lg text-slate-600 leading-relaxed mb-8 max-w-xl"><?php echo wp_kses_post( $description ); ?></p>
+				<p class="text-base md:text-lg text-ink leading-relaxed mb-8 max-w-xl"><?php echo wp_kses_post( $description ); ?></p>
 			<?php endif; ?>
 			<?php if ( $content ) : ?>
 				<div><?php echo $content; // phpcs:ignore — already-rendered inner block markup ?></div>

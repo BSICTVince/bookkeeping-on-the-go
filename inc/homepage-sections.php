@@ -82,12 +82,12 @@ function bootg_home_default_sections() {
 					Reclaim your <em>weekends.</em><br>
 					<span class="text-action">Stay 100% compliant.</span>
 				</h1>
-				<p class="reveal reveal-d1 text-base md:text-lg leading-relaxed mb-9 max-w-xl" style="color:#1d1a20">We empower small-to-medium businesses and nonprofits across Australia with stress-free, professional bookkeeping, payroll, and BAS/IAS services.</p>
+				<p class="reveal reveal-d1 text-base md:text-lg leading-relaxed mb-9 max-w-xl text-ink">We empower small-to-medium businesses and nonprofits across Australia with stress-free, professional bookkeeping, payroll, and BAS/IAS services.</p>
 				<div class="reveal reveal-d2 flex flex-wrap gap-4">
 					<a href="' . esc_url( $contact_url ) . '" class="btn btn-primary px-7 py-3.5 text-base">Book a Free Consultation</a>
 					<a href="' . esc_url( $services_url ) . '" class="btn btn-outline px-7 py-3.5 text-base">Explore Our Services</a>
 				</div>
-				<div class="reveal reveal-d3 mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm font-semibold" style="color:#1d1a20">
+				<div class="reveal reveal-d3 mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm font-semibold text-ink">
 					<span class="flex items-center gap-2"><svg class="w-4 h-4 text-action" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg> Registered BAS Agent</span>
 					<span class="flex items-center gap-2"><svg class="w-4 h-4 text-action" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg> Xero Gold Partner</span>
 					<span class="flex items-center gap-2"><svg class="w-4 h-4 text-action" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg> No-obligation consult</span>
@@ -101,9 +101,9 @@ function bootg_home_default_sections() {
 					<div class="bg-white rounded-xl border p-6 relative mt-6 lg:mt-0 lg:absolute lg:-bottom-10 lg:-left-12 lg:max-w-[19rem] z-10" style="box-shadow:0 30px 60px -25px rgba(42,22,56,.35);border-color:#EAE1F1">
 						<div class="absolute -top-3 left-6 bg-action text-white text-[11px] font-bold tracking-widest uppercase rounded-full px-3 py-1">Free Setup Review</div>
 						<h3 class="text-lg font-bold text-navy mb-1.5 mt-1">Ready to Switch to Cloud Bookkeeping?</h3>
-						<p class="text-sm leading-relaxed mb-5" style="color:#1d1a20">Let our certified team configure the perfect software stack for your business workflow.</p>
+						<p class="text-sm leading-relaxed mb-5 text-ink">Let our certified team configure the perfect software stack for your business workflow.</p>
 						<a href="' . esc_url( $contact_url ) . '" class="btn btn-dark w-full py-3 text-sm tracking-wide">Help Me Get Set Up</a>
-						<p class="text-xs text-center mt-3 mb-0" style="color:#1d1a20">Response within one business day</p>
+						<p class="text-xs text-center mt-3 mb-0 text-ink">Response within one business day</p>
 					</div>
 				</div>
 			</div>
@@ -162,19 +162,19 @@ function bootg_home_default_sections() {
 		<div class="grid grid-cols-2 lg:grid-cols-4 gap-10 text-center">
 			<div class="reveal">
 				<p class="stat-num mb-2" style="font-size:clamp(1.9rem,3.4vw,2.9rem);line-height:1.15">Since 2002</p>
-				<p class="text-sm font-semibold text-slate-500">Established by Natalie Adams</p>
+				<p class="text-sm font-semibold text-ink">Established by Natalie Adams</p>
 			</div>
 			<div class="reveal reveal-d1">
 				<p class="stat-num mb-2">500+</p>
-				<p class="text-sm font-semibold text-slate-500">BAS &amp; IAS lodgments</p>
+				<p class="text-sm font-semibold text-ink">BAS &amp; IAS lodgments</p>
 			</div>
 			<div class="reveal reveal-d2">
 				<p class="stat-num mb-2">' . (int) wp_count_posts( 'integration' )->publish . '+</p>
-				<p class="text-sm font-semibold text-slate-500">Certified platform partners</p>
+				<p class="text-sm font-semibold text-ink">Certified platform partners</p>
 			</div>
 			<div class="reveal reveal-d3">
 				<p class="stat-num mb-2">AU</p>
-				<p class="text-sm font-semibold text-slate-500">Virtual, Australia-wide</p>
+				<p class="text-sm font-semibold text-ink">Virtual, Australia-wide</p>
 			</div>
 		</div>
 	</div>
@@ -190,7 +190,7 @@ function bootg_home_default_sections() {
 		<div class="lg:col-span-5 lg:sticky lg:top-32 self-start reveal">
 			<p class="chapter-tag"><span class="chapter-num">03</span><span class="chapter-label">How It Works</span></p>
 			<h2 class="text-3xl sm:text-4xl font-extrabold text-navy mb-5">Three Steps to Sorted Books</h2>
-			<p class="text-slate-500 leading-relaxed mb-8">No jargon, no lock-in surprises. Just a clear path from where your books are now to where they should be.</p>
+			<p class="text-ink leading-relaxed mb-8">No jargon, no lock-in surprises. Just a clear path from where your books are now to where they should be.</p>
 			<a href="' . esc_url( $contact_url ) . '" class="btn btn-primary px-7 py-3.5 text-base">Start With Step One</a>
 		</div>
 		<div class="lg:col-span-7">
@@ -200,19 +200,19 @@ function bootg_home_default_sections() {
 					<div class="timeline_dot"></div>
 					<p class="step-num mb-3">01</p>
 					<h3 class="text-xl font-bold text-navy mb-2">Free Consultation</h3>
-					<p class="text-slate-500 leading-relaxed">Tell us about your business and where your books are at. We listen first, then give you an honest read — no obligation, no jargon.</p>
+					<p class="text-ink leading-relaxed">Tell us about your business and where your books are at. We listen first, then give you an honest read — no obligation, no jargon.</p>
 				</div>
 				<div class="timeline_step reveal reveal-d1">
 					<div class="timeline_dot"></div>
 					<p class="step-num mb-3">02</p>
 					<h3 class="text-xl font-bold text-navy mb-2">Tailored Setup</h3>
-					<p class="text-slate-500 leading-relaxed">We configure the right cloud stack — Xero, MYOB or QuickBooks, with Dext or Hubdoc doing the paperwork — and take over the day-to-day at a pace that suits you.</p>
+					<p class="text-ink leading-relaxed">We configure the right cloud stack — Xero, MYOB or QuickBooks, with Dext or Hubdoc doing the paperwork — and take over the day-to-day at a pace that suits you.</p>
 				</div>
 				<div class="timeline_step reveal reveal-d2" style="padding-bottom:0">
 					<div class="timeline_dot"></div>
 					<p class="step-num mb-3">03</p>
 					<h3 class="text-xl font-bold text-navy mb-2">Ongoing Support</h3>
-					<p class="text-slate-500 leading-relaxed">Accurate books, on-time BAS, payroll that runs itself, and a team on call whenever you need answers. Weekends: officially reclaimed.</p>
+					<p class="text-ink leading-relaxed">Accurate books, on-time BAS, payroll that runs itself, and a team on call whenever you need answers. Weekends: officially reclaimed.</p>
 				</div>
 			</div>
 		</div>

@@ -149,15 +149,15 @@ function bootg_render_public_trustees() {
 		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 mb-6 service-block reveal">
 				<h2 class="text-2xl font-extrabold text-navy mb-3">Are you required to report to the public trustees?</h2>
-				<p class="text-slate-500 leading-relaxed mb-0">Financial reporting to public trustees requires specialised bookkeeping. Annual statements of accounts are required, and there are hefty fines involved if they're not submitted. Completing them is often an understandable source of stress for administrators.</p>
+				<p class="text-ink leading-relaxed mb-0">Financial reporting to public trustees requires specialised bookkeeping. Annual statements of accounts are required, and there are hefty fines involved if they're not submitted. Completing them is often an understandable source of stress for administrators.</p>
 			</div>
 			<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 mb-6 service-block reveal">
 				<h2 class="text-2xl font-extrabold text-navy mb-3">Years of experience with administration bookkeeping</h2>
-				<p class="text-slate-500 leading-relaxed mb-0">We have years of experience in administration bookkeeping for public trustees and other similar bodies. Our team understands the nuances of bookkeeping under these circumstances.</p>
+				<p class="text-ink leading-relaxed mb-0">We have years of experience in administration bookkeeping for public trustees and other similar bodies. Our team understands the nuances of bookkeeping under these circumstances.</p>
 			</div>
 			<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 mb-6 service-block reveal">
 				<h2 class="text-2xl font-extrabold text-navy mb-3">Onsite or remote, across WA and beyond</h2>
-				<p class="text-slate-500 leading-relaxed mb-0">Our office is in Gosnells and we serve clients in surrounding areas including Perth, Armadale, Canning Vale, Cannington, Victoria Park, Cockburn, Fremantle, Morley, Booragoon and more. We're set up to work remotely and can support your business in any part of Australia — happy to come to your office if you're local, or to help virtually no matter where you are.</p>
+				<p class="text-ink leading-relaxed mb-0">Our office is in Gosnells and we serve clients in surrounding areas including Perth, Armadale, Canning Vale, Cannington, Victoria Park, Cockburn, Fremantle, Morley, Booragoon and more. We're set up to work remotely and can support your business in any part of Australia — happy to come to your office if you're local, or to help virtually no matter where you are.</p>
 			</div>
 		</div>
 	</section>
@@ -174,15 +174,15 @@ function bootg_render_payroll_specialists() {
 		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 mb-6 service-block reveal">
 				<h2 class="text-2xl font-extrabold text-navy mb-3">Accurate and affordable payroll services in Perth</h2>
-				<p class="text-slate-500 leading-relaxed mb-0">When choosing your bookkeeper, you want someone who understands the importance of managing your payroll in Perth. Go with an expert who understands the regulations in the area, and can customise your payroll accordingly.</p>
+				<p class="text-ink leading-relaxed mb-0">When choosing your bookkeeper, you want someone who understands the importance of managing your payroll in Perth. Go with an expert who understands the regulations in the area, and can customise your payroll accordingly.</p>
 			</div>
 			<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 mb-6 service-block reveal">
 				<h2 class="text-2xl font-extrabold text-navy mb-3">Local taxes, holidays and awards — never forgotten</h2>
-				<p class="text-slate-500 leading-relaxed mb-0">Local taxes and fees can be configured, public holidays will always be accounted for, and working rules and regulations are never forgotten. That's the benefit of working with someone who understands where you're coming from.</p>
+				<p class="text-ink leading-relaxed mb-0">Local taxes and fees can be configured, public holidays will always be accounted for, and working rules and regulations are never forgotten. That's the benefit of working with someone who understands where you're coming from.</p>
 			</div>
 			<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 mb-6 service-block reveal">
 				<h2 class="text-2xl font-extrabold text-navy mb-3">Payroll customised for your business</h2>
-				<p class="text-slate-500 leading-relaxed mb-0">No matter what industry you're in, it's important to work with a bookkeeper who understands the specifics of doing business in your state — tax laws can vary by state, and even locally. That's why we always get you set up so that your bookkeeping tools work for your situation.</p>
+				<p class="text-ink leading-relaxed mb-0">No matter what industry you're in, it's important to work with a bookkeeper who understands the specifics of doing business in your state — tax laws can vary by state, and even locally. That's why we always get you set up so that your bookkeeping tools work for your situation.</p>
 			</div>
 		</div>
 	</section>

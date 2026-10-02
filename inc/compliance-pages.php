@@ -52,19 +52,19 @@ function bootg_render_ato_compliance() {
 		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 mb-6 service-block reveal">
 				<h2 class="text-2xl font-extrabold text-navy mb-3">Registered BAS Agent</h2>
-				<p class="text-slate-500 leading-relaxed mb-0">Bookkeeping On The Go is a registered BAS agent with the Tax Practitioners Board (TPB). That means we meet strict education, experience and ongoing training requirements, and we're bound by the TPB Code of Professional Conduct.</p>
+				<p class="text-ink leading-relaxed mb-0">Bookkeeping On The Go is a registered BAS agent with the Tax Practitioners Board (TPB). That means we meet strict education, experience and ongoing training requirements, and we're bound by the TPB Code of Professional Conduct.</p>
 			</div>
 			<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 mb-6 service-block reveal">
 				<h2 class="text-2xl font-extrabold text-navy mb-3">How You're Protected</h2>
-				<p class="text-slate-500 leading-relaxed mb-0">Working with a registered agent gives you access to safe harbour protection for certain penalties, extended lodgment windows, and the assurance of professional indemnity insurance. Your obligations stay yours — but the workload and the worry become ours.</p>
+				<p class="text-ink leading-relaxed mb-0">Working with a registered agent gives you access to safe harbour protection for certain penalties, extended lodgment windows, and the assurance of professional indemnity insurance. Your obligations stay yours — but the workload and the worry become ours.</p>
 			</div>
 			<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 mb-6 service-block reveal">
 				<h2 class="text-2xl font-extrabold text-navy mb-3">Your Records, Audit-Ready</h2>
-				<p class="text-slate-500 leading-relaxed mb-0">Every transaction coded, every source document attached, every lodgment on time. If the ATO ever comes calling, your file tells a clean, complete story.</p>
+				<p class="text-ink leading-relaxed mb-0">Every transaction coded, every source document attached, every lodgment on time. If the ATO ever comes calling, your file tells a clean, complete story.</p>
 			</div>
 			<div class="bg-mist rounded-xl border border-slate-200 p-8 lg:p-10 mb-6 service-block reveal">
 				<h2 class="text-2xl font-extrabold text-navy mb-3">Our Formal Statements</h2>
-				<p class="text-slate-500 leading-relaxed mb-0">In line with the Tax Agent Services Act 2009, our policy and disclosure statements are available for you to read:</p>
+				<p class="text-ink leading-relaxed mb-0">In line with the Tax Agent Services Act 2009, our policy and disclosure statements are available for you to read:</p>
 				<div class="flex flex-wrap gap-3 mt-6">
 					<?php echo do_shortcode( '[weavit_download slug="policy-statement" label="Policy Statement" class="btn btn-outline px-5 py-2.5 text-sm"]' ); ?>
 					<?php echo do_shortcode( '[weavit_download slug="tasa-2009-disclosure" label="TASA 2009 Disclosure" class="btn btn-outline px-5 py-2.5 text-sm"]' ); ?>
@@ -112,7 +112,7 @@ function bootg_render_dates_to_remember() {
 					<<?php echo esc_html( $tag ); ?><?php if ( ! empty( $item['link'] ) ) : ?> href="<?php echo esc_url( $item['link'] ); ?>" target="_blank" rel="noopener"<?php endif; ?> class="bg-mist rounded-xl border border-slate-200 p-7 flex flex-col service-block reveal<?php echo esc_attr( $delay ); ?><?php echo ! empty( $item['link'] ) ? ' hover:border-action hover:shadow-md transition-all' : ''; ?>">
 						<span class="bg-action/10 text-action text-xs font-bold tracking-wide uppercase rounded-full px-3 py-1 self-start mb-4"><?php echo esc_html( $item['tag'] ); ?></span>
 						<h3 class="text-lg font-bold text-navy mb-2"><?php echo esc_html( $item['title'] ); ?></h3>
-						<p class="text-sm text-slate-500 leading-relaxed mb-0"><?php echo esc_html( $item['body'] ); ?></p>
+						<p class="text-sm text-ink leading-relaxed mb-0"><?php echo esc_html( $item['body'] ); ?></p>
 						<?php if ( ! empty( $item['link'] ) ) : ?><span class="text-action text-sm font-semibold mt-4">View ATO Lodgment Program &rarr;</span><?php endif; ?>
 					</<?php echo esc_html( $tag ); ?>>
 				<?php endforeach; ?>

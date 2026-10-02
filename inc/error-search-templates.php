@@ -19,7 +19,7 @@ function bootg_render_page_search_box( $placeholder = 'Search the site…' ) {
 	?>
 	<form role="search" method="get" class="flex gap-3 max-w-lg" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 		<label class="sr-only" for="bootg-site-search">Search</label>
-		<input type="search" id="bootg-site-search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="<?php echo esc_attr( $placeholder ); ?>" class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm text-charcoal placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-action focus:border-transparent">
+		<input type="search" id="bootg-site-search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="<?php echo esc_attr( $placeholder ); ?>" class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm text-ink placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-action focus:border-transparent">
 		<button type="submit" class="btn btn-primary px-6 py-3 text-sm whitespace-nowrap">Search</button>
 	</form>
 	<?php
@@ -44,7 +44,7 @@ function bootg_render_not_found() {
 
 	<section class="py-16 lg:py-20 bg-mist">
 		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-			<p class="text-xs font-bold tracking-widest uppercase text-slate-400 mb-6">Or head to</p>
+			<p class="text-xs font-bold tracking-widest uppercase text-ink mb-6">Or head to</p>
 			<div class="flex flex-wrap justify-center gap-4">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-outline px-6 py-3 text-sm">Home</a>
 				<a href="<?php echo esc_url( bootg_page_url( 'services' ) ); ?>" class="btn btn-outline px-6 py-3 text-sm">Services</a>
@@ -80,13 +80,13 @@ function bootg_render_search_results() {
 	<section class="py-16 lg:py-20 bg-mist">
 		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 			<?php if ( $q->have_posts() ) : ?>
-				<p class="text-sm text-slate-500 mb-8"><?php echo (int) $q->found_posts; ?> result<?php echo 1 === (int) $q->found_posts ? '' : 's'; ?> found.</p>
+				<p class="text-sm text-ink mb-8"><?php echo (int) $q->found_posts; ?> result<?php echo 1 === (int) $q->found_posts ? '' : 's'; ?> found.</p>
 				<div class="space-y-5">
 					<?php while ( $q->have_posts() ) : $q->the_post(); ?>
 						<a href="<?php the_permalink(); ?>" class="block bg-white rounded-xl border border-slate-200 shadow-sm p-6 hover:border-action transition-colors">
 							<p class="text-xs font-bold tracking-widest uppercase text-action mb-2"><?php echo esc_html( get_post_type_object( get_post_type() )->labels->singular_name ); ?></p>
 							<h2 class="text-lg font-bold text-navy mb-2"><?php the_title(); ?></h2>
-							<p class="text-sm text-slate-500 leading-relaxed"><?php echo esc_html( wp_trim_words( get_the_excerpt() ?: wp_strip_all_tags( get_the_content() ), 28 ) ); ?></p>
+							<p class="text-sm text-ink leading-relaxed"><?php echo esc_html( wp_trim_words( get_the_excerpt() ?: wp_strip_all_tags( get_the_content() ), 28 ) ); ?></p>
 						</a>
 					<?php endwhile; ?>
 				</div>
@@ -98,7 +98,7 @@ function bootg_render_search_results() {
 			<?php else : ?>
 				<div class="text-center py-12">
 					<p class="text-lg font-bold text-navy mb-2">No results found.</p>
-					<p class="text-sm text-slate-500 mb-8">Try a different search, or get in touch and we'll point you in the right direction.</p>
+					<p class="text-sm text-ink mb-8">Try a different search, or get in touch and we'll point you in the right direction.</p>
 					<a href="<?php echo esc_url( bootg_page_url( 'contact' ) ); ?>" class="btn btn-primary px-6 py-3 text-sm">Contact Us</a>
 				</div>
 			<?php endif; ?>

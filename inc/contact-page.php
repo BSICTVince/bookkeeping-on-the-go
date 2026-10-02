@@ -56,7 +56,7 @@ function bootg_render_contact_page() {
 								<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/></svg>
 							</div>
 							<div>
-								<p class="text-xs font-bold tracking-widest uppercase text-slate-400">Phone</p>
+								<p class="text-xs font-bold tracking-widest uppercase text-ink">Phone</p>
 								<p class="font-bold text-navy group-hover:text-action transition-colors"><?php echo esc_html( $phone ); ?></p>
 							</div>
 						</a>
@@ -67,7 +67,7 @@ function bootg_render_contact_page() {
 								<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
 							</div>
 							<div>
-								<p class="text-xs font-bold tracking-widest uppercase text-slate-400">Email</p>
+								<p class="text-xs font-bold tracking-widest uppercase text-ink">Email</p>
 								<p class="font-bold text-navy group-hover:text-action transition-colors break-all"><?php echo esc_html( $email ); ?></p>
 							</div>
 						</a>
@@ -77,7 +77,7 @@ function bootg_render_contact_page() {
 							<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
 						</div>
 						<div>
-							<p class="text-xs font-bold tracking-widest uppercase text-slate-400">Service Area</p>
+							<p class="text-xs font-bold tracking-widest uppercase text-ink">Service Area</p>
 							<p class="font-bold text-navy"><?php echo esc_html( $address ); ?></p>
 						</div>
 					</div>
@@ -85,7 +85,7 @@ function bootg_render_contact_page() {
 
 				<div class="bg-white rounded-xl border border-slate-200 shadow-sm p-8">
 					<h2 class="text-2xl font-extrabold text-navy mb-2">Send Us a Message</h2>
-					<p class="text-sm text-slate-500 mb-8">Tell us a little about your business and what you need help with.</p>
+					<p class="text-sm text-ink mb-8">Tell us a little about your business and what you need help with.</p>
 					<?php echo bootg_render_form( bootg_get_contact_form_id() ); // phpcs:ignore ?>
 				</div>
 
@@ -102,7 +102,7 @@ function bootg_render_contact_page() {
 			<div class="lg:col-span-3 reveal reveal-d1">
 				<div class="bg-white rounded-xl border border-slate-200 shadow-sm p-8 lg:p-10">
 					<h2 class="text-2xl font-extrabold text-navy mb-2">Book a Free Consultation</h2>
-					<p class="text-sm text-slate-500 mb-8">Pick a time that works for you — we'll confirm by email straight away.</p>
+					<p class="text-sm text-ink mb-8">Pick a time that works for you — we'll confirm by email straight away.</p>
 					<iframe src="https://calendly.com/bookkeepingonthego/20min" style="width:100%;height:740px;border:0" frameborder="0" scrolling="yes" title="Book a Free Consultation"></iframe>
 				</div>
 			</div>

@@ -39,7 +39,7 @@ function bootg_render_blog_archive() {
 		</section>
 		<section class="py-16 lg:py-24 bg-white">
 			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<p class="text-slate-400 text-center">No articles published yet — add posts from wp-admin to populate this page.</p>
+				<p class="text-ink text-center">No articles published yet — add posts from wp-admin to populate this page.</p>
 			</div>
 		</section>
 		<?php
@@ -76,10 +76,10 @@ function bootg_render_blog_archive() {
 						<?php if ( bootg_post_category_label( $featured ) ) : ?>
 							<span class="bg-action/10 text-action text-xs font-bold tracking-wide uppercase rounded-full px-3 py-1"><?php echo esc_html( bootg_post_category_label( $featured ) ); ?></span>
 						<?php endif; ?>
-						<span class="text-slate-400 text-sm"><?php echo esc_html( get_the_date( 'd/m/Y', $featured ) ); ?> &middot; <?php echo esc_html( bootg_post_byline( $featured ) ); ?></span>
+						<span class="text-ink text-sm"><?php echo esc_html( get_the_date( 'd/m/Y', $featured ) ); ?> &middot; <?php echo esc_html( bootg_post_byline( $featured ) ); ?></span>
 					</div>
 					<h2 class="text-2xl sm:text-3xl font-extrabold text-navy mb-3"><?php echo esc_html( get_the_title( $featured ) ); ?></h2>
-					<p class="text-slate-500 leading-relaxed mb-6 max-w-3xl"><?php echo esc_html( has_excerpt( $featured ) ? get_the_excerpt( $featured ) : wp_trim_words( wp_strip_all_tags( $featured->post_content ), 34 ) ); ?></p>
+					<p class="text-ink leading-relaxed mb-6 max-w-3xl"><?php echo esc_html( has_excerpt( $featured ) ? get_the_excerpt( $featured ) : wp_trim_words( wp_strip_all_tags( $featured->post_content ), 34 ) ); ?></p>
 					<a href="<?php echo esc_url( get_permalink( $featured ) ); ?>" class="btn btn-dark px-6 py-3 text-sm">Read Full Article</a>
 				</div>
 			</article>
@@ -99,10 +99,10 @@ function bootg_render_blog_archive() {
 							<?php if ( bootg_post_category_label( $post ) ) : ?>
 								<span class="bg-action/10 text-action text-xs font-bold tracking-wide uppercase rounded-full px-3 py-1"><?php echo esc_html( bootg_post_category_label( $post ) ); ?></span>
 							<?php endif; ?>
-							<span class="text-slate-400 text-xs"><?php echo esc_html( get_the_date( 'd/m/Y', $post ) ); ?></span>
+							<span class="text-ink text-xs"><?php echo esc_html( get_the_date( 'd/m/Y', $post ) ); ?></span>
 						</div>
 						<h3 class="text-lg font-bold text-navy mb-2"><?php echo esc_html( get_the_title( $post ) ); ?></h3>
-						<p class="text-sm text-slate-500 leading-relaxed mb-5"><?php echo esc_html( has_excerpt( $post ) ? get_the_excerpt( $post ) : wp_trim_words( wp_strip_all_tags( $post->post_content ), 24 ) ); ?></p>
+						<p class="text-sm text-ink leading-relaxed mb-5"><?php echo esc_html( has_excerpt( $post ) ? get_the_excerpt( $post ) : wp_trim_words( wp_strip_all_tags( $post->post_content ), 24 ) ); ?></p>
 						<a href="<?php echo esc_url( get_permalink( $post ) ); ?>" class="service-link font-bold text-sm mt-auto">Read More <span aria-hidden="true">&rarr;</span></a>
 					</article>
 				<?php endforeach; ?>
@@ -153,7 +153,7 @@ function bootg_render_post_single() {
 				<?php if ( $category ) : ?>
 					<span class="bg-action/10 text-action text-xs font-bold tracking-wide uppercase rounded-full px-3 py-1"><?php echo esc_html( $category ); ?></span>
 				<?php endif; ?>
-				<span class="text-slate-400 text-sm"><?php echo esc_html( get_the_date( 'd/m/Y', $post ) ); ?> &middot; <?php echo esc_html( $byline ); ?></span>
+				<span class="text-ink text-sm"><?php echo esc_html( get_the_date( 'd/m/Y', $post ) ); ?> &middot; <?php echo esc_html( $byline ); ?></span>
 			</div>
 			<?php if ( has_post_thumbnail( $post ) ) : ?>
 				<?php echo get_the_post_thumbnail( $post, 'large', array( 'class' => 'w-full rounded-xl border border-slate-200 shadow-sm mb-10 reveal' ) ); // phpcs:ignore ?>

@@ -59,7 +59,7 @@ function bootg_render_7_steps() {
 			<div class="bg-mist rounded-2xl border border-slate-200 p-8 lg:p-12 reveal">
 				<span class="bg-action/10 text-action text-xs font-bold tracking-wide uppercase rounded-full px-3 py-1">Free Course + Template</span>
 				<h2 class="text-2xl sm:text-3xl font-extrabold text-navy mt-4 mb-3">Sign up for the course</h2>
-				<p class="text-slate-500 leading-relaxed mb-8">Enter your details below and sign up for our course, which also includes a FREE template to help you plan your strategy.</p>
+				<p class="text-ink leading-relaxed mb-8">Enter your details below and sign up for our course, which also includes a FREE template to help you plan your strategy.</p>
 				<?php echo bootg_render_form( bootg_get_7_steps_form_id() ); // phpcs:ignore ?>
 			</div>
 		</div>
@@ -92,7 +92,7 @@ function bootg_render_get_started_xero() {
 			<div class="bg-mist rounded-2xl border border-slate-200 p-8 lg:p-12 reveal">
 				<span class="bg-action/10 text-action text-xs font-bold tracking-wide uppercase rounded-full px-3 py-1">Free 7-Day Course</span>
 				<h2 class="text-2xl sm:text-3xl font-extrabold text-navy mt-4 mb-3">Sign up for the course</h2>
-				<p class="text-slate-500 leading-relaxed mb-6">One short, practical email a day for a week — each one covers a single Xero task so it actually sticks. By day 7 you'll be comfortable finding your way around on your own.</p>
+				<p class="text-ink leading-relaxed mb-6">One short, practical email a day for a week — each one covers a single Xero task so it actually sticks. By day 7 you'll be comfortable finding your way around on your own.</p>
 				<ul class="space-y-2.5 mb-8">
 					<li class="check-item"><?php echo bootg_check_icon(); // phpcs:ignore ?>Finding your way around the Xero dashboard</li>
 					<li class="check-item"><?php echo bootg_check_icon(); // phpcs:ignore ?>Connecting your bank accounts</li>

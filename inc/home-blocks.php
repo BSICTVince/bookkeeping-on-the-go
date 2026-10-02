@@ -32,7 +32,7 @@ function bootg_render_services_grid_section() {
 
 	$cards = '';
 	if ( ! $services ) {
-		$cards = '<p class="text-slate-400 col-span-3 text-center">Add Services from wp-admin to populate this section.</p>';
+		$cards = '<p class="text-ink col-span-3 text-center">Add Services from wp-admin to populate this section.</p>';
 	}
 	foreach ( $services as $service ) {
 		$summary   = get_post_meta( $service->ID, 'card_summary', true ) ?: $service->post_content;
@@ -43,7 +43,7 @@ function bootg_render_services_grid_section() {
 		$cards .= '<div class="service-card svc-photo-card bg-mist rounded-xl border border-slate-200 shadow-sm px-8 pb-8 flex flex-col text-center reveal">';
 		$cards .= $image;
 		$cards .= '<h3 class="svc-title text-xl font-bold mb-3">' . esc_html( get_the_title( $service ) ) . '</h3>';
-		$cards .= '<p class="text-slate-500 text-sm leading-relaxed mb-6">' . esc_html( wp_strip_all_tags( $summary ) ) . '</p>';
+		$cards .= '<p class="text-ink text-sm leading-relaxed mb-6">' . esc_html( wp_strip_all_tags( $summary ) ) . '</p>';
 		$cards .= '<a href="' . esc_url( $cta_url ) . '" class="service-link font-bold text-sm mt-auto mx-auto">' . esc_html( $cta_label ) . ' <span aria-hidden="true">&rarr;</span></a>';
 		$cards .= '</div>';
 	}
@@ -54,7 +54,7 @@ function bootg_render_services_grid_section() {
 			<div class="max-w-2xl mb-14 reveal">
 				<p class="chapter-tag"><span class="chapter-num">02</span><span class="chapter-label">What We Do</span></p>
 				<h2 class="text-3xl sm:text-4xl font-extrabold text-navy mb-4">Holistic Bookkeeping to Support Your Business</h2>
-				<p class="text-base md:text-lg text-slate-500">Comprehensive financial support so you can focus on driving your core enterprise.</p>
+				<p class="text-base md:text-lg text-ink">Comprehensive financial support so you can focus on driving your core enterprise.</p>
 			</div>
 			<div class="grid md:grid-cols-3 gap-6 pt-12">' . $cards . '</div>
 		</div>
@@ -70,7 +70,7 @@ function bootg_render_partner_logos_section() {
 	return '
 	<section class="bg-white border-b border-slate-200 py-10">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-			<p class="uppercase text-slate-400 text-xs font-bold tracking-[0.2em] mb-6">Trusted Partners &amp; Certified Specialists</p>
+			<p class="uppercase text-ink text-xs font-bold tracking-[0.2em] mb-6">Trusted Partners &amp; Certified Specialists</p>
 			<div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-6" data-testid="partner-logos">' . $badges . '</div>
 		</div>
 	</section>';
@@ -110,7 +110,7 @@ function bootg_render_latest_post_section() {
 				<div>
 					<p class="chapter-tag"><span class="chapter-num">05</span><span class="chapter-label">Free Tools &amp; Guides</span></p>
 					<h2 class="text-3xl sm:text-4xl font-extrabold text-navy mb-2">Want to grow your business?</h2>
-					<p class="text-base md:text-lg text-slate-500 mb-0">Explore our free tools, calculators, and expert guides.</p>
+					<p class="text-base md:text-lg text-ink mb-0">Explore our free tools, calculators, and expert guides.</p>
 				</div>
 				<a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ?: home_url( '/blog/' ) ); ?>" class="btn btn-outline px-6 py-3 text-sm shrink-0">Explore Free Resources</a>
 			</div>
@@ -119,10 +119,10 @@ function bootg_render_latest_post_section() {
 					<div class="grid lg:grid-cols-12 gap-6 items-center">
 						<div class="lg:col-span-9">
 							<div class="flex items-center gap-3 mb-3">
-								<span class="text-slate-400 text-sm"><?php echo esc_html( get_the_date( '', $p ) ); ?></span>
+								<span class="text-ink text-sm"><?php echo esc_html( get_the_date( '', $p ) ); ?></span>
 							</div>
 							<h3 class="text-xl sm:text-2xl font-bold text-navy mb-2"><?php echo esc_html( get_the_title( $p ) ); ?></h3>
-							<p class="text-sm text-slate-500 leading-relaxed mb-0 max-w-2xl"><?php echo esc_html( wp_trim_words( wp_strip_all_tags( $p->post_content ), 28 ) ); ?></p>
+							<p class="text-sm text-ink leading-relaxed mb-0 max-w-2xl"><?php echo esc_html( wp_trim_words( wp_strip_all_tags( $p->post_content ), 28 ) ); ?></p>
 						</div>
 						<div class="lg:col-span-3 lg:text-right">
 							<a href="<?php echo esc_url( get_permalink( $p ) ); ?>" class="btn btn-dark px-6 py-3 text-sm">Read Full Article</a>

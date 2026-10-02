@@ -67,7 +67,7 @@ function bootg_render_checkbox_field( $form_id, $field, $margin = 'mb-5' ) {
 	ob_start();
 	?>
 	<div class="<?php echo esc_attr( $margin ); ?> bootg-form-field bootg-form-field--checkbox">
-		<label class="flex items-start gap-3 text-sm text-charcoal">
+		<label class="flex items-start gap-3 text-sm text-ink">
 			<input type="checkbox" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" value="1" <?php echo $required ? 'required' : ''; ?> class="mt-1">
 			<span><?php echo esc_html( $field['label'] ); ?><?php echo $required ? ' <span class="text-action">*</span>' : ''; ?></span>
 		</label>
@@ -82,11 +82,11 @@ function bootg_render_form_field_inner( $form_id, $field ) {
 	$name     = 'bootg_field[' . $field['field_id'] . ']';
 	$label    = $field['label'];
 	$required = ! empty( $field['required'] );
-	$common   = 'w-full rounded-lg border border-slate-300 px-4 py-3 text-sm text-charcoal placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-action focus:border-transparent';
+	$common   = 'w-full rounded-lg border border-slate-300 px-4 py-3 text-sm text-ink placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-action focus:border-transparent';
 
 	ob_start();
 	?>
-	<label for="<?php echo esc_attr( $id ); ?>" class="block text-sm font-bold text-charcoal mb-2"><?php echo esc_html( $label ); ?><?php echo $required ? ' <span class="text-action">*</span>' : ''; ?></label>
+	<label for="<?php echo esc_attr( $id ); ?>" class="block text-sm font-bold text-ink mb-2"><?php echo esc_html( $label ); ?><?php echo $required ? ' <span class="text-action">*</span>' : ''; ?></label>
 	<?php if ( 'textarea' === $field['type'] ) : ?>
 		<textarea id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" rows="5" <?php echo $required ? 'required' : ''; ?> placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>" class="<?php echo esc_attr( $common ); ?>"></textarea>
 	<?php elseif ( 'select' === $field['type'] ) : ?>
