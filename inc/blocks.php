@@ -245,53 +245,16 @@ function bootg_render_site_footer() {
 
 	ob_start();
 	?>
-	<footer class="bg-navydeep text-white pt-16 pb-8">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="grid gap-10 lg:grid-cols-12 mb-12">
-				<div class="lg:col-span-3">
-					<h4 class="text-lg font-bold mb-4"><?php bloginfo( 'name' ); ?></h4>
-					<p class="text-sm text-white/60 leading-relaxed mb-5"><?php echo esc_html( bootg_get_option( 'footer_tagline' ) ); ?></p>
-					<?php if ( $phone ) : ?>
-						<p class="text-sm text-white/60 mb-1"><strong class="text-white/90">Phone:</strong> <a href="tel:<?php echo esc_attr( $phone_link ); ?>" class="hover:text-white transition-colors"><?php echo esc_html( $phone ); ?></a></p>
+	<footer class="text-white" style="<?php echo bootg_footer_style_attr(); // phpcs:ignore ?>">
+		<div class="<?php echo esc_attr( bootg_footer_container_class() ); ?>">
+			<div class="grid gap-10 lg:grid-cols-4 mb-12">
+				<?php foreach ( BOOTG_FOOTER_COLUMN_IDS as $column_id ) : ?>
+					<?php if ( is_active_sidebar( $column_id ) ) : ?>
+						<div class="text-sm text-white/60">
+							<?php dynamic_sidebar( $column_id ); ?>
+						</div>
 					<?php endif; ?>
-					<?php if ( $email ) : ?>
-						<p class="text-sm text-white/60"><strong class="text-white/90">Email:</strong> <a href="mailto:<?php echo esc_attr( $email ); ?>" class="hover:text-white transition-colors"><?php echo esc_html( $email ); ?></a></p>
-					<?php endif; ?>
-				</div>
-
-				<div class="lg:col-span-2">
-					<h5 class="text-sm font-bold tracking-widest uppercase mb-4 text-white/90">Quick Links</h5>
-					<?php
-					wp_nav_menu( array(
-						'theme_location' => 'footer',
-						'container'      => false,
-						'items_wrap'      => '<ul class="space-y-2.5 text-sm text-white/60">%3$s</ul>',
-						'link_before'     => '',
-						'fallback_cb'     => 'bootg_footer_menu_fallback',
-					) );
-					?>
-				</div>
-
-				<div class="lg:col-span-2">
-					<h5 class="text-sm font-bold tracking-widest uppercase mb-4 text-white/90">Specialist Areas</h5>
-					<ul class="space-y-2.5 text-sm text-white/60">
-						<li><a href="<?php echo esc_url( bootg_page_url( 'payroll-specialists-perth' ) ); ?>" class="hover:text-white transition-colors">Payroll Specialists in Perth</a></li>
-						<li><a href="<?php echo esc_url( bootg_page_url( 'public-trustee-reporting' ) ); ?>" class="hover:text-white transition-colors">Public Trustee Reporting</a></li>
-						<li><a href="<?php echo esc_url( bootg_page_url( 'nonprofit-compliance-accounting' ) ); ?>" class="hover:text-white transition-colors">Nonprofit Compliance Accounting</a></li>
-					</ul>
-				</div>
-
-				<div class="lg:col-span-3">
-					<h5 class="text-sm font-bold tracking-widest uppercase mb-4 text-white/90">Stay Connected</h5>
-					<p class="text-sm text-white/60 mb-4">Sign up to receive news, updates, and compliance alerts.</p>
-					<?php echo bootg_render_newsletter_form(); // phpcs:ignore ?>
-				</div>
-
-				<?php if ( is_active_sidebar( 'footer-widgets' ) ) : ?>
-					<div class="lg:col-span-2 text-sm text-white/60">
-						<?php dynamic_sidebar( 'footer-widgets' ); ?>
-					</div>
-				<?php endif; ?>
+				<?php endforeach; ?>
 			</div>
 
 			<hr class="border-white/10 mb-6">
