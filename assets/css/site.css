@@ -74,7 +74,7 @@ footer a{color:#fff}
    but fluidly scaled down on narrow viewports instead of jumping at a fixed breakpoint --
    linearly interpolates from 32px at a 375px viewport up to the chosen height at 1024px,
    clamped at both ends so it never goes below 32px or above the configured value. */
-.navBar_logo{height:clamp(46px, calc(46px + (var(--bootg-logo-height, 64px) - 46px) * ((100vw - 375px) / 649px)), var(--bootg-logo-height, 64px));width:auto;display:block}
+.navBar_logo{height:clamp(56px, calc(56px + (var(--bootg-logo-height, 64px) - 56px) * ((100vw - 375px) / 649px)), var(--bootg-logo-height, 64px));width:auto;display:block}
 
 /* ---- Transparent nav variant (Site Options > Navigation, per selected page) ----
    Desktop only (>=1024px, where the full menu sits inline in the bar itself) --
@@ -528,4 +528,4 @@ body.gsap-motion .reveal{transition:none}
    add_theme_support('custom-logo'), which prints .custom-logo instead — apply the
    same sizing so the uploaded logo isn't rendered at native (huge) resolution. */
 .navBar_brand .custom-logo-link{display:block}
-.navBar_brand .custom-logo{height:clamp(46px, calc(46px + (var(--bootg-logo-height, 64px) - 46px) * ((100vw - 375px) / 649px)), var(--bootg-logo-height, 64px));width:auto;display:block}
+.navBar_brand .custom-logo{height:clamp(56px, calc(56px + (var(--bootg-logo-height, 64px) - 56px) * ((100vw - 375px) / 649px)), var(--bootg-logo-height, 64px));width:auto;display:block}
