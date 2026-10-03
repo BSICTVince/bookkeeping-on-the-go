@@ -19,7 +19,7 @@ function bootg_render_about_page() {
 
 	ob_start();
 	?>
-	<section class="relative overflow-hidden bg-navydeep text-white" data-testid="page-hero" style="background-image:linear-gradient(rgba(42,22,56,.92),rgba(42,22,56,.82)),url('https://bookkeepingonthego.net.au/app/uploads/Bookkeeping-on-the-go-Qualified-Bookkeeping-and-BASIAS-Services-in-Perth-and-Beyond.jpg');background-size:cover;background-position:center">
+	<section class="relative overflow-hidden bg-navydeep text-white" data-testid="page-hero" style="background-image:linear-gradient(rgba(42,22,56,.92),rgba(42,22,56,.82)),url('<?php echo esc_url( get_theme_file_uri( 'assets/images/services/perth-bookkeeping-bas.jpg' ) ); ?>');background-size:cover;background-position:center">
 		<div class="hero-blob w-[420px] h-[420px] bg-action/20 -top-32 -right-24"></div>
 		<div class="hero-blob w-[280px] h-[280px] bg-white/5 bottom-0 -left-20"></div>
 		<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
@@ -105,7 +105,7 @@ function bootg_render_about_page() {
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="bg-mist rounded-2xl border border-slate-200 p-8 lg:p-12 grid lg:grid-cols-12 gap-8 items-center reveal">
 				<div class="lg:col-span-3">
-					<img src="https://bookkeepingonthego.net.au/app/uploads/Natalie-img.jpg" alt="Natalie Adams — Founder, Bookkeeping On The Go" class="w-32 h-32 rounded-full object-cover mx-auto lg:mx-0 ring-4 ring-white shadow-xl">
+					<img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/team/natalie.jpg' ) ); ?>" alt="Natalie Adams — Founder, Bookkeeping On The Go" class="w-32 h-32 rounded-full object-cover mx-auto lg:mx-0 ring-4 ring-white shadow-xl">
 				</div>
 				<div class="lg:col-span-9 text-center lg:text-left">
 					<p class="chapter-tag"><span class="chapter-num">03</span><span class="chapter-label">Meet The Founder</span></p>

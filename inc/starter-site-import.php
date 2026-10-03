@@ -17,8 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 function bootg_seed_downloads() {
 	$created = 0;
 	foreach ( array(
-		'policy-statement'     => array( 'Policy Statement', 'https://bookkeepingonthego.net.au/app/uploads/Policy-Statement.pdf' ),
-		'tasa-2009-disclosure' => array( 'Tax Agent Services Act 2009 Disclosure Statement', 'https://bookkeepingonthego.net.au/app/uploads/Tax-Agents-Services-Act-2009-Disclosure-Statement.pdf' ),
+		'policy-statement'     => array( 'Policy Statement', 'assets/downloads/policy-statement.pdf' ),
+		'tasa-2009-disclosure' => array( 'Tax Agent Services Act 2009 Disclosure Statement', 'assets/downloads/tasa-2009-disclosure.pdf' ),
 	) as $slug => $def ) {
 		$existing = get_page_by_path( $slug, OBJECT, 'weavit_download' );
 		if ( $existing ) {

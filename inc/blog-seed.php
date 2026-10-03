@@ -52,7 +52,7 @@ function bootg_seed_blog_posts() {
 			require_once ABSPATH . 'wp-admin/includes/media.php';
 			require_once ABSPATH . 'wp-admin/includes/file.php';
 			require_once ABSPATH . 'wp-admin/includes/image.php';
-			$attachment_id = media_sideload_image( $post_data['image'], $post_id, $post_data['title'], 'id' );
+			$attachment_id = weavit_sideload_file( $post_data['image'], $post_id, $post_data['title'] );
 			if ( ! is_wp_error( $attachment_id ) ) {
 				set_post_thumbnail( $post_id, $attachment_id );
 			}

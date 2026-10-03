@@ -16,7 +16,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'BOOTG_HOME_SECTIONS_OPTION', 'bootg_home_sections' );
 define( 'BOOTG_HOME_SEO_OPTION', 'bootg_home_seo' );
 define( 'BOOTG_HERO_IMAGE_OPTION', 'bootg_hero_image_media' );
-define( 'BOOTG_HERO_IMAGE_SRC', 'https://bookkeepingonthego.net.au/app/uploads/BOOKKEEPING-ON-THE-GO-STAY-COMPLIANT-WHILE-GETTING-YOUR-TIME-BACK.jpg' );
 
 /** Local (sideloaded) URL for the homepage hero image if we have one, else the original external URL. */
 function bootg_hero_image_url() {
@@ -27,7 +26,7 @@ function bootg_hero_image_url() {
 			return $url;
 		}
 	}
-	return BOOTG_HERO_IMAGE_SRC;
+	return get_theme_file_uri( 'assets/images/hero-bg.jpg' );
 }
 
 /** One-click sideload of the homepage hero image into the Media Library. Safe to run again. Returns 'done'. */
@@ -40,7 +39,7 @@ function bootg_migrate_hero_image() {
 
 	$existing = get_option( BOOTG_HERO_IMAGE_OPTION );
 	if ( ! $existing || ! get_post( $existing ) ) {
-		$attachment_id = media_sideload_image( BOOTG_HERO_IMAGE_SRC, 0, 'Bookkeeping On The Go — hero', 'id' );
+		$attachment_id = weavit_sideload_file( 'assets/images/hero-bg.jpg', 0, 'Bookkeeping On The Go — hero' );
 		if ( ! is_wp_error( $attachment_id ) ) {
 			update_option( BOOTG_HERO_IMAGE_OPTION, $attachment_id );
 		}
@@ -227,7 +226,7 @@ function bootg_home_default_sections() {
 
 		// Section 9 — Final CTA
 		'
-<section class="relative overflow-hidden py-20 lg:py-28 bg-navydeep text-white" data-testid="home-cta-band" style="background-image:linear-gradient(rgba(42,22,56,.88),rgba(42,22,56,.88)),url(\'https://bookkeepingonthego.net.au/app/uploads/Bookkeeping-on-the-go-Qualified-Bookkeeping-and-BASIAS-Services-in-Perth-and-Beyond.jpg\');background-size:cover;background-position:center">
+<section class="relative overflow-hidden py-20 lg:py-28 bg-navydeep text-white" data-testid="home-cta-band" style="background-image:linear-gradient(rgba(42,22,56,.88),rgba(42,22,56,.88)),url(\'' . esc_url( get_theme_file_uri( 'assets/images/services/perth-bookkeeping-bas.jpg' ) ) . '\');background-size:cover;background-position:center">
 	<div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
 		<p class="chapter-tag chapter-light"><span class="chapter-num">06</span><span class="chapter-label">Your Next Chapter</span></p>
 		<h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.1] mb-5">Your next chapter starts with <span class="text-action">sorted books.</span></h2>

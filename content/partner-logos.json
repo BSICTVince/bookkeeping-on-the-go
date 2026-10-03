@@ -1,19 +1,19 @@
 {
 	"xero-certified-advisor": {
 		"label": "Xero Certified Advisor",
-		"url": "https://bookkeepingonthego.net.au/app/plugins/luca-plugin/assets/img/logos/xero-certified-advisor.png"
+		"file": "assets/images/partners/xero-certified-advisor.png"
 	},
 	"xero-gold-partner": {
 		"label": "Xero Gold Partner",
-		"url": "https://bookkeepingonthego.net.au/app/plugins/luca-plugin/assets/img/logos/xero-gold-partner.png"
+		"file": "assets/images/partners/xero-gold-partner.png"
 	},
 	"quickbooks-proadvisor": {
 		"label": "QuickBooks Certified ProAdvisor",
-		"url": "https://bookkeepingonthego.net.au/app/uploads/QuickBooks-Certified-Pro-Advisor.png"
+		"file": "assets/images/partners/quickbooks-proadvisor.png"
 	},
 	"myob-certified-consultant": {
 		"label": "MYOB Certified Consultant",
-		"url": "https://bookkeepingonthego.net.au/app/uploads/MYOB-CC-Logo-292x78.png"
+		"file": "assets/images/partners/myob-certified-consultant.png"
 	},
 	"myob-diamond-partner": {
 		"label": "MYOB Diamond Partner",
@@ -22,15 +22,15 @@
 	},
 	"dext-partner": {
 		"label": "Dext Partner",
-		"url": "https://bookkeepingonthego.net.au/app/uploads/Dext-Partner-logo.png"
+		"file": "assets/images/partners/dext-partner.png"
 	},
 	"hubdoc-partner": {
 		"label": "Hubdoc Partner",
-		"url": "https://bookkeepingonthego.net.au/app/uploads/hubDocpartner100x150px2.png"
+		"file": "assets/images/partners/hubdoc-partner.png"
 	},
 	"tpb-bas-agent": {
 		"label": "Registered BAS Agent — Tax Practitioners Board",
-		"url": "https://bookkeepingonthego.net.au/app/uploads/TPB-logo-with-BAS-agent-number-80x100.png"
+		"file": "assets/images/partners/tpb-bas-agent.png"
 	},
 	"cin7-partner": {
 		"label": "Cin7 Partner",

@@ -122,9 +122,9 @@ function bootg_fix_stale_menu_links() {
 		'ATO Compliance'               => home_url( '/ato-compliance/' ),
 		'Dates to Remember'            => home_url( '/dates-to-remember/' ),
 		'Contact'                      => home_url( '/contact/' ),
-		'How to nominate us as your authorised agent' => 'https://bookkeepingonthego.net.au/resources/how-to-nominate-us-as-your-authorised-agent/',
-		'Policy Statement'             => weavit_download_url_by_slug( 'policy-statement' ) ?: 'https://bookkeepingonthego.net.au/app/uploads/Policy-Statement.pdf',
-		'Tax Agents Services Act 2009' => weavit_download_url_by_slug( 'tasa-2009-disclosure' ) ?: 'https://bookkeepingonthego.net.au/app/uploads/Tax-Agents-Services-Act-2009-Disclosure-Statement.pdf',
+		'How to nominate us as your authorised agent' => home_url( '/resources/how-to-nominate-us-as-your-authorised-agent/' ),
+		'Policy Statement'             => weavit_download_url_by_slug( 'policy-statement' ) ?: '#',
+		'Tax Agents Services Act 2009' => weavit_download_url_by_slug( 'tasa-2009-disclosure' ) ?: '#',
 	);
 
 	$fixed = 0;
@@ -261,8 +261,8 @@ function bootg_seed_menus() {
 		$compliance = bootg_add_menu_item( $menu_id, array( 'menu-item-title' => 'Compliance Resources', 'menu-item-url' => '#', 'menu-item-type' => 'custom' ) );
 		bootg_add_menu_item( $menu_id, array_merge( array( 'menu-item-title' => 'ATO Compliance', 'menu-item-url' => '#', 'menu-item-type' => 'custom' ), array( 'menu-item-parent-id' => $compliance ) ) );
 		bootg_add_menu_item( $menu_id, array_merge( array( 'menu-item-title' => 'Dates to Remember', 'menu-item-url' => '#', 'menu-item-type' => 'custom' ), array( 'menu-item-parent-id' => $compliance ) ) );
-		bootg_add_menu_item( $menu_id, array_merge( array( 'menu-item-title' => 'Policy Statement', 'menu-item-url' => weavit_download_url_by_slug( 'policy-statement' ) ?: 'https://bookkeepingonthego.net.au/app/uploads/Policy-Statement.pdf', 'menu-item-type' => 'custom', 'menu-item-target' => '_blank' ), array( 'menu-item-parent-id' => $compliance ) ) );
-		bootg_add_menu_item( $menu_id, array_merge( array( 'menu-item-title' => 'Tax Agents Services Act 2009', 'menu-item-url' => weavit_download_url_by_slug( 'tasa-2009-disclosure' ) ?: 'https://bookkeepingonthego.net.au/app/uploads/Tax-Agents-Services-Act-2009-Disclosure-Statement.pdf', 'menu-item-type' => 'custom', 'menu-item-target' => '_blank' ), array( 'menu-item-parent-id' => $compliance ) ) );
+		bootg_add_menu_item( $menu_id, array_merge( array( 'menu-item-title' => 'Policy Statement', 'menu-item-url' => weavit_download_url_by_slug( 'policy-statement' ) ?: '#', 'menu-item-type' => 'custom', 'menu-item-target' => '_blank' ), array( 'menu-item-parent-id' => $compliance ) ) );
+		bootg_add_menu_item( $menu_id, array_merge( array( 'menu-item-title' => 'Tax Agents Services Act 2009', 'menu-item-url' => weavit_download_url_by_slug( 'tasa-2009-disclosure' ) ?: '#', 'menu-item-type' => 'custom', 'menu-item-target' => '_blank' ), array( 'menu-item-parent-id' => $compliance ) ) );
 
 		bootg_add_menu_item( $menu_id, array( 'menu-item-title' => 'Contact', 'menu-item-url' => '#', 'menu-item-type' => 'custom' ) );
 
@@ -273,7 +273,7 @@ function bootg_seed_menus() {
 	// ---- Client Area Menu ----
 	if ( empty( $locations['client-area'] ) ) {
 		$menu_id = wp_create_nav_menu( 'Client Area Menu' );
-		bootg_add_menu_item( $menu_id, array( 'menu-item-title' => 'How to nominate us as your authorised agent', 'menu-item-url' => '#', 'menu-item-type' => 'custom' ) );
+		bootg_add_menu_item( $menu_id, array( 'menu-item-title' => 'How to nominate us as your authorised agent', 'menu-item-url' => home_url( '/resources/how-to-nominate-us-as-your-authorised-agent/' ), 'menu-item-type' => 'custom' ) );
 		bootg_add_menu_item( $menu_id, array( 'menu-item-title' => 'Xero Login', 'menu-item-url' => 'https://login.xero.com', 'menu-item-type' => 'custom', 'menu-item-target' => '_blank' ) );
 		bootg_add_menu_item( $menu_id, array( 'menu-item-title' => 'MYOB Login', 'menu-item-url' => 'https://www.myob.com/au', 'menu-item-type' => 'custom', 'menu-item-target' => '_blank' ) );
 		bootg_add_menu_item( $menu_id, array( 'menu-item-title' => 'QuickBooks Online Login', 'menu-item-url' => 'https://app.qbo.intuit.com/app/login', 'menu-item-type' => 'custom', 'menu-item-target' => '_blank' ) );

@@ -339,14 +339,93 @@ function bootg_create_resource_page( $slug, $title, $shortcode ) {
 	return is_wp_error( $page_id ) ? 'error' : 'created';
 }
 
-/** Creates the Resource pages (7 Steps, Key Dates, Templates & Checklists, Get Started with Xero). Returns 'exists', 'created', or 'error'. */
+/** "How to nominate us as your authorised agent" (a child of the Resources page, so it lives at /resources/how-to-nominate-us-as-your-authorised-agent/). */
+function bootg_create_nominate_page() {
+	$slug   = 'how-to-nominate-us-as-your-authorised-agent';
+	$parent = get_page_by_path( 'resources' );
+	if ( get_page_by_path( ( $parent ? 'resources/' : '' ) . $slug ) ) {
+		return 'exists';
+	}
+
+	$img     = esc_url( get_theme_file_uri( 'assets/images/ato-client-agent-linking-instructions.jpg' ) );
+	$contact = esc_url( home_url( '/contact/' ) );
+
+	$content = <<<HTML
+<p>The ATO has implemented measures to strengthen the security of their online services and protect people from identity theft.</p>
+<p>You now need to nominate your registered agent in Online services for business before they can access your account and act on your behalf.</p>
+<p>To nominate <strong>Bookkeeping On The Go</strong> as your authorised Agent, you will need to complete the following steps below.</p>
+<p><a href="{$img}" target="_blank" rel="noopener">Download image instructions</a></p>
+
+<h2>Part 1: Set up Access to Online Services for Business</h2>
+<p>You will require access to the ATO's 'Online services for Business' portal to complete the client-agent linking steps. If you already have a business portal, please scroll down to <strong>Part 2:</strong> Nominate your Authorised Agent. If you do not have a business portal, please start at <strong>Step 1.</strong></p>
+
+<h3>Step 1: Set up your Digital Identity (myGovID)</h3>
+<p>Differing from a myGov account, a myGovID is the Australian Government's Digital Identity app that allows you to login to the 'Online services for business' portal. For instruction on how to set up your myGovID, please visit <a href="https://www.mygovid.gov.au/set-up" target="_blank" rel="noopener">https://www.mygovid.gov.au/set-up</a>. Please be aware that when you're setting up your myGovID, you must hold a Standard Identity Strength level to complete the remaining steps.</p>
+
+<h3>Step 2: Link your myGovID to your ABN</h3>
+<p><a href="https://info.authorisationmanager.gov.au/" target="_blank" rel="noopener">Relationship Authorisation Manager (RAM)</a> is an authorisation service that grants you access to online services on behalf of a business. You will need to use RAM to link your myGovID to your Australian Business Number (ABN).</p>
+<p>The person who is ultimately responsible for the business, also known as the principal authority, must be the first person to link your ABN in RAM. The way you link your myGovID to your ABN will depend on your role in the business (see below):</p>
+<p><strong>You can link your myGovID to your ABN online if you meet the following criteria:</strong></p>
+<ol>
+<li>You have a strong myGovID identity strength; and</li>
+<li>Your name is listed in the ABR.</li>
+</ol>
+<p><strong>You will need to link your myGovID to your ABN by contacting the ATO directly if you meet the following criteria:</strong></p>
+<ol>
+<li>You do not have a strong myGovID identity strength; or</li>
+<li>You are not an individual associate listed in the ABR.</li>
+</ol>
+
+<h3>Step 3: Authorise others to act on your behalf (optional)</h3>
+<p>You can authorise others to act on behalf of your business (for example, employees) in RAM. For instructions on how to authorise others, visit: <a href="https://info.authorisationmanager.gov.au/set-up-authorisations" target="_blank" rel="noopener">https://info.authorisationmanager.gov.au/set-up-authorisations</a>.</p>
+
+<h2>Part 2: Nominate your Authorised Agent</h2>
+<p>Now that you have created your myGovID and linked it to your ABN, you can nominate <strong>Bookkeeping On The Go</strong> as your Activity Statement Agent by following these steps.</p>
+
+<h3>Step 1: Log in to Online services for business</h3>
+<p>Use your myGovID to login to 'Online Services for business' through the following link: <a href="https://mygovid.gov.au/AuthSpa.UI/index.html#login" target="_blank" rel="noopener">https://mygovid.gov.au/AuthSpa.UI/index.html#login</a></p>
+
+<h3>Step 2: Nominate Bookkeeping On The Go as your authorised agent</h3>
+<p>Navigate through 'Online services for business' to nominate us as your Agent by following the steps below:</p>
+<ol>
+<li>From the Online services for business home page select Profile, then Agent details.</li>
+<li>At the Agent nominations feature, select <strong>ADD</strong>.</li>
+<li>On the nominate agent screen, go to "<strong>Search for Agent</strong>".</li>
+<li>In the search bar, enter our Registered Agent Number (RAN), which is <strong>92390002</strong>, then press search.</li>
+<li>From the results, select <em><strong>Bookkeeping On The Go</strong></em></li>
+<li>Check that the agent's details are all correct.</li>
+<li>Complete the Declaration.</li>
+<li>Select Submit.</li>
+</ol>
+
+<h3>Step 3: Contact us to confirm you have completed the nomination</h3>
+<p>It is important that you contact us once you have completed your nomination, as we only have 28 days to action the nomination before it expires. If your nomination expires, you will have to restart the nomination process.</p>
+<p>When completing your nomination, please ensure that you select all authorisations that you would like us to be responsible for (for example, Activity Statement Agent, PAYG).</p>
+<p>Finally, if you experience any errors or difficulties when completing the agent nomination process, please <a href="{$contact}">contact us</a> or contact the ATO directly for support.</p>
+HTML;
+
+	$page_id = wp_insert_post( array(
+		'post_type'    => 'page',
+		'post_title'   => 'How to nominate us as your authorised agent',
+		'post_name'    => $slug,
+		'post_parent'  => $parent ? $parent->ID : 0,
+		'post_status'  => 'publish',
+		'post_content' => $content,
+	), true );
+
+	return is_wp_error( $page_id ) ? 'error' : 'created';
+}
+
+/** Creates the Resource pages (7 Steps, Key Dates, Templates & Checklists, Get Started with Xero, How to nominate us). Returns 'exists', 'created', or 'error'. */
 function bootg_create_resource_pages() {
 	$steps     = bootg_create_resource_page( '7-steps', '7 Steps to Increasing Profit', '[bootg_7_steps]' );
 	$dates     = bootg_create_resource_page( 'key-dates', 'Key Dates', '[bootg_key_dates]' );
 	$templates = bootg_create_resource_page( 'resources', 'Templates & Checklists', '[bootg_templates_checklists]' );
 	$xero      = bootg_create_resource_page( 'get-started-with-xero', 'Get Started with Xero', '[bootg_get_started_xero]' );
 
-	$results = array( $steps, $dates, $templates, $xero );
+	$nominate  = bootg_create_nominate_page();
+
+	$results = array( $steps, $dates, $templates, $xero, $nominate );
 	return in_array( 'error', $results, true ) ? 'error' : ( in_array( 'created', $results, true ) ? 'created' : 'exists' );
 }
 
