@@ -78,6 +78,34 @@
   }, { threshold: 0.05, rootMargin: '0px 0px -4% 0px' });
   document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
 
+  /* Stat counters: numeric stats like "500+" / "9+" count up from 0 when scrolled into view. */
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var counters = [];
+  document.querySelectorAll('.stat-num').forEach(function (el) {
+    var m = el.textContent.trim().match(/^(\d+)(\D*)$/);
+    if (!m) { return; }
+    counters.push({ el: el, target: parseInt(m[1], 10), suffix: m[2] });
+  });
+  if (counters.length && !reduceMotion) {
+    counters.forEach(function (c) { c.el.textContent = '0' + c.suffix; c.el.style.fontVariantNumeric = 'tabular-nums'; });
+    var countIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) { return; }
+        countIo.unobserve(en.target);
+        var c = counters.filter(function (x) { return x.el === en.target; })[0];
+        var start = null, duration = 1600;
+        (function tick(ts) {
+          if (start === null) { start = ts; }
+          var p = Math.min((ts - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          c.el.textContent = Math.round(c.target * eased) + c.suffix;
+          if (p < 1) { requestAnimationFrame(tick); }
+        })(performance.now());
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function (c) { countIo.observe(c.el); });
+  }
+
   /* Scroll progress bar */
   var progressBar = document.createElement('div');
   progressBar.id = 'scrollProgress';
