@@ -150,13 +150,6 @@ function bootg_render_site_header() {
 				<?php endif; ?>
 
 				<div class="navBar_menuToggle">
-					<a href="#mainNavBar" class="burger burger-animated" data-toggle="collapse" aria-expanded="false" aria-controls="mainNavBar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="burger_bar"></span>
-						<span class="burger_bar"></span>
-						<span class="burger_bar"></span>
-					</a>
-
 					<?php if ( $phone ) : ?>
 						<a href="tel:<?php echo esc_attr( $phone_link ); ?>" class="navBar_phone">
 							<div class="navBar_phoneIcon">
@@ -167,6 +160,13 @@ function bootg_render_site_header() {
 							<?php echo esc_html( $phone ); ?>
 						</a>
 					<?php endif; ?>
+
+					<a href="#mainNavBar" class="burger burger-animated" data-toggle="collapse" aria-expanded="false" aria-controls="mainNavBar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="burger_bar"></span>
+						<span class="burger_bar"></span>
+						<span class="burger_bar"></span>
+					</a>
 				</div>
 			</div>
 
