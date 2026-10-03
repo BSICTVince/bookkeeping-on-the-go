@@ -32,9 +32,9 @@ h1,h2,h3,h4,h5,.font-display{font-family:'Archivo',sans-serif}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* ============ Scroll reveal ============ */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .4s cubic-bezier(.22,1,.36,1),transform .4s cubic-bezier(.22,1,.36,1)}
 .reveal.is-visible{opacity:1;transform:translateY(0)}
-.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+.reveal-d1{transition-delay:.04s}.reveal-d2{transition-delay:.08s}.reveal-d3{transition-delay:.12s}
 
 /* ============ Scaling SVG helper ============ */
 .u-scalingSvg{position:relative;display:block;width:100%}
@@ -74,7 +74,7 @@ footer a{color:#fff}
    but fluidly scaled down on narrow viewports instead of jumping at a fixed breakpoint --
    linearly interpolates from 32px at a 375px viewport up to the chosen height at 1024px,
    clamped at both ends so it never goes below 32px or above the configured value. */
-.navBar_logo{height:clamp(32px, calc(32px + (var(--bootg-logo-height, 52px) - 32px) * ((100vw - 375px) / 649px)), var(--bootg-logo-height, 52px));width:auto;display:block}
+.navBar_logo{height:clamp(46px, calc(46px + (var(--bootg-logo-height, 64px) - 46px) * ((100vw - 375px) / 649px)), var(--bootg-logo-height, 64px));width:auto;display:block}
 
 /* ---- Transparent nav variant (Site Options > Navigation, per selected page) ----
    Desktop only (>=1024px, where the full menu sits inline in the bar itself) --
@@ -277,7 +277,7 @@ footer a{color:#fff}
 [data-testid="hero-section"] .reveal-d2,[data-testid="page-hero"] .reveal-d2{animation-delay:.3s}
 [data-testid="hero-section"] .reveal-d3,[data-testid="page-hero"] .reveal-d3{animation-delay:.45s}
 
-.reveal{transform:translateY(28px) scale(.985)}
+.reveal{transform:translateY(16px) scale(.99)}
 
 @keyframes gradientShift{to{background-position:200% 0}}
 [data-testid="hero-section"] h1 span,[data-testid="page-hero"] h1 span{
@@ -528,4 +528,4 @@ body.gsap-motion .reveal{transition:none}
    add_theme_support('custom-logo'), which prints .custom-logo instead — apply the
    same sizing so the uploaded logo isn't rendered at native (huge) resolution. */
 .navBar_brand .custom-logo-link{display:block}
-.navBar_brand .custom-logo{height:clamp(32px, calc(32px + (var(--bootg-logo-height, 52px) - 32px) * ((100vw - 375px) / 649px)), var(--bootg-logo-height, 52px));width:auto;display:block}
+.navBar_brand .custom-logo{height:clamp(46px, calc(46px + (var(--bootg-logo-height, 64px) - 46px) * ((100vw - 375px) / 649px)), var(--bootg-logo-height, 64px));width:auto;display:block}

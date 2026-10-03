@@ -75,7 +75,7 @@
     entries.forEach(function (en) {
       if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.05, rootMargin: '0px 0px -4% 0px' });
   document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
 
   /* Scroll progress bar */

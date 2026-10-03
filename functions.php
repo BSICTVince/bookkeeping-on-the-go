@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BOOTG_VERSION', '0.1.55' );
+define( 'BOOTG_VERSION', '0.1.56' );
 define( 'BOOTG_DIR', get_template_directory() );
 define( 'BOOTG_URI', get_template_directory_uri() );
 

@@ -17,7 +17,7 @@ function bootg_nav_defaults() {
 	return array(
 		'transparent_homepage'   => false,
 		'transparent_pages'      => array(),
-		'logo_height'            => 52,
+		'logo_height'            => 64,
 		'text_color'             => '#ffffff',
 		'text_hover_color'       => '#643486',
 	);
@@ -35,8 +35,8 @@ function bootg_sanitize_nav_settings( $input ) {
 	$output                          = array();
 	$output['transparent_homepage']  = ! empty( $input['transparent_homepage'] );
 	$output['transparent_pages']     = array_map( 'absint', (array) ( $input['transparent_pages'] ?? array() ) );
-	$height                          = absint( $input['logo_height'] ?? 52 );
-	$output['logo_height']           = min( 200, max( 1, $height ?: 52 ) );
+	$height                          = absint( $input['logo_height'] ?? 64 );
+	$output['logo_height']           = min( 200, max( 1, $height ?: 64 ) );
 	$output['text_color']            = sanitize_hex_color( $input['text_color'] ?? '' ) ?: '#ffffff';
 	$output['text_hover_color']      = sanitize_hex_color( $input['text_hover_color'] ?? '' ) ?: '#643486';
 	return $output;
