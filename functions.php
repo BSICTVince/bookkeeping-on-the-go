@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BOOTG_VERSION', '0.1.61' );
+define( 'BOOTG_VERSION', '0.1.62' );
 define( 'BOOTG_DIR', get_template_directory() );
 define( 'BOOTG_URI', get_template_directory_uri() );
 
@@ -38,6 +38,7 @@ require_once BOOTG_DIR . '/inc/components/section.php';
 require_once BOOTG_DIR . '/inc/components/hero.php';
 require_once BOOTG_DIR . '/inc/components/button.php';
 require_once BOOTG_DIR . '/inc/home-blocks.php';
+require_once BOOTG_DIR . '/inc/site-profile.php';
 require_once BOOTG_DIR . '/inc/homepage-sections.php';
 require_once BOOTG_DIR . '/inc/cpt-templates.php';
 require_once BOOTG_DIR . '/inc/blog-templates.php';
