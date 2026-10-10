@@ -529,3 +529,21 @@ body.gsap-motion .reveal{transition:none}
    same sizing so the uploaded logo isn't rendered at native (huge) resolution. */
 .navBar_brand .custom-logo-link{display:block}
 .navBar_brand .custom-logo{height:clamp(56px, calc(56px + (var(--bootg-logo-height, 64px) - 56px) * ((100vw - 375px) / 649px)), var(--bootg-logo-height, 64px));width:auto;display:block}
+
+/* Blog search + filters */
+.blog-filter-row{display:flex;flex-wrap:wrap;gap:.75rem}
+.blog-filter-input,.blog-filter-select{border:1px solid #cbd5e1;border-radius:.5rem;padding:.75rem 1rem;font-size:1rem;color:#1d1a20;background:#fff;min-height:48px}
+.blog-filter-input{flex:1 1 260px}
+.blog-filter-select{flex:0 1 180px}
+.blog-filter-input:focus,.blog-filter-select:focus{outline:2px solid #643486;outline-offset:1px;border-color:#643486}
+.blog-filter-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.blog-chip{display:inline-flex;align-items:center;gap:.4rem;border:1px solid #cbd5e1;border-radius:9999px;padding:.4rem .9rem;font-size:.875rem;font-weight:600;color:#1d1a20;text-decoration:none;background:#fff;transition:background-color .2s,color .2s,border-color .2s}
+.blog-chip:hover{border-color:#643486;color:#643486}
+.blog-chip.is-active{background:#643486;border-color:#643486;color:#fff}
+.blog-chip-count{font-size:.75rem;opacity:.7}
+.blog-pagination{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-top:2.5rem}
+.blog-pagination .page-numbers{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 .9rem;border:1px solid #cbd5e1;border-radius:.5rem;font-weight:600;color:#1d1a20;text-decoration:none}
+.blog-pagination a.page-numbers:hover{border-color:#643486;color:#643486}
+.blog-pagination .page-numbers.current{background:#643486;border-color:#643486;color:#fff}
+.blog-pagination .page-numbers.dots{border:0}
+.screen-reader-text{border:0;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal!important}
