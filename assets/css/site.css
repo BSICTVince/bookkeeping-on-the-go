@@ -554,3 +554,6 @@ body.gsap-motion .reveal{transition:none}
 .blog-filter-bar .blog-filter-row{flex-wrap:nowrap}
 .blog-filter-bar .blog-filter-input,.blog-filter-bar .blog-filter-select{min-height:44px;padding:.55rem .9rem}
 @media (max-width:767px){.blog-filter-bar .blog-filter-form{order:-1;max-width:none;flex-basis:100%}.blog-filter-bar .blog-filter-row{flex-wrap:wrap}}
+
+#blog-filters{padding-top:2rem;padding-bottom:2rem}
+@media (max-width:767px){#blog-filters{padding-top:1.5rem;padding-bottom:1.5rem}}
