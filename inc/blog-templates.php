@@ -102,6 +102,15 @@ function bootg_render_blog_archive() {
 
 	<section class="py-8 bg-white border-b border-slate-200" id="blog-filters" data-testid="blog-filters">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="blog-filter-bar">
+			<?php if ( $cats ) : ?>
+				<nav class="blog-filter-chips" aria-label="Filter by category">
+					<a href="<?php echo esc_url( bootg_blog_url( $f, array( 'cat' => '', 'page' => 1 ) ) . '#blog-filters' ); ?>" class="blog-chip<?php echo '' === $f['cat'] ? ' is-active' : ''; ?>"<?php echo '' === $f['cat'] ? ' aria-current="true"' : ''; ?>>All</a>
+					<?php foreach ( $cats as $c ) : ?>
+						<a href="<?php echo esc_url( bootg_blog_url( $f, array( 'cat' => $c->slug, 'page' => 1 ) ) . '#blog-filters' ); ?>" class="blog-chip<?php echo $f['cat'] === $c->slug ? ' is-active' : ''; ?>"<?php echo $f['cat'] === $c->slug ? ' aria-current="true"' : ''; ?>><?php echo esc_html( $c->name ); ?> <span class="blog-chip-count"><?php echo (int) $c->count; ?></span></a>
+					<?php endforeach; ?>
+				</nav>
+			<?php endif; ?>
 			<form method="get" action="<?php echo esc_url( bootg_blog_base_url() ); ?>" class="blog-filter-form" role="search" aria-label="Search and filter articles">
 				<div class="blog-filter-row">
 					<label class="screen-reader-text" for="blog-q">Search articles</label>
@@ -117,14 +126,7 @@ function bootg_render_blog_archive() {
 					<input type="hidden" name="blog_cat" value="<?php echo esc_attr( $f['cat'] ); ?>">
 				<?php endif; ?>
 			</form>
-			<?php if ( $cats ) : ?>
-				<nav class="blog-filter-chips" aria-label="Filter by category">
-					<a href="<?php echo esc_url( bootg_blog_url( $f, array( 'cat' => '', 'page' => 1 ) ) . '#blog-filters' ); ?>" class="blog-chip<?php echo '' === $f['cat'] ? ' is-active' : ''; ?>"<?php echo '' === $f['cat'] ? ' aria-current="true"' : ''; ?>>All</a>
-					<?php foreach ( $cats as $c ) : ?>
-						<a href="<?php echo esc_url( bootg_blog_url( $f, array( 'cat' => $c->slug, 'page' => 1 ) ) . '#blog-filters' ); ?>" class="blog-chip<?php echo $f['cat'] === $c->slug ? ' is-active' : ''; ?>"<?php echo $f['cat'] === $c->slug ? ' aria-current="true"' : ''; ?>><?php echo esc_html( $c->name ); ?> <span class="blog-chip-count"><?php echo (int) $c->count; ?></span></a>
-					<?php endforeach; ?>
-				</nav>
-			<?php endif; ?>
+			</div>
 			<?php if ( $filtered ) : ?>
 				<p class="text-sm text-ink mt-4" role="status">
 					<?php

@@ -547,3 +547,10 @@ body.gsap-motion .reveal{transition:none}
 .blog-pagination .page-numbers.current{background:#643486;border-color:#643486;color:#fff}
 .blog-pagination .page-numbers.dots{border:0}
 .screen-reader-text{border:0;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal!important}
+
+.blog-filter-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem}
+.blog-filter-bar .blog-filter-chips{margin-top:0;flex:1 1 auto}
+.blog-filter-bar .blog-filter-form{flex:1 1 440px;max-width:640px}
+.blog-filter-bar .blog-filter-row{flex-wrap:nowrap}
+.blog-filter-bar .blog-filter-input,.blog-filter-bar .blog-filter-select{min-height:44px;padding:.55rem .9rem}
+@media (max-width:767px){.blog-filter-bar .blog-filter-form{order:-1;max-width:none;flex-basis:100%}.blog-filter-bar .blog-filter-row{flex-wrap:wrap}}
