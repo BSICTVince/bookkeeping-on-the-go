@@ -415,6 +415,21 @@ function bootg_render_service_archive() {
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8"><?php echo $blocks; // phpcs:ignore ?></div>
 	</section>
 
+	<section class="pb-16 lg:pb-24 bg-white" data-testid="accountant-section">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="grid lg:grid-cols-2 gap-8 items-center bg-mist rounded-xl border border-slate-200 p-8 lg:p-12 reveal">
+				<div>
+					<p class="text-action font-bold text-sm tracking-[0.18em] uppercase mb-3">Looking for an Accountant?</p>
+					<h2 class="text-2xl sm:text-3xl font-extrabold text-navy mb-4">We Work Closely With Your Accountant</h2>
+				</div>
+				<div>
+					<p class="text-ink leading-relaxed mb-4">Many businesses search for an accountant when what they really need day to day is a bookkeeper. Your bookkeeper keeps your records accurate and up to date all year round: coding transactions, reconciling accounts, running payroll and lodging BAS. Your accountant then uses those records for tax returns, year-end financials and business advice.</p>
+					<p class="text-ink leading-relaxed mb-0">We work closely with your accountant or accounting firm, so your books arrive at year end clean, reconciled and ready. Less back-and-forth, and often lower accounting fees. Don't have an accountant yet? Ask us and we can point you in the right direction.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<section class="py-16 lg:py-20 bg-navydeep text-white">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
 			<h2 class="text-3xl sm:text-4xl font-extrabold mb-4">Let's Talk About Your Books</h2>

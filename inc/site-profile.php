@@ -55,7 +55,7 @@ add_filter( 'weavit_bookkeeping_pages', function () {
 		'Specialist pages'           => array(
 			'payroll-specialists-perth'       => 'Payroll Specialists in Perth',
 			'public-trustee-reporting'        => 'Public Trustee Reporting',
-			'nonprofit-compliance-accounting' => 'Nonprofit Compliance Accounting',
+			'nonprofit-compliance-accounting' => 'Not for Profit Compliance Bookkeeping',
 		),
 	);
 } );

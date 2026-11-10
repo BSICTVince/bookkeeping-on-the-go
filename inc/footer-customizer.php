@@ -108,7 +108,7 @@ add_action( 'widgets_init', function () {
 				'menu-item-status' => 'publish',
 			) );
 			wp_update_nav_menu_item( $menu_id, 0, array(
-				'menu-item-title' => 'Nonprofit Compliance Accounting',
+				'menu-item-title' => 'Not for Profit Compliance Bookkeeping',
 				'menu-item-url'   => home_url( '/nonprofit-compliance-accounting/' ),
 				'menu-item-status' => 'publish',
 			) );

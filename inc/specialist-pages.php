@@ -1,7 +1,7 @@
 <?php
 /**
  * Specialist Area landing pages — Payroll Specialists, Public Trustee
- * Reporting, Nonprofit Compliance Accounting. Same shortcode-in-a-Page
+ * Reporting, Not for Profit Compliance Bookkeeping. Same shortcode-in-a-Page
  * pattern as About/Contact/Compliance: [bootg_specialist_*] renders into
  * a normal WP Page. Content adapted from the client's original site.
  */
@@ -90,20 +90,20 @@ function bootg_render_specialist_public_trustee() {
 
 function bootg_render_specialist_nonprofit() {
 	return bootg_render_specialist_page(
-		'Nonprofit Compliance Accounting',
-		'Nonprofit Compliance <span class="text-action">Accounting</span>',
-		'Outsourced bookkeeping that keeps your nonprofit compliant, without adding to an already-stretched team.',
+		'Not for Profit Compliance Bookkeeping',
+		'Not for Profit Compliance <span class="text-action">Bookkeeping</span>',
+		'Outsourced bookkeeping that keeps your not for profit compliant, without adding to an already-stretched team.',
 		array(
 			array(
 				'heading' => 'Give Your Team Their Time Back',
-				'body'    => "Running a nonprofit means balancing your mission with day-to-day operations, and bookkeeping is often the most time-consuming task of all. When financial work is handled in-house without specialised knowledge, it can consume far more hours than anticipated — manual data entry, reconciling restricted funds, and preparing reports for the board or for grants. Outsourcing removes that time pressure, so staff can get back to programs, fundraising, and donor engagement.",
+				'body'    => "Running a not for profit means balancing your mission with day-to-day operations, and bookkeeping is often the most time-consuming task of all. When financial work is handled in-house without specialised knowledge, it can consume far more hours than anticipated — manual data entry, reconciling restricted funds, and preparing reports for the board or for grants. Outsourcing removes that time pressure, so staff can get back to programs, fundraising, and donor engagement.",
 			),
 			array(
-				'heading' => 'Built for Nonprofit Compliance',
-				'body'    => "Nonprofits face unique obligations — grant requirements, payroll obligations, Form 990-style reporting, and donor-restricted funds — where mistakes can mean delayed grants or reputational damage. We apply nonprofit-specific accounting standards, separate restricted and unrestricted funds correctly, track grant deadlines, and maintain the audit trail your board and funders expect, so compliance becomes routine rather than a reactive scramble.",
+				'heading' => 'Built for Not for Profit Compliance',
+				'body'    => "Not for profits face unique obligations — grant requirements, payroll obligations, ACNC annual reporting, and donor-restricted funds — where mistakes can mean delayed grants or reputational damage. We apply not-for-profit-specific bookkeeping standards, separate restricted and unrestricted funds correctly, track grant deadlines, and maintain the audit trail your board and funders expect, so compliance becomes routine rather than a reactive scramble.",
 			),
 		),
-		'Talk to Us About Your Nonprofit\'s Books'
+		'Talk to Us About Your Not for Profit\'s Books'
 	);
 }
 
@@ -128,7 +128,7 @@ function bootg_create_specialist_page( $slug, $title, $shortcode ) {
 function bootg_create_specialist_pages() {
 	$payroll   = bootg_create_specialist_page( 'payroll-specialists-perth', 'Payroll Specialists in Perth', '[bootg_specialist_payroll]' );
 	$trustee   = bootg_create_specialist_page( 'public-trustee-reporting', 'Public Trustee Reporting', '[bootg_specialist_public_trustee]' );
-	$nonprofit = bootg_create_specialist_page( 'nonprofit-compliance-accounting', 'Nonprofit Compliance Accounting', '[bootg_specialist_nonprofit]' );
+	$nonprofit = bootg_create_specialist_page( 'nonprofit-compliance-accounting', 'Not for Profit Compliance Bookkeeping', '[bootg_specialist_nonprofit]' );
 
 	$results = array( $payroll, $trustee, $nonprofit );
 	return in_array( 'error', $results, true ) ? 'error' : ( in_array( 'created', $results, true ) ? 'created' : 'exists' );

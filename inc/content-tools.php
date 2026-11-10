@@ -162,7 +162,7 @@ function bootg_render_content_tools_page() {
 		<?php endif; ?>
 
 		<h2>Specialist Area Pages</h2>
-		<p class="description">One-time creation of the <strong>Payroll Specialists in Perth</strong>, <strong>Public Trustee Reporting</strong>, and <strong>Nonprofit Compliance Accounting</strong> pages linked from the footer's Specialist Areas list.</p>
+		<p class="description">One-time creation of the <strong>Payroll Specialists in Perth</strong>, <strong>Public Trustee Reporting</strong>, and <strong>Not for Profit Compliance Bookkeeping</strong> pages linked from the footer's Specialist Areas list.</p>
 		<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" style="margin-bottom:2em;">
 			<?php wp_nonce_field( 'bootg_create_specialist_pages' ); ?>
 			<input type="hidden" name="action" value="bootg_create_specialist_pages">
