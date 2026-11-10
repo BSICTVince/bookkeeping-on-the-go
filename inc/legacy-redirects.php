@@ -61,13 +61,13 @@ function bootg_legacy_redirect_map() {
 	// Old business-guide topic hubs -> the Business Guides archive.
 	$guide_topics = array(
 		'boost-your-business', 'collecting-your-money-faster', 'customer-success',
-		'cybersecurity-tips-for-business', 'demystifying-inflation', 'driving-sales-and-revenue',
-		'finance-funding', 'financial-tips', 'find-and-fix-bottlenecks', 'growth',
-		'how-crowdfunding-works', 'identifying-warning-triggers', 'impact-of-discounting',
+		'demystifying-inflation', 'driving-sales-and-revenue',
+		'finance-funding', 'financial-tips', 'growth',
+		'how-crowdfunding-works', 'impact-of-discounting',
 		'improving-break-even', 'leadership', 'marketing', 'operations', 'personal-finance',
 		'planning-the-year-ahead', 'productivity', 'protecting-your-business-online',
 		'raising-equity-capital', 'restructuring-if-cash-stressed', 'sales-marketing',
-		'save-time-with-technology', 'social-media-marketing-basics', 'starting-up',
+		'social-media-marketing-basics', 'starting-up',
 		'succession-exit', 'surviving-supply-chain-disruption', 'technology',
 		'the-importance-of-bookkeeping', 'unlock-sales-success', 'why-online-reviews-matter',
 		'workable-new-year-resolutions', 'cash',
@@ -85,6 +85,16 @@ add_action( 'template_redirect', function () {
 	}
 	$path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' ); // phpcs:ignore
 	$path = preg_replace( '#/embed$#', '', strtolower( $path ) );
+	// Old root-level post URLs (/slug/) -> the post's current permalink
+	// (/category/slug/) when a published post with that exact slug exists.
+	if ( $path && false === strpos( $path, '/' ) ) {
+		$post = get_posts( array( 'name' => $path, 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => 1 ) );
+		if ( $post ) {
+			wp_safe_redirect( get_permalink( $post[0] ), 301, 'Bookkeeping On The Go' );
+			exit;
+		}
+	}
+
 	$map  = bootg_legacy_redirect_map();
 	if ( isset( $map[ $path ] ) ) {
 		wp_safe_redirect( home_url( $map[ $path ] ), 301, 'Bookkeeping On The Go' );
