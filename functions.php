@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BOOTG_VERSION', '0.1.69' );
+define( 'BOOTG_VERSION', '0.1.70' );
 define( 'BOOTG_DIR', get_template_directory() );
 define( 'BOOTG_URI', get_template_directory_uri() );
 
@@ -18,6 +18,39 @@ add_action( 'admin_notices', function () {
 	}
 	echo '<div class="notice notice-error"><p><strong>Bookkeeping On The Go</strong> requires the <strong>Weavit Engine</strong> plugin to be installed and active — without it, Services, Integrations, Forms, SMTP, and Site Options will not work.</p></div>';
 } );
+
+/**
+ * Safety net: if the Weavit Engine plugin is not loaded (deactivated by an interrupted
+ * update, removed, or broken), stop here instead of fatalling on its missing functions.
+ * The site then shows a plain notice rather than a 500, and wp-admin stays reachable so the
+ * plugin can be reactivated.
+ */
+// Plugin is running and nothing has recorded that it should be: record it now (older plugin versions never do).
+if ( defined( 'WEAVIT_ENGINE_VERSION' ) && false === get_option( 'weavit_engine_keep_active' ) ) {
+	update_option( 'weavit_engine_keep_active', '1', false );
+}
+
+if ( ! defined( 'WEAVIT_ENGINE_VERSION' ) ) {
+	// Self-heal: an interrupted update can leave the plugin deactivated. If it is still on disk and was
+	// not switched off on purpose (the plugin keeps a flag), turn it back on and reload once.
+	$bootg_plugin = 'weavit-engine/weavit-engine.php';
+	if ( '1' === get_option( 'weavit_engine_keep_active' ) && file_exists( WP_PLUGIN_DIR . '/' . $bootg_plugin ) && ! get_transient( 'bootg_plugin_heal' ) ) {
+		set_transient( 'bootg_plugin_heal', 1, 60 ); // At most one attempt a minute, so it can never loop.
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		if ( ! is_wp_error( activate_plugin( $bootg_plugin, '', false, true ) ) && ! headers_sent() && ! ( defined( 'WP_CLI' ) && WP_CLI ) ) {
+			wp_safe_redirect( set_url_scheme( 'http://' . ( $_SERVER['HTTP_HOST'] ?? '' ) . ( $_SERVER['REQUEST_URI'] ?? '/' ) ) );
+			exit;
+		}
+	}
+	if ( ! is_admin() && ! wp_doing_ajax() && ! wp_doing_cron() && ! ( defined( 'WP_CLI' ) && WP_CLI ) ) {
+		add_action( 'template_redirect', function () {
+			status_header( 503 );
+			header( 'Retry-After: 300' );
+			wp_die( 'This site is being updated and will be back in a few minutes.', get_bloginfo( 'name' ), array( 'response' => 503 ) );
+		}, 0 );
+	}
+	return;
+}
 
 /**
  * Content/data-model plumbing (CPTs, meta boxes, SEO fields, SMTP, Site
