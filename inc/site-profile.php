@@ -16,6 +16,7 @@ add_filter( 'bootg_default_options', function ( $defaults ) {
 		'phone'            => '08 6249 0115',
 		'phone_link'       => '0862490115',
 		'email'            => 'info@bookkeepingonthego.net.au',
+		'map_query'        => '-32.073381,116.0004536', // Google listing pin; editable under Site Options > Contact page map.
 		'facebook_url'     => 'https://www.facebook.com/bookkeeperperthwa/',
 		'twitter_url'      => 'https://x.com/go_bookkeeping',
 		'instagram_url'    => 'https://www.instagram.com/bookkeeping_on_the_go_perth',

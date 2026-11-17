@@ -31,6 +31,7 @@ function bootg_render_contact_page() {
 	$phone_link = bootg_get_option( 'phone_link' );
 	$email      = bootg_get_option( 'email' );
 	$address    = bootg_get_option( 'address' ) ?: 'Perth WA & virtual, Australia-wide';
+	$map_query  = trim( (string) bootg_get_option( 'map_query' ) );
 
 	ob_start();
 	?>
@@ -47,7 +48,7 @@ function bootg_render_contact_page() {
 	<section class="py-16 lg:py-24 bg-mist">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-5 gap-8 items-start">
 
-			<div class="lg:col-span-2 space-y-6 reveal">
+			<div class="lg:col-span-2 space-y-6 reveal" style="display:flex;flex-direction:column;align-self:stretch;">
 				<div class="bg-white rounded-xl border border-slate-200 shadow-sm p-8">
 					<h2 class="text-xl font-bold text-navy mb-6">Contact Details</h2>
 					<?php if ( $phone ) : ?>
@@ -89,7 +90,7 @@ function bootg_render_contact_page() {
 					<?php echo bootg_render_form( bootg_get_contact_form_id() ); // phpcs:ignore ?>
 				</div>
 
-				<div class="bg-navy rounded-xl p-8 text-white">
+				<div class="bg-navy rounded-xl p-8 text-white" style="flex:1 1 auto;">
 					<h3 class="font-bold text-lg mb-4">What To Expect</h3>
 					<ul class="space-y-3 text-sm text-white/80">
 						<li class="flex gap-3"><?php echo bootg_check_icon(); // phpcs:ignore ?> Free, no-obligation consultation</li>
@@ -99,12 +100,17 @@ function bootg_render_contact_page() {
 				</div>
 			</div>
 
-			<div class="lg:col-span-3 reveal reveal-d1">
+			<div class="lg:col-span-3 reveal reveal-d1" style="display:flex;flex-direction:column;gap:2rem;align-self:stretch;">
 				<div class="bg-white rounded-xl border border-slate-200 shadow-sm p-8 lg:p-10">
 					<h2 class="text-2xl font-extrabold text-navy mb-2">Book a Free Consultation</h2>
 					<p class="text-sm text-ink mb-8">Pick a time that works for you — we'll confirm by email straight away.</p>
 					<iframe src="https://calendly.com/bookkeepingonthego/20min" style="width:100%;height:740px;border:0" frameborder="0" scrolling="yes" title="Book a Free Consultation"></iframe>
 				</div>
+					<?php if ( $map_query ) : ?>
+						<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden" style="flex:1 1 auto;min-height:220px;display:flex;" data-testid="contact-map">
+							<iframe src="<?php echo esc_url( 'https://maps.google.com/maps?q=' . rawurlencode( $map_query ) . '&z=15&output=embed' ); ?>" style="width:100%;height:100%;min-height:220px;border:0;flex:1;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map of <?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" allowfullscreen></iframe>
+						</div>
+					<?php endif; ?>
 			</div>
 		</div>
 	</section>
