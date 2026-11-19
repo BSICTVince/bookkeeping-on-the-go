@@ -30,7 +30,7 @@ function bootg_render_contact_page() {
 	$phone      = bootg_get_option( 'phone' );
 	$phone_link = bootg_get_option( 'phone_link' );
 	$email      = bootg_get_option( 'email' );
-	$address    = bootg_get_option( 'address' ) ?: 'Perth WA & virtual, Australia-wide';
+	$address    = ( function_exists( 'weavit_business_address' ) ? weavit_business_address() : bootg_get_option( 'address' ) ) ?: 'Perth WA & virtual, Australia-wide';
 	$map_query  = trim( (string) bootg_get_option( 'map_query' ) );
 
 	ob_start();
